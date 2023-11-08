@@ -4,6 +4,7 @@
 {% endblock %}
 
 {% block body %}
+	<script src="{{ asset('js/script.js') }}"></script>
 	<div class="page__background">
 		<img src="{{ asset('images/carte.jpg') }}" alt="">
 	</div>
@@ -11,6 +12,11 @@
 	<section class="page_content">
 		<div class="head">
 			<nav>
+				<div class="menu-btn">
+					<span class="bar"></span>
+					<span class="bar"></span>
+					<span class="bar"></span>
+				</div>
 				<div class="onglets">
 					<a href="{{ path('app_homepage') }}">Accueil</a>
 					<a href="">liste des articles</a>
@@ -18,6 +24,7 @@
 					<a href="">Communauté</a>
 					<a href="">S'inscrire</a>
 					<a href="">Se connecter</a>
+					<a href=""><img src="{{ asset('images/user.png') }}" alt="Symfony"></a>
 				</div>
 			</nav>
 			<div class="img">

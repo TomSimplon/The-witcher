@@ -15,4 +15,13 @@ class HomepageController extends AbstractController
             'controller_name' => 'HomepageController',
         ]);
     }
+
+    #[Route('/user', name: 'app_user')]
+    public function user(): Response
+    {
+        return $this->render('homepage/user.html.twig', [
+            'controller_name' => 'HomepageController',
+        ]);
+    }
 }
+

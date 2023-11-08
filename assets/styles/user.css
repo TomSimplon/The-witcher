@@ -1,0 +1,111 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.user {
+    width: 100%;
+    background-image: url('../../public/images/the_witcher_universe.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.head nav {
+    display: flex;
+    justify-content: center;
+}
+
+.user .head nav .onglets {
+    max-width: 900px;
+    margin: 20px;
+    padding: 50px;
+    background-color: white;
+    opacity: 0.70;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.user .head nav .onglets a {
+    display: block;
+    text-decoration: none;
+    color: black;
+    padding-right: 50px;
+    padding-top: 20px;
+    line-height: 35px;
+    font-size: 24px;
+    font-family: 'Milonga', serif;
+}
+
+.user .head nav .onglets a:hover {
+    color: rgb(255, 123, 0);
+}
+
+.user .head nav .onglets img {
+    width: 80px;
+    height: 80px;
+    padding-bottom: 5px;
+}
+
+.user .body {
+    background-image: url('../../public/images/forum_background.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.user .container {
+    width: 800px;
+
+    background-color: #000000;
+}
+
+.user .container .contenu {
+    background-color: white;
+    margin: 20px;
+}
+
+.user .container .contenu .infos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.user .container .contenu .infos .recap {
+    display: flex;
+    padding-top: 20px;
+}
+
+.user .container .contenu .infos .recap img {
+    width: 80px;
+    height: 80px;
+}
+
+.user .container .contenu .infos .recap .text {
+    padding-left: 10px;
+}
+
+.user .container .contenu .infos .recap .text p {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.user .container .contenu .infos .request {
+    display: flex;
+}
+
+.user .container .contenu .infos .request a {
+    text-decoration: none;
+}
+
+.user .container .contenu .infos .request p {
+    padding: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+

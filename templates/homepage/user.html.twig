@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page utilisateur
+{% endblock %}
+
+{% block body %}
+	<section class="user">
+		<div class="head">
+			<nav>
+				<div class="menu-btn">
+					<span class="bar"></span>
+					<span class="bar"></span>
+					<span class="bar"></span>
+				</div>
+				<div class="onglets">
+					<a href="{{ path('app_homepage') }}">Accueil</a>
+					<a href="">liste des articles</a>
+					<a href="">Testez vos connaissances</a>
+					<a href="">Communauté</a>
+					<a href="">S'inscrire</a>
+					<a href="">Se connecter</a>
+					<a href=""><img src="{{ asset('images/user.png') }}" alt="Symfony"></a>
+				</div>
+			</nav>
+		</div>
+
+		<div class="body">
+			<div class="container">
+				<div class="contenu">
+					<div class="infos">
+						<div class="recap">
+							<div class="img">
+								<img src="{{ asset('images/user.png') }}" alt="miniature">
+							</div>
+							<div class="text">
+								<p>Pseudo</p>
+								<p>Email</p>
+							</div>
+						</div>
+
+						<div class="request">
+							<a href="">
+								<span style="color: #0368FF;">
+									<p>Modifier les informations utilisateurs</p>
+								</span>
+							</a>
+							<a href="">
+								<span style="color: #0368FF;">
+									<p>Publier une question</p>
+								</span>
+							</a>
+							<a href="">
+								<span style="color: red;">
+									<p>Se déconnecter</p>
+								</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}

@@ -179,15 +179,19 @@ body {
         flex-direction: column;
     }
 
+    .head nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
     .head nav .onglets {
         display: none;
       }
+      
   
       .head nav .onglets a {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
         background-color: white;
         border: 2px;
       }

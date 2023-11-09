@@ -111,6 +111,11 @@ body {
 
 @media screen and (max-width: 640px) {
 
+    .user .head nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
     .user .head nav .onglets {
         display: none;
       }
@@ -118,8 +123,6 @@ body {
       .user .head nav .onglets a {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
         background-color: white;
         border: 2px;
       }
@@ -159,6 +162,10 @@ body {
       .user .container .contenu .infos .recap {
         display: flex;
         flex-direction: column;
+    }
+
+    .user .container .contenu .infos .recap .text {
+        padding-left: 0; 
     }
 
     .user .container .contenu .infos .request {

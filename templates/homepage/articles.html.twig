@@ -5,12 +5,12 @@
 
 {% block body %}
 	<script src="{{ asset('js/script.js') }}"></script>
-	<div class="page__background">
+	<div class="page_background_articles">
 		<img src="{{ asset('images/the_witcher_article.jpg') }}" alt="">
 	</div>
 
-	<section class="page_content">
-		<div class="head">
+	<section class="articles">
+		<div class="header">
 			<nav>
 				<div class="menu-btn">
 					<span class="bar"></span>
@@ -18,15 +18,94 @@
 					<span class="bar"></span>
 				</div>
 				<div class="onglets">
-					<a href="{{ path('app_homepage') }}">Accueil</a>
-					<a href="">liste des articles</a>
-					<a href="">Testez vos connaissances</a>
-					<a href="">Communauté</a>
-					<a href="">S'inscrire</a>
-					<a href="">Se connecter</a>
-					<a href="{{ path('app_user') }}"><img src="{{ asset('images/user.png') }}" alt="Symfony"></a>
+					<strong>
+						<a href="{{ path('app_homepage') }}">
+							<p>Accueil</p>
+						</a>
+					</strong>
+					<strong>
+						<a href="{{ path('app_articles') }}">
+							<p>liste des articles</p>
+						</a>
+					</strong>
+					<strong>
+						<a href="">
+							<p>Testez vos connaissances</p>
+						</a>
+					</strong>
+					<strong>
+						<a href="">
+							<p>Communauté</p>
+						</a>
+					</strong>
+					<strong>
+						<a href="">
+							<p>S'inscrire</p>
+						</a>
+					</strong>
+					<strong>
+						<a href="">
+							<p>Se connecter</p>
+						</a>
+					</strong>
+					<strong>
+						<a href="{{ path('app_user') }}">
+							<p>Mon compte</p>
+						</a>
+					</strong>
 				</div>
 			</nav>
+		</div>
+
+		<div class="search-bar">
+			<form action="" method="get">
+				<input type="text" name="q" placeholder="rechercher..." required>
+				<button type="submit">OK</button>
+			</form>
+		</div>
+		<div class="container">
+			<div class="block">
+				<a href=""><img src="{{ asset('images/article.png') }}" alt="miniature"></a>
+				<strong>
+					<p>Titre de l'article</p>
+				</strong>
+				<p>date de publication</p>
+			</div>
+
+			<div class="block">
+				<a href=""><img src="{{ asset('images/article.png') }}" alt="miniature"></a>
+				<strong>
+					<p>Titre de l'article</p>
+				</strong>
+				<p>date de publication</p>
+			</div>
+
+			<div class="block">
+				<a href=""><img src="{{ asset('images/article.png') }}" alt="miniature"></a>
+				<strong>
+					<p>Titre de l'article</p>
+				</strong>
+				<p>date de publication</p>
+			</div>
+
+			<div class="block">
+				<a href=""><img src="{{ asset('images/article.png') }}" alt="miniature"></a>
+				<strong>
+					<p>Titre de l'article</p>
+				</strong>
+				<p>date de publication</p>
+			</div>
+
+			<div class="pagination">
+				<button class="previous_page">
+					<strong>Précédent</strong>
+				</button>
+				<span class="page_number">Page 1</span>
+				<button class="next_page">
+					<strong>Suivant</strong>
+				</button>
+			</div>
+
 		</div>
 
 	</section>

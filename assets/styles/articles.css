@@ -19,23 +19,23 @@ body {
 	height: 100%;					
 }
 
-.articles {
+#articles {
     width: 1080px;
     margin: 0 auto;
     background-color: #000000;
     opacity: 0.8;
 }
 
-.articles .header {
+#articles .header {
     width: 100%;
 }
 
-.articles .header nav {
+#articles .header nav {
     display: flex;
     justify-content: center;
 }
 
-.articles .header nav .onglets {
+#articles .header nav .onglets {
     background-image: url('../../public/images/the_witcher_background_header.jpg');
     background-size: cover;
     background-position: center;
@@ -47,7 +47,7 @@ body {
     border: white 1px solid;
 }
 
-.articles .header nav .onglets a {
+#articles .header nav .onglets a {
     display: block;
     text-decoration: none;
     line-height: 35px;
@@ -61,12 +61,12 @@ body {
     opacity: 0.8;
 }
 
-.articles .header nav .onglets a:hover {
+#articles .header nav .onglets a:hover {
     color: rgb(255, 123, 0);
     background-color: rgb(12, 197, 12);
 }
 
-.articles .container {
+#articles .container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -106,49 +106,105 @@ body {
     background-color: darkblue; 
 }
 
-.articles .container .block {
+#articles .container .block {
     display: flex;
     flex-direction: column;
     padding: 15px;
 }
 
-.articles .container .block img {
+#articles .container .block img {
     height: 200px;
     width: 400px;
     transition: transform 0.25s;
 }
 
-.articles .container .block img:hover {
+#articles .container .block img:hover {
     transform:scale(1.05);
 }
 
-.articles .container .block p {
+#articles .container .block p {
     color: white;
     margin: 0;
     padding-top: 10px;
     font-size: 20px;
 }
 
-.articles .container .pagination {
+#articles .container .pagination {
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
     margin-top: 20px;
 }
 
-.articles .container .pagination button {
-        padding: 10px;
-        background-color: rgb(18, 167, 4);
-        border-radius: 10px;
-        cursor: pointer;
-        color: rgb(255, 255, 255);
-        font-size: 1rem;
-        font-weight: bold;
-        border: none;
+#articles .container .pagination button {
+    padding: 10px;
+    background-color: rgb(18, 167, 4);
+    border-radius: 10px;
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
 }
 
-.articles .container .pagination span {
-        padding: 10px;
-        color: white;
-        font-weight: bold;
+#articles .container .pagination span {
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 640px) {
+
+    #articles {
+      width: 100%;
+    }
+
+    #articles .header nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #articles .header nav .onglets {
+        display: none;
+      }
+      
+  
+      #articles .header nav .onglets a {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        border: 2px;
+      }
+      
+      .menu-btn {
+        display: block;
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        margin: 30px;
+        z-index: 10;
+        background-color: orange;
+        transition: all 0.9s;
+      }
+    
+      .bar {
+        display: block;
+        width: 35px;
+        height: 5px;
+        background-color: white;
+        margin: 7px auto;
+        transition: all 0.9s;
+      }
+    
+      .menu-btn.open .bar:nth-child(1) {
+        transform: translateY(12px) rotate(45deg);
+      }
+    
+      .menu-btn.open .bar:nth-child(2) {
+        opacity: 0;
+      }
+    
+      .menu-btn.open .bar:nth-child(3) {
+        transform: translateY(-12px) rotate(-45deg);
+      }
 }

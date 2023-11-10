@@ -31,5 +31,13 @@ class HomepageController extends AbstractController
             'controller_name' => 'HomepageController',
         ]);
     }
+
+    #[Route('/article', name: 'app_article')]
+    public function article(): Response
+    {
+        return $this->render('homepage/article.html.twig', [
+            'controller_name' => 'HomepageController',
+        ]);
+    }
 }
 

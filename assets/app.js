@@ -9,5 +9,6 @@
 import './styles/app.css';
 import './styles/user.css';
 import './styles/articles.css';
+import './styles/article.css';
 
 import './js/script';

@@ -11,5 +11,6 @@ import './styles/user.css';
 import './styles/articles.css';
 import './styles/article.css';
 import './styles/forum.css';
+import './styles/login.css';
 
 import './js/script';

@@ -39,5 +39,13 @@ class HomepageController extends AbstractController
             'controller_name' => 'HomepageController',
         ]);
     }
+
+    #[Route('/forum', name: 'app_forum')]
+    public function forum(): Response
+    {
+        return $this->render('homepage/forum.html.twig', [
+            'controller_name' => 'HomepageController',
+        ]);
+    }
 }
 

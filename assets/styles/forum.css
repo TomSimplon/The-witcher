@@ -1,0 +1,204 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.forum {
+    width: 100%;
+    background-image: url('../../public/images/the_witcher_universe.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.forum .header nav {
+    display: flex;
+    justify-content: center;
+}
+
+.forum .header nav .onglets {
+    max-width: 900px;
+    margin: 20px;
+    padding: 50px;
+    background-color: white;
+    opacity: 0.70;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.forum .header nav .onglets a {
+    display: block;
+    text-decoration: none;
+    color: black;
+    padding-right: 50px;
+    padding-top: 20px;
+    line-height: 35px;
+    font-size: 24px;
+    font-family: 'Milonga', serif;
+}
+
+.forum .header nav .onglets a:hover {
+    color: rgb(255, 123, 0);
+}
+
+.forum .header nav .onglets img {
+    width: 80px;
+    height: 80px;
+    padding-bottom: 5px;
+}
+
+.forum .body {
+    background-image: url('../../public/images/forum_background.jpg');
+    background-size: cover;
+    background-position: center;
+    min-height: 100%; 
+    margin: 0;
+    padding: 0;
+}
+
+.forum .container {
+    width: 1080px;
+    background-color: #000000;
+    margin: 0 auto;
+    min-height: 100%; 
+    padding-top: 20px; 
+    padding-bottom: 20px; 
+    box-sizing: border-box; 
+  }
+
+.forum .container .contenu {
+    background-color: #808080;
+    margin: 20px;
+}
+
+.forum .container .contenu .search-bar {
+    text-align: center; 
+    padding: 20px; 
+    width: 100%;
+}
+
+.forum .container .contenu .search-bar form {
+    display: inline-block;
+    margin-bottom: 20px; 
+}
+
+.forum .container .contenu .search-bar input[type="text"] {
+    padding: 10px;
+    font-size: 16px; 
+    border: 2px solid #ccc; 
+    border-radius: 4px; 
+    margin-right: -4px; 
+}
+
+.forum .container .contenu .search-bar button {
+    padding: 12px 20px;
+    background-color: rgb(22, 158, 4); 
+    color: white; 
+    font-weight: bold;
+    border: none; 
+    border-radius: 4px; 
+    cursor: pointer; 
+    font-size: 16px; 
+}
+
+.forum .container .contenu .search-bar button:hover {
+    background-color: darkblue; 
+}
+
+.forum .container .contenu .liste_questions {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0 100px;
+}
+
+.forum .container .contenu .liste_questions .question {
+    background-color: #D9CFCF;
+    margin-bottom: 20px;
+    border: #000000 1px solid;
+}
+
+.forum .container .contenu .liste_questions .question .titre {
+    border-bottom: #000000 1px solid;
+    padding-left: 10px;
+}
+
+.forum .container .contenu .liste_questions .question .auteur {
+    padding-left: 10px;
+    font-size: 18px;
+}
+
+@media screen and (max-width: 640px) {
+
+    .forum .header nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .forum .header nav .onglets {
+        display: none;
+      }
+  
+      .forum .header nav .onglets a {
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        border: 2px;
+      }
+      
+      .menu-btn {
+        display: block;
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        margin: 30px;
+        z-index: 10;
+        background-color: orange;
+        transition: all 0.9s;
+      }
+    
+      .bar {
+        display: block;
+        width: 35px;
+        height: 5px;
+        background-color: white;
+        margin: 7px auto;
+        transition: all 0.9s;
+      }
+    
+      .menu-btn.open .bar:nth-child(1) {
+        transform: translateY(12px) rotate(45deg);
+      }
+    
+      .menu-btn.open .bar:nth-child(2) {
+        opacity: 0;
+      }
+    
+      .menu-btn.open .bar:nth-child(3) {
+        transform: translateY(-12px) rotate(-45deg);
+      }
+
+      .forum .container {
+        width: 100%; 
+        padding: 10px; 
+      }
+
+      .forum .container .contenu .search-bar {
+        padding: 0;
+      }
+
+      .forum .container .contenu .search-bar button {
+        display: none;
+      }
+    
+      .forum .container .contenu .liste_questions {
+        margin: 0 10px; 
+        font-size: 16px;
+      }
+
+      .forum .container .contenu .liste_questions .question .auteur {
+        padding-right: 10px;
+        font-size: 16px;
+    }
+}
+

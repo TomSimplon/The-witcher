@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Forum
+{% endblock %}
+
+{% block body %}
+	<section class="forum">
+		<div class="header">
+			<nav>
+				<div class="menu-btn">
+					<span class="bar"></span>
+					<span class="bar"></span>
+					<span class="bar"></span>
+				</div>
+				<div class="onglets">
+					<a href="{{ path('app_homepage') }}">Accueil</a>
+					<a href="{{ path('app_articles') }}">liste des articles</a>
+					<a href="">Testez vos connaissances</a>
+					<a href="{{ path('app_forum') }}">Communauté</a>
+					<a href="">S'inscrire</a>
+					<a href="">Se connecter</a>
+					<a href="{{ path('app_user') }}"><img src="{{ asset('images/user.png') }}" alt="Symfony"></a>
+				</div>
+			</nav>
+		</div>
+
+		<div class="body">
+			<div class="container">
+				<div class="contenu">
+					<div class="search-bar">
+						<form action="" method="get">
+							<input type="text" name="q" placeholder="rechercher..." required>
+							<button type="submit">OK</button>
+						</form>
+					</div>
+
+					<div class="liste_questions">
+						<div class="question">
+							<div class="titre">
+								<h2>Titre de la question</h2>
+							</div>
+
+							<div class="auteur">
+								<p>Publié par
+									<strong>@Pseudo</strong>
+									le XX-XX-XXXX</p>
+							</div>
+						</div>
+
+						<div class="question">
+							<div class="titre">
+								<h2>Titre de la question</h2>
+							</div>
+
+							<div class="auteur">
+								<p>Publié par
+									<strong>@Pseudo</strong>
+									le XX-XX-XXXX</p>
+							</div>
+						</div>
+
+						<div class="question">
+							<div class="titre">
+								<h2>Titre de la question</h2>
+							</div>
+
+							<div class="auteur">
+								<p>Publié par
+									<strong>@Pseudo</strong>
+									le XX-XX-XXXX</p>
+							</div>
+						</div>
+
+						<div class="question">
+							<div class="titre">
+								<h2>Titre de la question</h2>
+							</div>
+
+							<div class="auteur">
+								<p>Publié par
+									<strong>@Pseudo</strong>
+									le XX-XX-XXXX</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}

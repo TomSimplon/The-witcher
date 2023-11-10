@@ -45,7 +45,7 @@ class Question
     /**
      * @var string|null
      *
-     * @ORM\Column(name="ip", type="text", length=65535, nullable=true)
+     * @ORM\Column(name="ip", type="text", length=255, nullable=true)
      */
     private $ip;
 

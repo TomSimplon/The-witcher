@@ -12,5 +12,7 @@ import './styles/articles.css';
 import './styles/article.css';
 import './styles/forum.css';
 import './styles/login.css';
+import './styles/register.css';
+import './styles/question.css';
 
 import './js/script';

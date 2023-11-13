@@ -5,6 +5,8 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Form\QuestionType;
+use App\Entity\Question;
 
 class HomepageController extends AbstractController
 {
@@ -45,6 +47,18 @@ class HomepageController extends AbstractController
     {
         return $this->render('homepage/forum.html.twig', [
             'controller_name' => 'HomepageController',
+        ]);
+    }
+
+    #[Route('/question', name: 'app_question')]
+    public function question(): Response
+    {
+        $question = new Question();
+
+        $form = $this->createForm(QuestionType::class, $question);
+
+        return $this->render('homepage/question.html.twig', [
+            'questionForm' => $form
         ]);
     }
 }

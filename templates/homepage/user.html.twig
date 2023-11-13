@@ -17,7 +17,7 @@
 					<a href="{{ path('app_articles') }}">liste des articles</a>
 					<a href="">Testez vos connaissances</a>
 					<a href="{{ path('app_forum') }}">Communauté</a>
-					<a href="">S'inscrire</a>
+					<a href="{{ path('app_register') }}">S'inscrire</a>
 					<a href="{{ path('app_login') }}">Se connecter</a>
 					<a href=""><img src="{{ asset('images/user.png') }}" alt="Symfony"></a>
 				</div>
@@ -44,12 +44,12 @@
 									<p>Modifier les informations utilisateurs</p>
 								</span>
 							</a>
-							<a href="">
+							<a href="{{ path('app_question') }}">
 								<span style="color: #0368FF;">
 									<p>Publier une question</p>
 								</span>
 							</a>
-							<a href="">
+							<a href="{{ path('app_logout') }}">
 								<span style="color: red;">
 									<p>Se déconnecter</p>
 								</span>

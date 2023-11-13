@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Question
+{% endblock %}
+
+{% block body %}
+	<section id="question">
+		<div class="header">
+			<nav>
+				<div class="menu-btn">
+					<span class="bar"></span>
+					<span class="bar"></span>
+					<span class="bar"></span>
+				</div>
+				<div class="onglets">
+					<a href="{{ path('app_homepage') }}">Accueil</a>
+					<a href="{{ path('app_articles') }}">liste des articles</a>
+					<a href="">Testez vos connaissances</a>
+					<a href="{{ path('app_forum') }}">Communauté</a>
+					<a href="{{ path('app_register') }}">S'inscrire</a>
+					<a href="{{ path('app_login') }}">Se connecter</a>
+					<a href="{{ path('app_user') }}"><img src="{{ asset('images/user.png') }}" alt="Symfony"></a>
+				</div>
+			</nav>
+		</div>
+
+		<div class="body">
+			<div class="container">
+				<div class="contenu">
+					<form method="post">
+
+						<h1 class="h3 mb-3 font-weight-normal">S'inscrire</h1>
+						{{ form_errors(questionForm) }}
+
+						{{ form_start(questionForm) }}
+						{{ form_row(questionForm.title, {
+                           label: 'Titre de votre question'
+                        }) }}
+						{{ form_row(questionForm.contenu, {
+                            label: 'Contenu de votre question'
+                        }) }}
+
+						<button type="submit" class="btn">Publier votre question</button>
+						{{ form_end(questionForm) }}
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}

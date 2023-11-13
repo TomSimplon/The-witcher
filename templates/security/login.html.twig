@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!
+{% block title %}Connexion
 {% endblock %}
 
 {% block body %}
@@ -16,7 +16,7 @@
 				<a href="{{ path('app_articles') }}">liste des articles</a>
 				<a href="">Testez vos connaissances</a>
 				<a href="{{ path('app_forum') }}">Communauté</a>
-				<a href="">S'inscrire</a>
+				<a href="{{ path('app_register') }}">S'inscrire</a>
 				<a href="{{ path('app_login') }}">Se connecter</a>
 			</div>
 		</nav>
@@ -36,7 +36,6 @@
 								<div class="mb-3">
 									Vous êtes maintenant connecté
 									{{ app.user.pseudonym|default('') }}
-									<a href="{{ path('app_logout') }}">Logout</a>
 								</div>
 							{% endif %}
 

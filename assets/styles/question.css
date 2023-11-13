@@ -51,23 +51,49 @@ body {
     background-image: url('../../public/images/forum_background.jpg');
     background-size: cover;
     background-position: center;
-    min-height: 100%; 
-    margin: 0;
-    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 #question .container {
     width: 1080px;
     background-color: #000000;
-    margin: 0 auto;
-    min-height: 100%; 
-    padding-top: 20px; 
-    padding-bottom: 20px; 
-    box-sizing: border-box; 
   }
 
   #question .container .contenu {
     background-color: #ffffff;
+    margin: 20px;
+}
+
+#question .container .contenu form {
+    padding: 20px;
+}
+
+#question .container .contenu form div {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 15px;
+}
+
+#question .container .contenu form div label {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#question .container .contenu form div input, textarea {
+    margin-top: 5px;
+}
+
+#question .container .contenu form button {
+    font-size: 20px;
+    background-color: #0A7BCD;
+    padding: 10px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
 }
 
 @media screen and (max-width: 640px) {

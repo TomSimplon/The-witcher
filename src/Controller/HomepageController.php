@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\QuestionType;
 use App\Entity\Question;
+use App\Form\CommentaireType;
+use App\Entity\Commentaire;
 
 class HomepageController extends AbstractController
 {
@@ -37,9 +39,15 @@ class HomepageController extends AbstractController
     #[Route('/article', name: 'app_article')]
     public function article(): Response
     {
+        $commentaire = new Commentaire();
+
+        $form = $this->createForm(CommentaireType::class, $commentaire);
+
         return $this->render('homepage/article.html.twig', [
+            'commentaireForm' => $form,
             'controller_name' => 'HomepageController',
         ]);
+        
     }
 
     #[Route('/forum', name: 'app_forum')]
@@ -61,5 +69,6 @@ class HomepageController extends AbstractController
             'questionForm' => $form
         ]);
     }
+
 }
 

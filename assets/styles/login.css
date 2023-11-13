@@ -110,3 +110,72 @@
 #login .background .parchemin .formulaire form button:hover {
     transform: scale(1.05);
 }
+
+@media screen and (max-width: 640px) {
+    #login {
+        height: 900px;
+    }
+    
+    #login nav .onglets {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #login nav .onglets {
+        display: none;
+      }
+      
+  
+      #login nav .onglets a {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        border: 2px;
+        border-color: none;
+      }
+      
+      .menu-btn {
+        display: block;
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        margin: 30px;
+        z-index: 10;
+        background-color: orange;
+        transition: all 0.9s;
+      }
+    
+      .bar {
+        display: block;
+        width: 35px;
+        height: 5px;
+        background-color: white;
+        margin: 7px auto;
+        transition: all 0.9s;
+      }
+    
+      .menu-btn.open .bar:nth-child(1) {
+        transform: translateY(12px) rotate(45deg);
+      }
+    
+      .menu-btn.open .bar:nth-child(2) {
+        opacity: 0;
+      }
+    
+      .menu-btn.open .bar:nth-child(3) {
+        transform: translateY(-12px) rotate(-45deg);
+      }
+
+      #login .background {
+        width: auto; 
+        padding: 0 20px; 
+        box-sizing: border-box; 
+    }
+
+    #login .background .parchemin {
+        margin: 0; 
+        height: auto; 
+        max-width: 100%; 
+        padding: 20px; 
+    }
+}

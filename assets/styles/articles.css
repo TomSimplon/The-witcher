@@ -22,8 +22,7 @@ body {
 #articles {
     width: 1080px;
     margin: 0 auto;
-    background-color: #000000;
-    opacity: 0.8;
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
 #articles .header {

@@ -15,6 +15,11 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordCredentials;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Component\Validator\Constraints\Email as EmailConstraint;
+use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
+use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
+
 
 class UserAuthenticator extends AbstractLoginFormAuthenticator
 {
@@ -22,15 +27,27 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
 
     public const LOGIN_ROUTE = 'app_login';
 
-    public function __construct(private UrlGeneratorInterface $urlGenerator)
-    {
+    private ValidatorInterface $validator;
+    private FlashBagInterface $flashBag;
+
+    public function __construct(
+        private UrlGeneratorInterface $urlGenerator,
+        ValidatorInterface $validator,
+        FlashBagInterface $flashBag
+    ) {
+        $this->validator = $validator;
+        $this->flashBag = $flashBag;
     }
 
     public function authenticate(Request $request): Passport
     {
         $email = $request->request->get('email', '');
+        $emailConstraint = new EmailConstraint();
+        $errors = $this->validator->validate($email, $emailConstraint);
 
-        $request->getSession()->set(Security::LAST_USERNAME, $email);
+        if (count($errors) > 0) {
+            throw new CustomUserMessageAuthenticationException('L\'adresse email n\'est pas valide.');
+        }
 
         return new Passport(
             new UserBadge($email),

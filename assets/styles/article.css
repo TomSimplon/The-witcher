@@ -105,17 +105,23 @@ body {
     margin-bottom: 30px;
 }
 
-#article_unique .formulaire textarea {
-    border: 1px solid grey;
-    padding: 4px 10px;
+#article_unique .formulaire form div label {
+    display: none;
 }
 
-#article_unique .formulaire input[type=submit] {
+#article_unique .formulaire textarea {
+    border: 1px solid grey;
+    padding: 10px 20px;
+}
+
+#article_unique .formulaire button {
     border-color: rgb(6, 121, 141);
     background: rgb(6, 121, 141);
     color: #fff;
     padding: 5px;
     font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
 }
 
 #article_unique .formulaire h2 {

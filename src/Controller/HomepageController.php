@@ -69,6 +69,5 @@ class HomepageController extends AbstractController
             'questionForm' => $form
         ]);
     }
-
 }
 

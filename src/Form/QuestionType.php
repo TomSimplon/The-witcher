@@ -6,6 +6,8 @@ use App\Entity\Question;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Validator\Constraints\Length;
 
 class QuestionType extends AbstractType
 {
@@ -13,7 +15,14 @@ class QuestionType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('contenu')
+            ->add('contenu', TextareaType::class, [
+                'constraints' => [
+                    new Length([
+                        'max' => 4000,
+                        'maxMessage' => 'Votre contenu ne peut pas dépasser 4000 caractères.'
+                    ]),
+                ],
+            ])
         ;
     }
 

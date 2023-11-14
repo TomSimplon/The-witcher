@@ -265,8 +265,48 @@ body {
 
       #answer .container {
         width: 100%; 
-        padding: 10px; 
       }
 
+      #answer .container .contenu .question {
+        flex-direction: column;
+      }
+
+      #answer .container .contenu .réponse {
+        flex-direction: column;
+      }
+
+      #answer .container .contenu .question .right {
+        text-align: center;
+      }
+
+      #answer .container .contenu .question .left {
+        text-align: center;
+      }
+
+      #answer .container .contenu .question .right .title {
+        padding: 0;
+      }
+
+      #answer .question h2 {
+        border-top: #000000 1px solid;
+        padding-top: 10px;
+      }
+
+      #answer .container .contenu .réponse .right {
+        text-align: center;
+      }
+
+      #answer .container .contenu .réponse .left {
+        text-align: center;
+        border-bottom: #000000 1px solid;
+      }
+
+      #answer .formulaire {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+ 
 }
 

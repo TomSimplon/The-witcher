@@ -1,0 +1,136 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Réponse
+{% endblock %}
+
+{% block body %}
+	<section id="answer">
+		<div class="header">
+			<nav>
+				<div class="menu-btn">
+					<span class="bar"></span>
+					<span class="bar"></span>
+					<span class="bar"></span>
+				</div>
+				<div class="onglets">
+					<a href="{{ path('app_homepage') }}">Accueil</a>
+					<a href="{{ path('app_articles') }}">liste des articles</a>
+					<a href="">Testez vos connaissances</a>
+					<a href="{{ path('app_forum') }}">Communauté</a>
+					<a href="{{ path('app_register') }}">S'inscrire</a>
+					<a href="{{ path('app_login') }}">Se connecter</a>
+					<a href="{{ path('app_user') }}"><img src="{{ asset('images/user.png') }}" alt="Symfony"></a>
+				</div>
+			</nav>
+		</div>
+
+		<div class="body">
+			<div class="container">
+				<div class="contenu">
+					<div class="question">
+						<div class="left">
+							<p>pseudo</p>
+							<a href="{{ path('app_user') }}"><img src="{{ asset('images/user.png') }}" alt="Symfony"></a>
+						</div>
+
+						<div class="right">
+							<div class="title">
+								<h2>Titre de la question</h2>
+							</div>
+							<div class="corps">
+								<div class="date">
+									<p>date de publication</p>
+								</div>
+								<div class="text">
+									<p>contenu de la question</p>
+								</div>
+								<div class="bouton">
+									<button>
+										<span style="color: #0368FF;">Modifier ma question</span>
+									</button>
+
+									<button>
+										<span style="color: red;">Supprimer ma question</span>
+									</button>
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="réponse">
+						<div class="left">
+							<p>pseudo</p>
+							<a href="{{ path('app_user') }}"><img src="{{ asset('images/user.png') }}" alt="Symfony"></a>
+						</div>
+
+						<div class="right">
+							<div class="corps">
+								<div class="date">
+									<p>date de publication</p>
+								</div>
+								<div class="text">
+									<p>contenu de la question</p>
+								</div>
+								<div class="bouton">
+									<button>
+										<span style="color: #0368FF;">Modifier ma réponse</span>
+									</button>
+
+									<button>
+										<span style="color: red;">Supprimer ma réponse</span>
+									</button>
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="réponse">
+						<div class="left">
+							<p>pseudo</p>
+							<a href="{{ path('app_user') }}"><img src="{{ asset('images/user.png') }}" alt="Symfony"></a>
+						</div>
+
+						<div class="right">
+							<div class="corps">
+								<div class="date">
+									<p>date de publication</p>
+								</div>
+								<div class="text">
+									<p>contenu de la question</p>
+								</div>
+								<div class="bouton">
+									<button>
+										<span style="color: #0368FF;">Modifier ma réponse</span>
+									</button>
+
+									<button>
+										<span style="color: red;">Supprimer ma réponse</span>
+									</button>
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<hr>
+
+					<div class="formulaire">
+						<h2>Votre réponse :</h2>
+						<form method="post">
+
+							{{ form_errors(answerForm) }}
+
+							{{ form_start(answerForm) }}
+							{{ form_row(answerForm.contenu) }}
+
+							<button type="submit" class="btn">Envoyer la réponse</button>
+							{{ form_end(answerForm) }}
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}

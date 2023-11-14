@@ -14,5 +14,6 @@ import './styles/forum.css';
 import './styles/login.css';
 import './styles/register.css';
 import './styles/question.css';
+import './styles/réponse.css'
 
 import './js/script';

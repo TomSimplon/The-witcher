@@ -44,6 +44,7 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     border: white 1px solid;
+    opacity: 1;
 }
 
 #article_unique .head nav .onglets a {
@@ -135,7 +136,7 @@ body {
 }
 
 #article_unique .commentaires .text {
-    margin-bottom: 30px;
+    margin-bottom: 50px;
 }
 
 #article_unique .commentaires p {

@@ -123,6 +123,15 @@ body {
     padding-left: 10px;
 }
 
+.forum .container .contenu .liste_questions .question .titre a {
+  text-decoration: none;
+  color: black;
+}
+
+.forum .container .contenu .liste_questions .question .titre a:hover {
+  color: rgb(255, 123, 0);
+}
+
 .forum .container .contenu .liste_questions .question .auteur {
     padding-left: 10px;
     font-size: 18px;

@@ -9,6 +9,8 @@ use App\Form\QuestionType;
 use App\Entity\Question;
 use App\Form\CommentaireType;
 use App\Entity\Commentaire;
+use App\Form\AnswerType;
+use App\Entity\Réponse;
 
 class HomepageController extends AbstractController
 {
@@ -67,6 +69,19 @@ class HomepageController extends AbstractController
 
         return $this->render('homepage/question.html.twig', [
             'questionForm' => $form
+        ]);
+    }
+
+    #[Route('/réponse', name: 'app_réponse')]
+    public function réponse(): Response
+    {
+        $answer = new Réponse();
+
+        $form = $this->createForm(AnswerType::class, $answer);
+
+        return $this->render('homepage/réponse.html.twig', [
+            'answerForm' => $form,
+            'controller_name' => 'HomepageController',
         ]);
     }
 }

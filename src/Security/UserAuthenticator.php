@@ -17,7 +17,6 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Component\Validator\Constraints\Email as EmailConstraint;
-use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 
 
@@ -28,15 +27,12 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
     public const LOGIN_ROUTE = 'app_login';
 
     private ValidatorInterface $validator;
-    private FlashBagInterface $flashBag;
 
     public function __construct(
         private UrlGeneratorInterface $urlGenerator,
         ValidatorInterface $validator,
-        FlashBagInterface $flashBag
     ) {
         $this->validator = $validator;
-        $this->flashBag = $flashBag;
     }
 
     public function authenticate(Request $request): Passport

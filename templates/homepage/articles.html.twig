@@ -66,36 +66,16 @@
 			</form>
 		</div>
 		<div class="container">
-			<div class="block">
-				<a href="{{ path('app_article') }}"><img src="{{ asset('uploads/images/article.png') }}" alt="miniature"></a>
-				<strong>
-					<p>Titre de l'article</p>
-				</strong>
-				<p>date de publication</p>
-			</div>
-
-			<div class="block">
-				<a href="{{ path('app_article') }}"><img src="{{ asset('uploads/images/article.png') }}" alt="miniature"></a>
-				<strong>
-					<p>Titre de l'article</p>
-				</strong>
-				<p>date de publication</p>
-			</div>
-
-			<div class="block">
-				<a href="{{ path('app_article') }}"><img src="{{ asset('uploads/images/article.png') }}" alt="miniature"></a>
-				<strong>
-					<p>Titre de l'article</p>
-				</strong>
-				<p>date de publication</p>
-			</div>
-
-			<div class="block">
-				<a href="{{ path('app_article') }}"><img src="{{ asset('uploads/images/article.png') }}" alt="miniature"></a>
-				<strong>
-					<p>Titre de l'article</p>
-				</strong>
-				<p>date de publication</p>
+			<div class="articles_block">
+				{% for article in articles %}
+					<div class="block">
+						<a href="{{ path('app_article') }}"><img src="{{ asset('uploads/images/' ~ article.image) }}" alt="miniature"></a>
+						<strong>
+							<p>{{ article.title }}</p>
+						</strong>
+						<p>{{ article.date|date("m/d/Y") }}</p>
+					</div>
+				{% endfor %}
 			</div>
 
 			<div class="pagination">

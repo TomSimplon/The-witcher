@@ -66,8 +66,14 @@ body {
 
 #articles .container {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     justify-content: center;
+}
+
+#articles .container .articles_block {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 50px;
 }
 
 .search-bar {
@@ -209,4 +215,8 @@ body {
       .search-bar button {
         display: none;
       }
+
+      #articles .container .articles_block {
+        padding: 0;
+    }
 }

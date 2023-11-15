@@ -12,9 +12,9 @@ class Role
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(length: 36, nullable: false)]
-    private ?string $id = null;
-
+    #[ORM\Column(type: 'integer')]
+    private ?int $id = null;
+    
     #[ORM\Column(length: 45, nullable: true)]
     private ?string $name = null;
 

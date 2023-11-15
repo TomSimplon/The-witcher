@@ -5,7 +5,7 @@ body {
 
 #answer {
     width: 100%;
-    background-image: url('../../public/images/the_witcher_universe.jpg');
+    background-image: url('../../public/uploads/images/the_witcher_universe.jpg');
     background-size: cover;
     background-position: center;
 }
@@ -48,7 +48,7 @@ body {
 }
 
 #answer .body {
-    background-image: url('../../public/images/forum_background.jpg');
+    background-image: url('../../public/uploads/images/forum_background.jpg');
     background-size: cover;
     background-position: center;
     min-height: 100%; 

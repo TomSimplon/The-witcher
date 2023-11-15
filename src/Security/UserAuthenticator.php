@@ -18,6 +18,7 @@ use Symfony\Component\Security\Http\Util\TargetPathTrait;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Component\Validator\Constraints\Email as EmailConstraint;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
+use App\Repository\UserRepository;
 
 
 class UserAuthenticator extends AbstractLoginFormAuthenticator
@@ -28,11 +29,15 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
 
     private ValidatorInterface $validator;
 
+    private UserRepository $userRepository;
+
     public function __construct(
         private UrlGeneratorInterface $urlGenerator,
         ValidatorInterface $validator,
+        UserRepository $userRepository 
     ) {
         $this->validator = $validator;
+        $this->userRepository = $userRepository; 
     }
 
     public function authenticate(Request $request): Passport
@@ -40,6 +45,11 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
         $email = $request->request->get('email', '');
         $emailConstraint = new EmailConstraint();
         $errors = $this->validator->validate($email, $emailConstraint);
+        $user = $this->userRepository->findOneByEmail($email);
+
+        if ($user && !$user->isIsActive()) {
+            throw new CustomUserMessageAuthenticationException('Votre compte est bloqué');
+        }
 
         if (count($errors) > 0) {
             throw new CustomUserMessageAuthenticationException('L\'adresse email n\'est pas valide.');
@@ -61,8 +71,7 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
         }
 
         // For example:
-        // return new RedirectResponse($this->urlGenerator->generate('some_route'));
-        throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+        return new RedirectResponse($this->urlGenerator->generate('app_user'));
     }
 
     protected function getLoginUrl(Request $request): string

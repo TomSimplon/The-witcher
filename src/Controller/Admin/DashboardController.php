@@ -68,22 +68,16 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::subMenu("Commentaire")
             ->setSubItems([
                 MenuItem::linkToCrud('List', 'fas fa-list', Commentaire::class),
-                MenuItem::linkToCrud('Ajouter', 'fas fa-plus', Commentaire::class)
-                    ->setAction('new')
             ]);
     
         yield MenuItem::subMenu("Question")
             ->setSubItems([
                 MenuItem::linkToCrud('List', 'fas fa-shopping-cart', Question::class),
-                MenuItem::linkToCrud('Ajouter', 'fas fa-cart-plus', Question::class)
-                    ->setAction('new')
             ]);
     
         yield MenuItem::subMenu("Réponse")
             ->setSubItems([
                 MenuItem::linkToCrud('List', 'fas fa-file-invoice', Réponse::class),
-                MenuItem::linkToCrud('Ajouter', 'fas fa-plus', Réponse::class)
-                    ->setAction('new')
             ]);
     
         yield MenuItem::subMenu("Role")

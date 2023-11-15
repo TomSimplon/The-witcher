@@ -19,7 +19,9 @@
 					<a href="{{ path('app_forum') }}">Communauté</a>
 					<a href="{{ path('app_register') }}">S'inscrire</a>
 					<a href="{{ path('app_login') }}">Se connecter</a>
-					<a href=""><img src="{{ asset('images/user.png') }}" alt="Symfony"></a>
+					{% if app.user %}
+						<a href="{{ path('app_user') }}"><img src="{{ asset('uploads/images/user.png') }}" alt="Profil utilisateur"></a>
+					{% endif %}
 				</div>
 			</nav>
 		</div>
@@ -30,11 +32,13 @@
 					<div class="infos">
 						<div class="recap">
 							<div class="img">
-								<img src="{{ asset('images/user.png') }}" alt="miniature">
+								<img src="{{ asset('uploads/images/user.png') }}" alt="miniature">
 							</div>
 							<div class="text">
-								<p>Pseudo</p>
-								<p>Email</p>
+								{% if app.user %}
+									<p>{{ app.user.pseudonym|default('') }}</p>
+									<p>{{ app.user.email|default('') }}</p>
+								{% endif %}
 							</div>
 						</div>
 

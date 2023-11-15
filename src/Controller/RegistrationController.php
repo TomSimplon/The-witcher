@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Role;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -25,6 +26,9 @@ class RegistrationController extends AbstractController
             $user->setIp($clientIp);
 
             $user->setGDPR(new \DateTime());
+
+            $defaultRole = $entityManager->getRepository(Role::class)->find('1');
+            $user->setRole($defaultRole);
             // encode the plain password
             $user->setPassword(
                 $userPasswordHasher->hashPassword(

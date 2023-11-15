@@ -25,7 +25,7 @@ class Article
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column(length: 100, nullable: false)]
     private ?string $image = null;
 
     #[ORM\OneToMany(mappedBy: 'article', targetEntity: Commentaire::class)]
@@ -34,6 +34,7 @@ class Article
     public function __construct()
     {
         $this->commentaires = new ArrayCollection();
+        $this->date = new \DateTime();
     }
 
     public function getId(): ?int
@@ -118,4 +119,5 @@ class Article
 
         return $this;
     }
+    
 }

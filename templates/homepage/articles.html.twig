@@ -6,7 +6,7 @@
 {% block body %}
 	<script src="{{ asset('js/script.js') }}"></script>
 	<div class="page_background_articles">
-		<img src="{{ asset('images/the_witcher_article.jpg') }}" alt="">
+		<img src="{{ asset('uploads/images/the_witcher_article.jpg') }}" alt="">
 	</div>
 
 	<section id="articles">
@@ -49,9 +49,11 @@
 						</a>
 					</strong>
 					<strong>
-						<a href="{{ path('app_user') }}">
-							<p>Mon compte</p>
-						</a>
+						{% if app.user %}
+							<a href="{{ path('app_user') }}">
+								<p>Mon compte</p>
+							</a>
+						{% endif %}
 					</strong>
 				</div>
 			</nav>
@@ -65,7 +67,7 @@
 		</div>
 		<div class="container">
 			<div class="block">
-				<a href="{{ path('app_article') }}"><img src="{{ asset('images/article.png') }}" alt="miniature"></a>
+				<a href="{{ path('app_article') }}"><img src="{{ asset('uploads/images/article.png') }}" alt="miniature"></a>
 				<strong>
 					<p>Titre de l'article</p>
 				</strong>
@@ -73,7 +75,7 @@
 			</div>
 
 			<div class="block">
-				<a href="{{ path('app_article') }}"><img src="{{ asset('images/article.png') }}" alt="miniature"></a>
+				<a href="{{ path('app_article') }}"><img src="{{ asset('uploads/images/article.png') }}" alt="miniature"></a>
 				<strong>
 					<p>Titre de l'article</p>
 				</strong>
@@ -81,7 +83,7 @@
 			</div>
 
 			<div class="block">
-				<a href="{{ path('app_article') }}"><img src="{{ asset('images/article.png') }}" alt="miniature"></a>
+				<a href="{{ path('app_article') }}"><img src="{{ asset('uploads/images/article.png') }}" alt="miniature"></a>
 				<strong>
 					<p>Titre de l'article</p>
 				</strong>
@@ -89,7 +91,7 @@
 			</div>
 
 			<div class="block">
-				<a href="{{ path('app_article') }}"><img src="{{ asset('images/article.png') }}" alt="miniature"></a>
+				<a href="{{ path('app_article') }}"><img src="{{ asset('uploads/images/article.png') }}" alt="miniature"></a>
 				<strong>
 					<p>Titre de l'article</p>
 				</strong>

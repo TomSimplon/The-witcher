@@ -38,34 +38,17 @@
 		</div>
 
 		<div class="articles">
-			<div class="article">
-				<a href="{{ path('app_article') }}"><img src="{{ asset('uploads/images/article.png') }}" alt=""></a>
-				<div class="article-info">
-					<h2>Titre de l'article</h2>
-					<p class="article-date">Date de l'article</p>
+			{% for article in articles %}
+				<div class="article">
+					<a href="{{ path('app_article', {'id': article.id}) }}">
+						<img src="{{ asset('uploads/images/' ~ article.image) }}" alt="">
+					</a>
+					<div class="article-info">
+						<h2>{{ article.title }}</h2>
+						<p class="article-date">{{ article.date|date("d/m/Y") }}</p>
+					</div>
 				</div>
-			</div>
-			<div class="article">
-				<a href="{{ path('app_article') }}"><img src="{{ asset('uploads/images/article.png') }}" alt=""></a>
-				<div class="article-info">
-					<h2>Titre de l'article</h2>
-					<p class="article-date">Date de l'article</p>
-				</div>
-			</div>
-			<div class="article">
-				<a href="{{ path('app_article') }}"><img src="{{ asset('uploads/images/article.png') }}" alt=""></a>
-				<div class="article-info">
-					<h2>Titre de l'article</h2>
-					<p class="article-date">Date de l'article</p>
-				</div>
-			</div>
-			<div class="article">
-				<a href="{{ path('app_article') }}"><img src="{{ asset('uploads/images/article.png') }}" alt=""></a>
-				<div class="article-info">
-					<h2>Titre de l'article</h2>
-					<p class="article-date">Date de l'article</p>
-				</div>
-			</div>
+			{% endfor %}
 		</div>
 
 		<div class="présentation">

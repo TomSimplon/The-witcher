@@ -10,16 +10,20 @@ use App\Form\QuestionType;
 use App\Entity\Question;
 use App\Form\CommentaireType;
 use App\Entity\Commentaire;
+use App\Entity\Article;
 use App\Form\AnswerType;
 use App\Entity\Réponse;
+use Doctrine\ORM\EntityManagerInterface;
 
 class HomepageController extends AbstractController
 {
     #[Route('/', name: 'app_homepage')]
-    public function index(): Response
+    public function index(ArticleRepository $articleRepository): Response
     {
+        $articles = $articleRepository->findBy([], ['date' => 'DESC'], 4);
         return $this->render('homepage/index.html.twig', [
             'controller_name' => 'HomepageController',
+            'articles' => $articles,
         ]);
     }
 
@@ -35,21 +39,30 @@ class HomepageController extends AbstractController
     public function articles(ArticleRepository $articleRepository): Response
     {
         $articles = $articleRepository->findAll();
+
         return $this->render('homepage/articles.html.twig', [
             'controller_name' => 'HomepageController',
             'articles' => $articles,
         ]);
     }
 
-    #[Route('/article', name: 'app_article')]
-    public function article(): Response
+    #[Route('/article/{id}', name: 'app_article')]
+    public function article(EntityManagerInterface $entityManager, string $id): Response
     {
+        $articlesRepository = $entityManager->getRepository(Article::class);
+        $article = $articlesRepository->find($id);
+
+        if(!$article) {
+            return $this->render('homepage/article.html.twig');
+        }
+
         $commentaire = new Commentaire();
 
         $form = $this->createForm(CommentaireType::class, $commentaire);
 
         return $this->render('homepage/article.html.twig', [
-            'commentaireForm' => $form,
+            'article' => $article,
+            'commentaireForm' => $form->createView(),
             'controller_name' => 'HomepageController',
         ]);
         

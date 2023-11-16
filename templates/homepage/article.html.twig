@@ -6,7 +6,7 @@
 {% block body %}
 	<script src="{{ asset('js/script.js') }}"></script>
 	<div class="page_background_article">
-		<img src="{{ asset('images/the_witcher_article.jpg') }}" alt="">
+		<img src="{{ asset('/uploads/images/the_witcher_article.jpg') }}" alt="">
 	</div>
 
 	<section id="article_unique">
@@ -64,7 +64,7 @@
 				<div class="corps">
 					<img src="{{ asset('uploads/images/' ~ article.image) }}" alt="miniature">
 					<h1>{{ article.title }}</h1>
-					<p>{{ article.contenu }}</p>
+					<p>{{ article.contenu|raw }}</p>
 					<p class="date">{{ article.date|date("d/m/Y") }}</p>
 
 				</div>

@@ -15,6 +15,7 @@ use App\Form\AnswerType;
 use App\Entity\Réponse;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use App\Repository\QuestionRepository;
 
 class HomepageController extends AbstractController
 {
@@ -31,6 +32,7 @@ class HomepageController extends AbstractController
     #[Route('/user', name: 'app_user')]
     public function user(): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         return $this->render('homepage/user.html.twig', [
             'controller_name' => 'HomepageController',
         ]);
@@ -89,26 +91,49 @@ class HomepageController extends AbstractController
             'controller_name' => 'HomepageController',
             'commentaires' => $commentaires,
         ]);
-        
     }
 
     #[Route('/forum', name: 'app_forum')]
-    public function forum(): Response
+    public function forum(QuestionRepository $questionRepository): Response
     {
+        $questions = $questionRepository->findBy([], ['date' => 'DESC']);
         return $this->render('homepage/forum.html.twig', [
             'controller_name' => 'HomepageController',
+            'questions' => $questions,
         ]);
     }
 
     #[Route('/question', name: 'app_question')]
-    public function question(): Response
+    public function question(QuestionRepository $questionRepository, EntityManagerInterface $entityManager, Request $request): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $question = new Question();
 
         $form = $this->createForm(QuestionType::class, $question);
+        $form->handleRequest($request);
+
+        $user = $this->getUser();
+
+        $questions = $questionRepository->findAll();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $question->setUser($user);
+            $question->setDate(new \DateTime());
+            $clientIp = $request->getClientIp();
+            $question->setIp($clientIp);
+            $entityManager->persist($question);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_forum');
+        }
+
+        $formView = $form->createView();
 
         return $this->render('homepage/question.html.twig', [
-            'questionForm' => $form
+            'controller_name' => 'HomepageController',
+            'questionForm' => $formView,
+            'questions' => $questions,
         ]);
     }
 

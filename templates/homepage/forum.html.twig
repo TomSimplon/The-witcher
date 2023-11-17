@@ -37,61 +37,23 @@
 					</div>
 
 					<div class="liste_questions">
-						<div class="question">
-							<div class="titre">
-								<a href="{{ path('app_réponse') }}">
-									<h2>Titre de la question</h2>
-								</a>
-							</div>
+						{% for question in questions %}
+							<div class="question">
+								<div class="titre">
+									<a href="{{ path('app_réponse') }}">
+										<h2>{{ question.title }}</h2>
+									</a>
+								</div>
 
-							<div class="auteur">
-								<p>Publié par
-									<strong>@Pseudo</strong>
-									le XX-XX-XXXX</p>
+								<div class="auteur">
+									<p>Publié par
+										<strong>{{ question.user.pseudonym }}</strong>
+										le
+										{{ question.date|date("d/m/Y") }}</p>
+								</div>
 							</div>
-						</div>
+						{% endfor %}
 
-						<div class="question">
-							<div class="titre">
-								<a href="{{ path('app_réponse') }}">
-									<h2>Titre de la question</h2>
-								</a>
-							</div>
-
-							<div class="auteur">
-								<p>Publié par
-									<strong>@Pseudo</strong>
-									le XX-XX-XXXX</p>
-							</div>
-						</div>
-
-						<div class="question">
-							<div class="titre">
-								<a href="{{ path('app_réponse') }}">
-									<h2>Titre de la question</h2>
-								</a>
-							</div>
-
-							<div class="auteur">
-								<p>Publié par
-									<strong>@Pseudo</strong>
-									le XX-XX-XXXX</p>
-							</div>
-						</div>
-
-						<div class="question">
-							<div class="titre">
-								<a href="{{ path('app_réponse') }}">
-									<h2>Titre de la question</h2>
-								</a>
-							</div>
-
-							<div class="auteur">
-								<p>Publié par
-									<strong>@Pseudo</strong>
-									le XX-XX-XXXX</p>
-							</div>
-						</div>
 					</div>
 				</div>
 			</div>

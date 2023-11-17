@@ -14,6 +14,7 @@ use App\Entity\Article;
 use App\Form\AnswerType;
 use App\Entity\Réponse;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 class HomepageController extends AbstractController
 {
@@ -47,7 +48,7 @@ class HomepageController extends AbstractController
     }
 
     #[Route('/article/{id}', name: 'app_article')]
-    public function article(EntityManagerInterface $entityManager, string $id): Response
+    public function article(EntityManagerInterface $entityManager, string $id, Request $request): Response
     {
         $articlesRepository = $entityManager->getRepository(Article::class);
         $article = $articlesRepository->find($id);
@@ -56,14 +57,37 @@ class HomepageController extends AbstractController
             return $this->render('homepage/article.html.twig');
         }
 
-        $commentaire = new Commentaire();
+        $user = $this->getUser();
+        if ($user) {
+            $commentaire = new Commentaire();
+            $form = $this->createForm(CommentaireType::class, $commentaire);
+            $form->handleRequest($request);
+    
+            if ($form->isSubmitted() && $form->isValid()) {
+                $commentaire->setArticle($article);
+                $commentaire->setUser($user);
+                $commentaire->setDate(new \DateTime());
+                $clientIp = $request->getClientIp();
+                $commentaire->setIp($clientIp);
+                $entityManager->persist($commentaire);
+                $entityManager->flush();
+    
+                return $this->redirectToRoute('app_article', ['id' => $id]);
+            }
+    
+            $formView = $form->createView();
+        } else {
+            // L'utilisateur n'est pas connecté, donc on ne crée pas le formulaire
+            $formView = null;
+        }
 
-        $form = $this->createForm(CommentaireType::class, $commentaire);
+        $commentaires = $article->getCommentaires();
 
         return $this->render('homepage/article.html.twig', [
             'article' => $article,
-            'commentaireForm' => $form->createView(),
+            'commentaireForm' => $formView,
             'controller_name' => 'HomepageController',
+            'commentaires' => $commentaires,
         ]);
         
     }

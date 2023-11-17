@@ -71,21 +71,24 @@ body {
 }
 
 .head .img {
+    position: relative;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     padding-bottom: 30px;
 }
 
 .head .img img {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
 }
 
-.head .img p {
+/* Conteneur pour le texte, centré au-dessus de l'image */
+.head .img .text-container {
     position: absolute;
-    width: 650px;
-    left: calc(50% - 676px/2 - 6px);
-    top: 330px;
+    max-width: 650px; /* Ajustez la largeur selon vos besoins */
+    padding: 10px;
+    color: #000; /* Couleur du texte */
     font-family: 'Milonga', serif;
     font-style: italic;
     font-size: 20px;

@@ -71,60 +71,37 @@
 
 				<hr>
 
-				<div class="formulaire">
-					<h2>Votre commentaire :</h2>
-					<form method="post">
-
-						{{ form_errors(commentaireForm) }}
-
+				{% if commentaireForm is not null %}
+					<div class="formulaire">
 						{{ form_start(commentaireForm) }}
 						{{ form_row(commentaireForm.contenu) }}
-
 						<button type="submit" class="btn">Publier votre commentaire</button>
 						{{ form_end(commentaireForm) }}
-					</form>
-				</div>
+					</div>
+				{% else %}
+					<span style="color: white;">
+						<p class="connect">Vous devez être connecté pour poster un commentaire.
+							<a href="{{ path('app_login') }}">Se connecter</a>
+						</p>
+					</span>
+				{% endif %}
 
 				<hr>
 
 				<div class="commentaires">
-					<div class="text">
-						<p>
-							<I>
-								<strong>@Pseudo</strong>
-								- date de publication</p>
-						</p>
-					</i>
-					<p>Super article !</p>
+					{% for commentaire in commentaires %}
+						<div class="text">
+							<p>
+								<strong>@{{ commentaire.user.pseudonym }}</strong>
+								-
+								{{ commentaire.date|date("d/m/Y") }}</p>
+							<p>{{ commentaire.contenu }}</p>
+						</div>
+					{% else %}
+						<p>Aucun commentaire pour cet article.</p>
+					{% endfor %}
 				</div>
-
-				<div class="text">
-					<p>
-						<I>
-							<strong>@Pseudo</strong>
-							- date de publication</p>
-					</p>
-				</i>
-				<p>Super article !</p>
 			</div>
-
-			<div class="text">
-				<p>
-					<I>
-						<strong>@Pseudo</strong>
-						- date de publication</p>
-				</p>
-			</i>
-			<p>Super article !</p>
 		</div>
-
-		<div class="text">
-			<p>
-				<I>
-					<strong>@Pseudo</strong>
-					- date de publication</p>
-			</p>
-		</i>
-		<p>Super article !</p>
 	</div>
-</div></div></div></section>{% endblock %}
+</section>{% endblock %}

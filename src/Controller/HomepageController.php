@@ -265,5 +265,24 @@ class HomepageController extends AbstractController
     return $this->redirectToRoute('app_réponse', ['id' => $questionId]);
     }
 
+    #[Route('/search', name: 'search')]
+    public function search(EntityManagerInterface $entityManager, Request $request): Response
+    {
+    $query = $request->query->get('query');
+
+    $articlesRepository = $entityManager->getRepository(Article::class);
+    $articles = $articlesRepository->createQueryBuilder('a')
+        ->where('a.title LIKE :query')
+        ->setParameter('query', '%' . $query . '%')
+        ->getQuery()
+        ->getResult();
+
+    return $this->render('homepage/articles.html.twig', [
+        'controller_name' => 'RideController',
+        'articles' => $articles,
+        'query' => $query,
+    ]);
+   }
+
 }
 

@@ -31,29 +31,29 @@
 				<div class="contenu">
 					<div class="question">
 						<div class="left">
-							<p>pseudo</p>
-							<a href="{{ path('app_user') }}"><img src="{{ asset('uploads/images/user.png') }}" alt="Symfony"></a>
+							<p>{{ question.user.pseudonym }}</p>
+							<img src="{{ asset('uploads/images/user.png') }}" alt="Symfony">
 						</div>
 
 						<div class="right">
 							<div class="title">
-								<h2>Titre de la question</h2>
+								<h2>{{ question.title }}</h2>
 							</div>
 							<div class="corps">
 								<div class="date">
-									<p>date de publication</p>
+									<p>{{ question.date|date("d/m/Y") }}</p>
 								</div>
 								<div class="text">
-									<p>contenu de la question</p>
+									<p>{{ question.contenu|nl2br }}</p>
 								</div>
 								<div class="bouton">
-									<button>
+									<a class="edit" href="{{ path('app_question_edit', {'id': question.id}) }}">
 										<span style="color: #0368FF;">Modifier ma question</span>
-									</button>
+									</a>
 
-									<button>
+									<a href="">
 										<span style="color: red;">Supprimer ma question</span>
-									</button>
+									</a>
 
 								</div>
 							</div>

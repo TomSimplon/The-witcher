@@ -57,7 +57,7 @@ class HomepageController extends AbstractController
 
         if(!$article) {
             return $this->render('homepage/article.html.twig');
-        }
+        } 
 
         $user = $this->getUser();
         if ($user) {
@@ -79,7 +79,6 @@ class HomepageController extends AbstractController
     
             $formView = $form->createView();
         } else {
-            // L'utilisateur n'est pas connecté, donc on ne crée pas le formulaire
             $formView = null;
         }
 
@@ -137,17 +136,46 @@ class HomepageController extends AbstractController
         ]);
     }
 
-    #[Route('/réponse', name: 'app_réponse')]
-    public function réponse(): Response
+    #[Route('/question/edit/{id}', name: 'app_question_edit')]
+    public function editQuestion(Question $question, Request $request, EntityManagerInterface $entityManager): Response
     {
-        $answer = new Réponse();
-
-        $form = $this->createForm(AnswerType::class, $answer);
-
-        return $this->render('homepage/réponse.html.twig', [
-            'answerForm' => $form,
-            'controller_name' => 'HomepageController',
-        ]);
+    if ($question->getUser() !== $this->getUser()) {
+        return $this->redirectToRoute('app_forum');
     }
+
+    $form = $this->createForm(QuestionType::class, $question);
+
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) {
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_réponse', ['id' => $question->getId()]);
+    }
+
+    return $this->render('homepage/question.html.twig', [
+        'questionForm' => $form->createView(),
+    ]);
+   }
+
+    #[Route('/réponse/{id}', name: 'app_réponse')]
+    public function réponse(QuestionRepository $questionRepository, string $id, Request $request): Response
+    {
+    $question = $questionRepository->find($id);
+
+    if (!$question) {
+        return $this->redirectToRoute('app_forum');
+    }
+
+    $answer = new Réponse();
+    $form = $this->createForm(AnswerType::class, $answer);
+
+    return $this->render('homepage/réponse.html.twig', [
+        'question' => $question,
+        'answerForm' => $form->createView(),
+        'controller_name' => 'HomepageController',
+    ]);
+    }
+
 }
 

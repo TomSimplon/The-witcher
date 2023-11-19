@@ -95,7 +95,7 @@
 								<strong>@{{ commentaire.user.pseudonym }}</strong>
 								-
 								{{ commentaire.date|date("d/m/Y") }}</p>
-							<p>{{ commentaire.contenu }}</p>
+							<p>{{ commentaire.contenu|nl2br }}</p>
 						</div>
 					{% else %}
 						<p>Aucun commentaire pour cet article.</p>

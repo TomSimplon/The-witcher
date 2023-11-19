@@ -40,7 +40,7 @@
 						{% for question in questions %}
 							<div class="question">
 								<div class="titre">
-									<a href="{{ path('app_réponse') }}">
+									<a href="{{ path('app_réponse', {'id': question.id}) }}">
 										<h2>{{ question.title }}</h2>
 									</a>
 								</div>

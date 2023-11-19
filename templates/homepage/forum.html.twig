@@ -30,11 +30,17 @@
 			<div class="container">
 				<div class="contenu">
 					<div class="search-bar">
-						<form action="" method="get">
-							<input maxlength="255" type="text" name="q" placeholder="rechercher..." required>
+						<form action="{{ path('search_questions') }}" method="get">
+							<input maxlength="255" type="text" name="query" placeholder="rechercher..." required>
 							<button type="submit">OK</button>
 						</form>
 					</div>
+					{% if query is defined %}
+						<h2>Résultats de la recherche pour "{{ query }}"</h2>
+						{% if questions|length == 0 %}
+							<p>Aucune question trouvée.</p>
+						{% endif %}
+					{% endif %}
 
 					<div class="liste_questions">
 						{% for question in questions %}

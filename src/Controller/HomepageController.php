@@ -278,11 +278,27 @@ class HomepageController extends AbstractController
         ->getResult();
 
     return $this->render('homepage/articles.html.twig', [
-        'controller_name' => 'RideController',
+        'controller_name' => 'HomepageController',
         'articles' => $articles,
         'query' => $query,
     ]);
    }
+
+   #[Route('/search-questions', name: 'search_questions')]
+   public function searchQuestions(QuestionRepository $questionRepository, Request $request): Response
+   {
+    $query = $request->query->get('query');
+    $questions = $questionRepository->createQueryBuilder('q')
+        ->where('q.title LIKE :query')
+        ->setParameter('query', '%' . $query . '%')
+        ->getQuery()
+        ->getResult();
+
+    return $this->render('homepage/forum.html.twig', [
+        'questions' => $questions,
+        'query' => $query,
+    ]);
+    }
 
 }
 

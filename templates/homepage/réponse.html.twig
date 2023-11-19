@@ -46,95 +46,85 @@
 								<div class="text">
 									<p>{{ question.contenu|nl2br }}</p>
 								</div>
-								<div class="bouton">
-									<a class="edit" href="{{ path('app_question_edit', {'id': question.id}) }}">
-										<span style="color: #0368FF;">Modifier ma question</span>
-									</a>
+								{% if app.user and app.user == question.user %}
+									<div class="bouton">
+										<a class="edit" href="{{ path('app_question_edit', {'id': question.id}) }}">
+											<span style="color: #0368FF;">Modifier ma question</span>
+										</a>
 
-									<a href="">
-										<span style="color: red;">Supprimer ma question</span>
-									</a>
-
-								</div>
+										<a class="delete" href="{{ path('app_question_delete', {'id': question.id}) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette question ?');">
+											<span style="color: red;">Supprimer ma question</span>
+										</a>
+									</div>
+								{% endif %}
 							</div>
 						</div>
 					</div>
 
 					<hr>
 
-					<div class="réponse">
-						<div class="left">
-							<p>pseudo</p>
-							<a href="{{ path('app_user') }}"><img src="{{ asset('uploads/images/user.png') }}" alt="Symfony"></a>
-						</div>
+					{% for answer in answers %}
+						<div class="réponse">
+							<div class="left">
+								<p>{{ answer.user.pseudonym }}</p>
+								<img src="{{ asset('uploads/images/user.png') }}" alt="Symfony">
+							</div>
 
-						<div class="right">
-							<div class="corps">
-								<div class="date">
-									<p>date de publication</p>
-								</div>
-								<div class="text">
-									<p>contenu de la question</p>
-								</div>
-								<div class="bouton">
-									<button>
-										<span style="color: #0368FF;">Modifier ma réponse</span>
-									</button>
+							<div class="right">
+								<div class="corps">
+									<div class="date">
+										<p>{{ answer.date|date("d/m/Y") }}</p>
+									</div>
+									<div class="text">
+										<p>{{ answer.contenu|nl2br }}</p>
+									</div>
+									{% if app.user and app.user == answer.user %}
+										<div class="bouton">
+											<a class="edit" href="{{ path('app_réponse_edit', {'id': answer.id}) }}">
+												<span style="color: #0368FF;">Modifier ma réponse</span>
+											</a>
 
-									<button>
-										<span style="color: red;">Supprimer ma réponse</span>
-									</button>
-
+											<a class="delete" href="{{ path('app_réponse_delete', {'id': answer.id}) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette réponse ?');">
+												<span style="color: red;">Supprimer ma réponse</span>
+											</a>
+										</div>
+									{% endif %}
 								</div>
 							</div>
 						</div>
-					</div>
+					{% endfor %}
 
-					<div class="réponse">
-						<div class="left">
-							<p>pseudo</p>
-							<a href="{{ path('app_user') }}"><img src="{{ asset('uploads/images/user.png') }}" alt="Symfony"></a>
-						</div>
-
-						<div class="right">
-							<div class="corps">
-								<div class="date">
-									<p>date de publication</p>
-								</div>
-								<div class="text">
-									<p>contenu de la question</p>
-								</div>
-								<div class="bouton">
-									<button>
-										<span style="color: #0368FF;">Modifier ma réponse</span>
-									</button>
-
-									<button>
-										<span style="color: red;">Supprimer ma réponse</span>
-									</button>
-
-								</div>
-							</div>
-						</div>
-					</div>
+					{% if answers is empty %}
+						<span style="color: white; font-weight: bold; font-size: 18px;">
+							<p>Aucune réponse pour cette question.</p>
+						</span>
+					{% endif %}
 
 					<hr>
 
-					<div class="formulaire">
-						<h2>Votre réponse :</h2>
-						<form method="post">
+					{% if answerForm is not null %}
+						<div class="formulaire">
+							<h2>Votre réponse :</h2>
+							<form method="post">
 
-							{{ form_errors(answerForm) }}
+								{{ form_errors(answerForm) }}
 
-							{{ form_start(answerForm) }}
-							{{ form_row(answerForm.contenu) }}
+								{{ form_start(answerForm) }}
+								{{ form_row(answerForm.contenu) }}
 
-							<button type="submit" class="btn">Envoyer la réponse</button>
-							{{ form_end(answerForm) }}
-						</form>
-					</div>
+								<button type="submit" class="btn">Envoyer la réponse</button>
+								{{ form_end(answerForm) }}
+							</form>
+						</div>
+					{% else %}
+						<span style="color: white;">
+							<p class="connect">Vous devez être connecté pour poster une réponse.
+								<a href="{{ path('app_login') }}">Se connecter</a>
+							</p>
+						</span>
+					{% endif %}
 				</div>
 			</div>
 		</div>
-	</section>
-{% endblock %}
+	</div>
+</section>{% endblock %}

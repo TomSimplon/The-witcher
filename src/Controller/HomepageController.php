@@ -16,6 +16,7 @@ use App\Entity\Réponse;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use App\Repository\QuestionRepository;
+use App\Repository\RéponseRepository;
 
 class HomepageController extends AbstractController
 {
@@ -56,7 +57,7 @@ class HomepageController extends AbstractController
         $article = $articlesRepository->find($id);
 
         if(!$article) {
-            return $this->render('homepage/article.html.twig');
+            return $this->redirectToRoute('app_articles');
         } 
 
         $user = $this->getUser();
@@ -158,8 +159,25 @@ class HomepageController extends AbstractController
     ]);
    }
 
+   #[Route('/question/delete/{id}', name: 'app_question_delete')]
+   public function deleteQuestion(EntityManagerInterface $entityManager, QuestionRepository $questionRepository, string $id): Response
+   {
+    $question = $questionRepository->find($id);
+
+    if (!$question) {
+        return $this->redirectToRoute('app_forum');
+    }
+
+    $entityManager->remove($question);
+    $entityManager->flush();
+
+    $this->addFlash('success', 'Votre question a bien été supprimée');
+
+    return $this->redirectToRoute('app_forum');
+    }
+
     #[Route('/réponse/{id}', name: 'app_réponse')]
-    public function réponse(QuestionRepository $questionRepository, string $id, Request $request): Response
+    public function réponse(EntityManagerInterface $entityManager, QuestionRepository $questionRepository, string $id, Request $request): Response
     {
     $question = $questionRepository->find($id);
 
@@ -167,14 +185,84 @@ class HomepageController extends AbstractController
         return $this->redirectToRoute('app_forum');
     }
 
-    $answer = new Réponse();
-    $form = $this->createForm(AnswerType::class, $answer);
+    $user = $this->getUser();
+    if ($user) {
+        $answer = new Réponse();
+        $form = $this->createForm(AnswerType::class, $answer);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $answer->setQuestion($question);
+            $answer->setUser($user);
+            $answer->setDate(new \DateTime());
+            $clientIp = $request->getClientIp();
+            $answer->setIp($clientIp);
+            $entityManager->persist($answer);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_réponse', ['id' => $id]);
+        }
+
+        $formView = $form->createView();
+    } else {
+        $formView = null;
+    }
+
+    $answers = $question->getRPonses();
 
     return $this->render('homepage/réponse.html.twig', [
         'question' => $question,
-        'answerForm' => $form->createView(),
+        'answerForm' => $formView,
         'controller_name' => 'HomepageController',
+        'answers' => $answers,
     ]);
+    }
+
+    #[Route('/réponse/edit/{id}', name: 'app_réponse_edit')]
+    public function editAnswer(Réponse $answer, Request $request, EntityManagerInterface $entityManager): Response
+    {
+    if ($answer->getUser() !== $this->getUser()) {
+        return $this->redirectToRoute('app_forum');
+    }
+
+    $form = $this->createForm(AnswerType::class, $answer);
+
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) {
+        $entityManager->flush();
+
+        $questionId = $answer->getQuestion()->getId();
+
+        return $this->redirectToRoute('app_réponse', ['id' => $questionId]);
+    }
+
+    $question = $answer->getQuestion();
+
+    return $this->render('homepage/réponse.html.twig', [
+        'answerForm' => $form->createView(),
+        'question' => $question, 
+        'answers' => [$answer], 
+    ]);
+   }
+
+   #[Route('/réponse/delete/{id}', name: 'app_réponse_delete')]
+   public function deleteAnswer(EntityManagerInterface $entityManager, RéponseRepository $answerRepository, string $id): Response
+   {
+    $answer = $answerRepository->find($id);
+
+    if (!$answer) {
+        return $this->redirectToRoute('app_forum');
+    }
+
+    $questionId = $answer->getQuestion()->getId();
+
+    $entityManager->remove($answer);
+    $entityManager->flush();
+
+    $this->addFlash('success', 'Votre réponse a bien été supprimée');
+
+    return $this->redirectToRoute('app_réponse', ['id' => $questionId]);
     }
 
 }

@@ -13,6 +13,7 @@ use App\Entity\Commentaire;
 use App\Entity\Article;
 use App\Form\AnswerType;
 use App\Entity\Réponse;
+use App\Repository\CommentaireRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use App\Repository\QuestionRepository;
@@ -51,7 +52,7 @@ class HomepageController extends AbstractController
     }
 
     #[Route('/article/{id}', name: 'app_article')]
-    public function article(EntityManagerInterface $entityManager, string $id, Request $request): Response
+    public function article(CommentaireRepository $commentaireRepository, EntityManagerInterface $entityManager, string $id, Request $request): Response
     {
         $articlesRepository = $entityManager->getRepository(Article::class);
         $article = $articlesRepository->find($id);
@@ -75,7 +76,7 @@ class HomepageController extends AbstractController
                 $entityManager->persist($commentaire);
                 $entityManager->flush();
     
-                return $this->redirectToRoute('app_article', ['id' => $id]);
+                return $this->redirectToRoute('app_article', ['id' => $id, '_fragment' => 'commentaires']);
             }
     
             $formView = $form->createView();
@@ -83,7 +84,7 @@ class HomepageController extends AbstractController
             $formView = null;
         }
 
-        $commentaires = $article->getCommentaires();
+        $commentaires = $commentaireRepository->findBy(['article' => $article], ['date' => 'DESC']);
 
         return $this->render('homepage/article.html.twig', [
             'article' => $article,
@@ -91,6 +92,53 @@ class HomepageController extends AbstractController
             'controller_name' => 'HomepageController',
             'commentaires' => $commentaires,
         ]);
+    }
+
+    #[Route('/comment/edit/{id}', name: 'app_comment_edit')]
+    public function editComment(Commentaire $commentaire, Request $request, EntityManagerInterface $entityManager): Response
+    {
+    if ($commentaire->getUser() !== $this->getUser()) {
+        return $this->redirectToRoute('app_article');
+    }
+
+    $form = $this->createForm(CommentaireType::class, $commentaire);
+
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) {
+        $entityManager->flush();
+
+        $articleId = $commentaire->getArticle()->getId();
+
+        return $this->redirectToRoute('app_article', ['id' => $articleId, '_fragment' => 'commentaires']);
+    }
+
+    $article = $commentaire->getArticle();
+
+    return $this->render('homepage/article.html.twig', [
+        'commentaireForm' => $form->createView(),
+        'article' => $article, 
+        'commentaires' => [$commentaire], 
+    ]);
+   }
+
+   #[Route('/comment/delete/{id}', name: 'app_comment_delete')]
+   public function deleteComment(EntityManagerInterface $entityManager, CommentaireRepository $commentaireRepository, string $id): Response
+   {
+    $commentaire = $commentaireRepository->find($id);
+
+    if (!$commentaire) {
+        return $this->redirectToRoute('app_articles');
+    }
+
+    $articleId = $commentaire->getArticle()->getId();
+
+    $entityManager->remove($commentaire);
+    $entityManager->flush();
+
+    $this->addFlash('success', 'Votre commentaire a bien été supprimé');
+
+    return $this->redirectToRoute('app_article', ['id' => $articleId, '_fragment' => 'commentaires']);
     }
 
     #[Route('/forum', name: 'app_forum')]
@@ -208,7 +256,8 @@ class HomepageController extends AbstractController
         $formView = null;
     }
 
-    $answers = $question->getRPonses();
+    $answers = $entityManager->getRepository(Réponse::class)
+        ->findBy(['question' => $question], ['date' => 'DESC']);
 
     return $this->render('homepage/réponse.html.twig', [
         'question' => $question,
@@ -234,7 +283,7 @@ class HomepageController extends AbstractController
 
         $questionId = $answer->getQuestion()->getId();
 
-        return $this->redirectToRoute('app_réponse', ['id' => $questionId]);
+        return $this->redirectToRoute('app_réponse', ['id' => $questionId, '_fragment' => 'réponses']);
     }
 
     $question = $answer->getQuestion();
@@ -262,7 +311,7 @@ class HomepageController extends AbstractController
 
     $this->addFlash('success', 'Votre réponse a bien été supprimée');
 
-    return $this->redirectToRoute('app_réponse', ['id' => $questionId]);
+    return $this->redirectToRoute('app_réponse', ['id' => $questionId, '_fragment' => 'réponses']);
     }
 
     #[Route('/search', name: 'search')]

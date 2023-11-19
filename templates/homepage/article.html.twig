@@ -88,7 +88,7 @@
 
 				<hr>
 
-				<div class="commentaires">
+				<div id="commentaires" class="commentaires">
 					{% for commentaire in commentaires %}
 						<div class="text">
 							<p>
@@ -96,6 +96,17 @@
 								-
 								{{ commentaire.date|date("d/m/Y") }}</p>
 							<p>{{ commentaire.contenu|nl2br }}</p>
+							{% if app.user and app.user == commentaire.user %}
+								<div class="bouton">
+									<a class="edit" href="{{ path('app_comment_edit', {'id': commentaire.id, '_fragment': 'commentaires'}) }}">
+										<span style="color: #0368FF;">Modifier mon commentaire</span>
+									</a>
+
+									<a class="delete" href="{{ path('app_comment_delete', {'id': commentaire.id}) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce commentaire ?');">
+										<span style="color: red;">Supprimer mon commentaire</span>
+									</a>
+								</div>
+							{% endif %}
 						</div>
 					{% else %}
 						<p>Aucun commentaire pour cet article.</p>

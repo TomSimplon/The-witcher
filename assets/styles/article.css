@@ -139,6 +139,19 @@ body {
     margin-bottom: 50px;
 }
 
+#article_unique .commentaires .text .bouton {
+    display: flex;
+    padding-top: 5px;
+}
+
+#article_unique .commentaires .text .bouton a {
+    text-decoration: none;
+    font-size: 18px;
+    cursor: pointer;
+    padding-right: 20px;
+    font-weight: bold;
+}
+
 #article_unique .commentaires p {
     margin: 0;
 }
@@ -197,4 +210,14 @@ body {
       .menu-btn.open .bar:nth-child(3) {
         transform: translateY(-12px) rotate(-45deg);
       }
+
+      #article_unique .commentaires .text .bouton {
+        flex-wrap: wrap;
+      }
+
+      #article_unique .commentaires .text .bouton a {
+        font-size: 16px;
+      }
+    
+    
 }

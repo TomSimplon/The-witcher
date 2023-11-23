@@ -178,6 +178,7 @@ body {
     }
 
     .articles {
+        display: flex;
         flex-direction: column;
     }
 

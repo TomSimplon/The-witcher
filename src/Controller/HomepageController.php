@@ -11,13 +11,17 @@ use App\Entity\Question;
 use App\Form\CommentaireType;
 use App\Entity\Commentaire;
 use App\Entity\Article;
+use App\Entity\User;
+use App\Form\UserType;
 use App\Form\AnswerType;
 use App\Entity\Réponse;
+use App\Entity\Role;
 use App\Repository\CommentaireRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use App\Repository\QuestionRepository;
 use App\Repository\RéponseRepository;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class HomepageController extends AbstractController
 {
@@ -39,6 +43,42 @@ class HomepageController extends AbstractController
             'controller_name' => 'HomepageController',
         ]);
     }
+
+    #[Route('/user/edit', name: 'user_edit')]
+    public function editUser(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response
+    {
+    $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+    $user = $this->getUser();
+
+    if (!$user) {
+        return $this->redirectToRoute('app_login'); 
+    }
+
+    $form = $this->createForm(UserType::class, $user);
+
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) {
+        // Vérifiez si un nouveau mot de passe a été saisi
+        $plainPassword = $form->get('plainPassword')->getData();
+        if ($plainPassword) {
+            // Hachez le nouveau mot de passe
+            $hashedPassword = $passwordHasher->hashPassword($user, $plainPassword);
+            // Mettez à jour le mot de passe de l'utilisateur
+            $user->setPassword($hashedPassword);
+        }
+
+        // Flush les modifications
+        $entityManager->flush();
+
+        // Redirection ou autres actions
+        return $this->redirectToRoute('app_user');
+    }
+
+    return $this->render('homepage/userForm.html.twig', [
+        'userForm' => $form->createView(),
+    ]);
+   }
 
     #[Route('/articles', name: 'app_articles')]
     public function articles(ArticleRepository $articleRepository): Response

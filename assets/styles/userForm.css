@@ -1,4 +1,4 @@
-#userForm {
+#register {
     padding: 0;
     margin: 0;
     background-image: url('../../public/uploads/images/fondbois.png');
@@ -8,12 +8,12 @@
     width: 100%;
 }
 
-#userForm nav .onglets {
+#register nav .onglets {
     display: flex;
     justify-content: center;
 }
 
-#userForm nav .onglets a {
+#register nav .onglets a {
     font-family: 'Milonga', serif;
     font-size: 18px;
     color: #FF8A00;
@@ -22,12 +22,12 @@
     text-decoration: none;
 }
 
-#userForm nav .onglets a:hover {
+#register nav .onglets a:hover {
     color: rgb(12, 197, 12);
     border: rgb(12, 197, 12) 1px solid;
 }
 
-#userForm .background {
+#register .background {
     position: relative; 
     background-image: url('../../public/uploads/images/parcho.png');
     background-size: cover;
@@ -40,22 +40,22 @@
     box-sizing: border-box;
 }
 
-#userForm .background img {
+#register .background img {
     position: absolute; 
     top: 0;
     bottom: 0;
     height: 100%; 
 }
 
-#userForm .background img:first-of-type {
+#register .background img:first-of-type {
     left: 0;
 }
 
-#userForm .background img:last-of-type { 
+#register .background img:last-of-type { 
     right: 0;
 }
 
-#userForm .background .parchemin {
+#register .background .parchemin {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -66,7 +66,7 @@
     height: 600px;
 }
 
-#userForm .background .parchemin .formulaire form {
+#register .background .parchemin .formulaire form {
     padding: 30px;
     border-radius: 10px;
     border: black 1px solid;
@@ -76,21 +76,21 @@
     margin-bottom: 30px;
 }
 
-#userForm .background .parchemin .formulaire form h1 {
+#register .background .parchemin .formulaire form h1 {
     font-size: 1.5rem;
     text-align: center;
 }
 
-#userForm .background .parchemin .formulaire form div {
+#register .background .parchemin .formulaire form div {
     display: flex;
     flex-direction: column;
 }
 
-#userForm .background .parchemin .formulaire form div label {
+#register .background .parchemin .formulaire form div label {
     margin-top: 20px;
 }
 
-#userForm .background .parchemin .formulaire form div input {
+#register .background .parchemin .formulaire form div input {
     margin-top: 5px;
     padding: 10px 5px 10px 30px;
     border: 1px solid #c9c9c9;
@@ -98,7 +98,7 @@
     font-size: 18px;
 }
 
-#userForm .background .parchemin .formulaire form button {
+#register .background .parchemin .formulaire form button {
     margin-top: 10px;
     background-color: #FF9900;
     color: black;
@@ -112,26 +112,26 @@
     font-weight: bold;
 }
 
-#userForm .background .parchemin .formulaire form button:hover {
+#register .background .parchemin .formulaire form button:hover {
     transform: scale(1.05);
 }
 
 @media screen and (max-width: 640px) {
-    #userForm {
+    #register {
         height: 900px;
     }
     
-    #userForm nav .onglets {
+    #register nav .onglets {
         flex-direction: column;
         align-items: center;
     }
 
-    #userForm  nav .onglets {
+    #register  nav .onglets {
         display: none;
       }
       
   
-      #userForm nav .onglets a {
+      #register nav .onglets a {
         display: flex;
         flex-direction: column;
         text-align: center;
@@ -171,13 +171,13 @@
         transform: translateY(-12px) rotate(-45deg);
       }
 
-      #userForm .background {
+      #register .background {
         width: auto; 
         padding: 0 20px; 
         box-sizing: border-box; 
     }
 
-    #userForm .background .parchemin {
+    #register .background .parchemin {
         margin: 0; 
         height: auto; 
         max-width: 100%; 

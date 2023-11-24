@@ -1,0 +1,1274 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Quiz
+{% endblock %}
+
+{% block body %}
+
+	<div class="page_background_quiz">
+		<img src="{{ asset('uploads/images/the_witcher_quiz.jpg') }}" alt="">
+	</div>
+	<section id="quiz">
+		<div class="header">
+			<nav>
+				<div class="menu-btn">
+					<span class="bar"></span>
+					<span class="bar"></span>
+					<span class="bar"></span>
+				</div>
+				<div class="onglets">
+					<a href="{{ path('app_homepage') }}">Accueil</a>
+					<a href="{{ path('app_articles') }}">liste des articles</a>
+					<a href="{{ path('app_quiz') }}">Testez vos connaissances</a>
+					<a href="{{ path('app_forum') }}">Communauté</a>
+					<a href="{{ path('app_register') }}">S'inscrire</a>
+					<a href="{{ path('app_login') }}">Se connecter</a>
+					{% if app.user %}
+						<a href="{{ path('app_user') }}"><img src="{{ asset('uploads/images/user.png') }}" alt="Profil utilisateur"></a>
+					{% endif %}
+				</div>
+			</nav>
+		</div>
+
+		<div class="body">
+			<div class="container">
+				<section id="accueil" class="accueil">
+					<div class="container">
+						<div class="contenu">
+							<div class="titre">
+								<h1>
+									Commencez le quiz :
+								</h1>
+							</div>
+
+							<div class="bouton">
+								<button class="begin">
+									Suivant
+								</button>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section id="question_1" class="question">
+					<div class="container">
+						<div class="contenu">
+							<div class="top">
+								<div class="quiz">
+									<h2>
+										<strong>Quiz The Witcher</strong>
+									</h2>
+									<div class="timer">
+										<div class="timer_rest">
+											<p>
+												<strong>Temps restant</strong>
+											</p>
+										</div>
+										<div id="number1" class="number">
+											<p>
+												<strong>35</strong>
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="center">
+								<div class="titre">
+									<h2>1. Qui a écrit les livres The Witcher ?</h2>
+									<div class="bouton">
+										<ul style="list-style-type: none;">
+											<li>
+												<button class="answer-btn bad_answer">
+													<strong>George R.R. Martin</strong>
+												</button>
+											</li>
+											<li>
+												<button class="answer-btn good_answer">
+													<strong>Andrzej Sapkowski</strong>
+												</button>
+											</li>
+											<li>
+												<button class="answer-btn bad_answer">
+													<strong>J. K. Rowling</strong>
+												</button>
+											</li>
+											<li>
+												<button class="answer-btn bad_answer">
+													<strong>J. R. R. Tolkien</strong>
+												</button>
+											</li>
+										</ul>
+
+									</div>
+
+								</div>
+
+							</div>
+
+							<div class="bottom">
+								<div class="texte">
+									<p>Question 1 sur 10</p>
+								</div>
+								<div class="progress">
+									<ul style="list-style-type: none;">
+										<li>
+											<span class="réponse_1"></span>
+										</li>
+										<li>
+											<span class="réponse_2"></span>
+										</li>
+										<li>
+											<span class="réponse_3"></span>
+										</li>
+										<li>
+											<span class="réponse_4"></span>
+										</li>
+										<li>
+											<span class="réponse_5"></span>
+										</li>
+										<li>
+											<span class="réponse_6"></span>
+										</li>
+										<li>
+											<span class="réponse_7"></span>
+										</li>
+										<li>
+											<span class="réponse_8"></span>
+										</li>
+										<li>
+											<span class="réponse_9"></span>
+										</li>
+										<li>
+											<span class="réponse_10"></span>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section id="answer_1" class="answer">
+					<div class="container">
+						<div class="contenu">
+							<div class="titre">
+								<h1>
+									La bonne réponse est : Andrzej Sapkowski !
+								</h1>
+							</div>
+
+							<div class="image">
+								<img src="{{ asset('uploads/images/Andrzej_Sapkowski.png') }}" alt="">
+							</div>
+						</div>
+						<div class="next">
+							<button class="next-btn">
+								<strong>Next</strong>
+							</button>
+						</div>
+					</div>
+				</section>
+
+				<section id="question_2" class="question">
+					<div class="container">
+						<div class="contenu">
+							<div class="top">
+								<div class="quiz">
+									<h2>
+										<strong>Quiz The Witcher</strong>
+									</h2>
+									<div class="timer">
+										<div class="timer_rest">
+											<p>
+												<strong>Temps restant</strong>
+											</p>
+										</div>
+										<div id="number2" class="number">
+											<p>
+												<strong>35</strong>
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="center">
+								<div class="titre">
+									<h2>2. Quel est le surnom donné à Geralt de Riv ?</h2>
+									<div class="bouton">
+										<ul style="list-style-type: none;">
+											<li>
+												<button class="answer-btn bad_answer">
+													<strong>L'Ours Noir</strong>
+												</button>
+											</li>
+											<li>
+												<button class="answer-btn bad_answer">
+													<strong>L'Aigle Rouge</strong>
+												</button>
+											</li>
+											<li>
+												<button class="answer-btn good_answer">
+													<strong>Le Loup Blanc</strong>
+												</button>
+											</li>
+											<li>
+												<button class="answer-btn bad_answer">
+													<strong>Le Dragon Vert</strong>
+												</button>
+											</li>
+										</ul>
+
+									</div>
+
+								</div>
+
+							</div>
+
+							<div class="bottom">
+								<div class="texte">
+									<p>Question 2 sur 10</p>
+								</div>
+								<div class="progress">
+									<ul style="list-style-type: none;">
+										<li>
+											<span class="réponse_1"></span>
+										</li>
+										<li>
+											<span class="réponse_2"></span>
+										</li>
+										<li>
+											<span class="réponse_3"></span>
+										</li>
+										<li>
+											<span class="réponse_4"></span>
+										</li>
+										<li>
+											<span class="réponse_5"></span>
+										</li>
+										<li>
+											<span class="réponse_6"></span>
+										</li>
+										<li>
+											<span class="réponse_7"></span>
+										</li>
+										<li>
+											<span class="réponse_8"></span>
+										</li>
+										<li>
+											<span class="réponse_9"></span>
+										</li>
+										<li>
+											<span class="réponse_10"></span>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section id="answer_2" class="answer">
+					<div class="container">
+						<div class="contenu">
+							<div class="titre">
+								<h1>
+									La bonne réponse est : Le Loup Blanc !
+								</h1>
+							</div>
+
+							<div class="image">
+								<img src="{{ asset('uploads/images/geralt.jpg') }}" alt="">
+							</div>
+						</div>
+						<div class="next">
+							<button class="next-btn">
+								<strong>Next</strong>
+							</button>
+						</div>
+					</div>
+				</section>
+
+				<section id="question_3" class="question">
+					<div class="container">
+						<div class="contenu">
+							<div class="top">
+								<div class="quiz">
+									<h2>
+										<strong>Quiz The Witcher</strong>
+									</h2>
+									<div class="timer">
+										<div class="timer_rest">
+											<p>
+												<strong>Temps restant</strong>
+											</p>
+										</div>
+										<div id="number3" class="number">
+											<p>
+												<strong>35</strong>
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="center">
+								<div class="titre">
+									<h2>3. Quelle est la particularité des yeux de Geralt ?</h2>
+									<div class="bouton">
+										<ul style="list-style-type: none;">
+											<li>
+												<button class="answer-btn bad_answer">
+													<strong>Ils sont entièrement noirs</strong>
+												</button>
+											</li>
+											<li>
+												<button class="answer-btn bad_answer">
+													<strong>Ils changent de couleur</strong>
+												</button>
+											</li>
+											<li>
+												<button class="answer-btn bad_answer">
+													<strong>Ils brillent dans le noir</strong>
+												</button>
+											</li>
+											<li>
+												<button class="answer-btn good_answer">
+													<strong>Ils sont dorés avec des pupilles verticales</strong>
+												</button>
+											</li>
+										</ul>
+
+									</div>
+
+								</div>
+
+							</div>
+
+							<div class="bottom">
+								<div class="texte">
+									<p>Question 3 sur 10</p>
+								</div>
+								<div class="progress">
+									<ul style="list-style-type: none;">
+										<li>
+											<span class="réponse_1"></span>
+										</li>
+										<li>
+											<span class="réponse_2"></span>
+										</li>
+										<li>
+											<span class="réponse_3"></span>
+										</li>
+										<li>
+											<span class="réponse_4"></span>
+										</li>
+										<li>
+											<span class="réponse_5"></span>
+										</li>
+										<li>
+											<span class="réponse_6"></span>
+										</li>
+										<li>
+											<span class="réponse_7"></span>
+										</li>
+										<li>
+											<span class="réponse_8"></span>
+										</li>
+										<li>
+											<span class="réponse_9"></span>
+										</li>
+										<li>
+											<span class="réponse_10"></span>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section id="answer_3" class="answer">
+					<div class="container">
+						<div class="contenu">
+							<div class="titre">
+								<h1>
+									La bonne réponse est : dorés avec des pupilles verticales !
+								</h1>
+							</div>
+
+							<div class="image">
+								<img src="{{ asset('uploads/images/yeux.jpg') }}" alt="">
+							</div>
+						</div>
+						<div class="next">
+							<button class="next-btn">
+								<strong>Next</strong>
+							</button>
+						</div>
+					</div>
+				</section>
+
+				<section id="question_4" class="question">
+					<div class="container">
+						<div class="contenu">
+							<div class="top">
+								<div class="quiz">
+									<h2>
+										<strong>Quiz The Witcher</strong>
+									</h2>
+									<div class="timer">
+										<div class="timer_rest">
+											<p>
+												<strong>Temps restant</strong>
+											</p>
+										</div>
+										<div id="number4" class="number">
+											<p>
+												<strong>35</strong>
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="center">
+								<div class="titre">
+									<h2>4. Quel est le principal ingrédient nécessaire pour créer une Potion de Sorceleur ?</h2>
+									<div class="bouton">
+										<ul style="list-style-type: none;">
+											<li>
+												<button class="answer-btn bad_answer">
+													<strong>Sang de vampire</strong>
+												</button>
+											</li>
+											<li>
+												<button class="answer-btn good_answer">
+													<strong>Mutagènes</strong>
+												</button>
+											</li>
+											<li>
+												<button class="answer-btn bad_answer">
+													<strong>Cœur de dragon</strong>
+												</button>
+											</li>
+											<li>
+												<button class="answer-btn bad_answer">
+													<strong>Herbes magiques</strong>
+												</button>
+											</li>
+										</ul>
+
+									</div>
+
+								</div>
+
+							</div>
+
+							<div class="bottom">
+								<div class="texte">
+									<p>Question 4 sur 10</p>
+								</div>
+								<div class="progress">
+									<ul style="list-style-type: none;">
+										<li>
+											<span class="réponse_1"></span>
+										</li>
+										<li>
+											<span class="réponse_2"></span>
+										</li>
+										<li>
+											<span class="réponse_3"></span>
+										</li>
+										<li>
+											<span class="réponse_4"></span>
+										</li>
+										<li>
+											<span class="réponse_5"></span>
+										</li>
+										<li>
+											<span class="réponse_6"></span>
+										</li>
+										<li>
+											<span class="réponse_7"></span>
+										</li>
+										<li>
+											<span class="réponse_8"></span>
+										</li>
+										<li>
+											<span class="réponse_9"></span>
+										</li>
+										<li>
+											<span class="réponse_10"></span>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section id="answer_4" class="answer">
+					<div class="container">
+						<div class="contenu">
+							<div class="titre">
+								<h1>
+									La bonne réponse est : Mutagènes !
+								</h1>
+							</div>
+
+							<div class="image">
+								<img src="{{ asset('uploads/images/mutagen.jpg') }}" alt="">
+							</div>
+						</div>
+						<div class="next">
+							<button class="next-btn">
+								<strong>Next</strong>
+							</button>
+						</div>
+					</div>
+				</section>
+
+				<section id="question_5" class="question">
+					<div class="container">
+						<div class="contenu">
+							<div class="top">
+								<div class="quiz">
+									<h2>
+										<strong>Quiz The Witcher</strong>
+									</h2>
+									<div class="timer">
+										<div class="timer_rest">
+											<p>
+												<strong>Temps restant</strong>
+											</p>
+										</div>
+										<div id="number5" class="number">
+											<p>
+												<strong>35</strong>
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="center">
+								<div class="titre">
+									<h2>5. Qui est Ciri de par son héritage royal ?</h2>
+									<div class="bouton">
+										<ul style="list-style-type: none;">
+											<li>
+												<button class="answer-btn bad_answer">
+													<strong>Duchesse de Toussaint</strong>
+												</button>
+											</li>
+											<li>
+												<button class="answer-btn bad_answer">
+													<strong>Reine de Skellige</strong>
+												</button>
+											</li>
+											<li>
+												<button class="answer-btn good_answer">
+													<strong>Princesse de Cintra</strong>
+												</button>
+											</li>
+											<li>
+												<button class="answer-btn bad_answer">
+													<strong>Marquise de Novigrad</strong>
+												</button>
+											</li>
+										</ul>
+
+									</div>
+
+								</div>
+
+							</div>
+
+							<div class="bottom">
+								<div class="texte">
+									<p>Question 5 sur 10</p>
+								</div>
+								<div class="progress">
+									<ul style="list-style-type: none;">
+										<li>
+											<span class="réponse_1"></span>
+										</li>
+										<li>
+											<span class="réponse_2"></span>
+										</li>
+										<li>
+											<span class="réponse_3"></span>
+										</li>
+										<li>
+											<span class="réponse_4"></span>
+										</li>
+										<li>
+											<span class="réponse_5"></span>
+										</li>
+										<li>
+											<span class="réponse_6"></span>
+										</li>
+										<li>
+											<span class="réponse_7"></span>
+										</li>
+										<li>
+											<span class="réponse_8"></span>
+										</li>
+										<li>
+											<span class="réponse_9"></span>
+										</li>
+										<li>
+											<span class="réponse_10"></span>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section id="answer_5" class="answer">
+					<div class="container">
+						<div class="contenu">
+							<div class="titre">
+								<h1>
+									La bonne réponse est : Princesse de Cintra !
+								</h1>
+							</div>
+
+							<div class="image">
+								<img src="{{ asset('uploads/images/ciri.jpg') }}" alt="">
+							</div>
+						</div>
+						<div class="next">
+							<button class="next-btn">
+								<strong>Next</strong>
+							</button>
+						</div>
+					</div>
+				</section>
+
+				<section id="question_6" class="question">
+					<div class="container">
+						<div class="contenu">
+							<div class="top">
+								<div class="quiz">
+									<h2>
+										<strong>Quiz The Witcher</strong>
+									</h2>
+									<div class="timer">
+										<div class="timer_rest">
+											<p>
+												<strong>Temps restant</strong>
+											</p>
+										</div>
+										<div id="number6" class="number">
+											<p>
+												<strong>35</strong>
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="center">
+								<div class="titre">
+									<h2>6. Quelle est la profession de Dandelion (Jaskier en version originale) ?</h2>
+									<div class="bouton">
+										<ul style="list-style-type: none;">
+											<li>
+												<button class="answer-btn good_answer">
+													<strong>Barde</strong>
+												</button>
+											</li>
+											<li>
+												<button class="answer-btn bad_answer">
+													<strong>Chevalier</strong>
+												</button>
+											</li>
+											<li>
+												<button class="answer-btn bad_answer">
+													<strong>Marchand</strong>
+												</button>
+											</li>
+											<li>
+												<button class="answer-btn bad_answer">
+													<strong>Alchimiste</strong>
+												</button>
+											</li>
+										</ul>
+
+									</div>
+
+								</div>
+
+							</div>
+
+							<div class="bottom">
+								<div class="texte">
+									<p>Question 6 sur 10</p>
+								</div>
+								<div class="progress">
+									<ul style="list-style-type: none;">
+										<li>
+											<span class="réponse_1"></span>
+										</li>
+										<li>
+											<span class="réponse_2"></span>
+										</li>
+										<li>
+											<span class="réponse_3"></span>
+										</li>
+										<li>
+											<span class="réponse_4"></span>
+										</li>
+										<li>
+											<span class="réponse_5"></span>
+										</li>
+										<li>
+											<span class="réponse_6"></span>
+										</li>
+										<li>
+											<span class="réponse_7"></span>
+										</li>
+										<li>
+											<span class="réponse_8"></span>
+										</li>
+										<li>
+											<span class="réponse_9"></span>
+										</li>
+										<li>
+											<span class="réponse_10"></span>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section id="answer_6" class="answer">
+					<div class="container">
+						<div class="contenu">
+							<div class="titre">
+								<h1>
+									La bonne réponse est : Barde !
+								</h1>
+							</div>
+
+							<div class="image">
+								<img src="{{ asset('uploads/images/jaskier.jpg') }}" alt="">
+							</div>
+						</div>
+						<div class="next">
+							<button class="next-btn">
+								<strong>Next</strong>
+							</button>
+						</div>
+					</div>
+				</section>
+
+				<section id="question_7" class="question">
+					<div class="container">
+						<div class="contenu">
+							<div class="top">
+								<div class="quiz">
+									<h2>
+										<strong>Quiz The Witcher</strong>
+									</h2>
+									<div class="timer">
+										<div class="timer_rest">
+											<p>
+												<strong>Temps restant</strong>
+											</p>
+										</div>
+										<div id="number7" class="number">
+											<p>
+												<strong>35</strong>
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="center">
+								<div class="titre">
+									<h2>7. Quel est le principal antagoniste dans "The Witcher 3: Wild Hunt" ?</h2>
+									<div class="bouton">
+										<ul style="list-style-type: none;">
+											<li>
+												<button class="answer-btn bad_answer">
+													<strong>Letho</strong>
+												</button>
+											</li>
+											<li>
+												<button class="answer-btn bad_answer">
+													<strong>Dettlaff</strong>
+												</button>
+											</li>
+											<li>
+												<button class="answer-btn good_answer">
+													<strong>Eredin</strong>
+												</button>
+											</li>
+											<li>
+												<button class="answer-btn bad_answer">
+													<strong>Imlerith</strong>
+												</button>
+											</li>
+										</ul>
+
+									</div>
+
+								</div>
+
+							</div>
+
+							<div class="bottom">
+								<div class="texte">
+									<p>Question 7 sur 10</p>
+								</div>
+								<div class="progress">
+									<ul style="list-style-type: none;">
+										<li>
+											<span class="réponse_1"></span>
+										</li>
+										<li>
+											<span class="réponse_2"></span>
+										</li>
+										<li>
+											<span class="réponse_3"></span>
+										</li>
+										<li>
+											<span class="réponse_4"></span>
+										</li>
+										<li>
+											<span class="réponse_5"></span>
+										</li>
+										<li>
+											<span class="réponse_6"></span>
+										</li>
+										<li>
+											<span class="réponse_7"></span>
+										</li>
+										<li>
+											<span class="réponse_8"></span>
+										</li>
+										<li>
+											<span class="réponse_9"></span>
+										</li>
+										<li>
+											<span class="réponse_10"></span>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section id="answer_7" class="answer">
+					<div class="container">
+						<div class="contenu">
+							<div class="titre">
+								<h1>
+									La bonne réponse est : Eredin !
+								</h1>
+							</div>
+
+							<div class="image">
+								<img src="{{ asset('uploads/images/eredin.jpg') }}" alt="">
+							</div>
+						</div>
+						<div class="next">
+							<button class="next-btn">
+								<strong>Next</strong>
+							</button>
+						</div>
+					</div>
+				</section>
+
+				<section id="question_8" class="question">
+					<div class="container">
+						<div class="contenu">
+							<div class="top">
+								<div class="quiz">
+									<h2>
+										<strong>Quiz The Witcher</strong>
+									</h2>
+									<div class="timer">
+										<div class="timer_rest">
+											<p>
+												<strong>Temps restant</strong>
+											</p>
+										</div>
+										<div id="number8" class="number">
+											<p>
+												<strong>35</strong>
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="center">
+								<div class="titre">
+									<h2>8. Quel est le nom de la forteresse où Geralt a été formé ?</h2>
+									<div class="bouton">
+										<ul style="list-style-type: none;">
+											<li>
+												<button class="answer-btn bad_answer">
+													<strong>Kaer Trolde</strong>
+												</button>
+											</li>
+											<li>
+												<button class="answer-btn bad_answer">
+													<strong>Fort Etnir</strong>
+												</button>
+											</li>
+											<li>
+												<button class="answer-btn bad_answer">
+													<strong>Castel Graupian</strong>
+												</button>
+											</li>
+											<li>
+												<button class="answer-btn good_answer">
+													<strong>Kaer Morhen</strong>
+												</button>
+											</li>
+										</ul>
+
+									</div>
+
+								</div>
+
+							</div>
+
+							<div class="bottom">
+								<div class="texte">
+									<p>Question 8 sur 10</p>
+								</div>
+								<div class="progress">
+									<ul style="list-style-type: none;">
+										<li>
+											<span class="réponse_1"></span>
+										</li>
+										<li>
+											<span class="réponse_2"></span>
+										</li>
+										<li>
+											<span class="réponse_3"></span>
+										</li>
+										<li>
+											<span class="réponse_4"></span>
+										</li>
+										<li>
+											<span class="réponse_5"></span>
+										</li>
+										<li>
+											<span class="réponse_6"></span>
+										</li>
+										<li>
+											<span class="réponse_7"></span>
+										</li>
+										<li>
+											<span class="réponse_8"></span>
+										</li>
+										<li>
+											<span class="réponse_9"></span>
+										</li>
+										<li>
+											<span class="réponse_10"></span>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section id="answer_8" class="answer">
+					<div class="container">
+						<div class="contenu">
+							<div class="titre">
+								<h1>
+									La bonne réponse est : Kaer Morhen !
+								</h1>
+							</div>
+
+							<div class="image">
+								<img src="{{ asset('uploads/images/kaer_morhen.webp') }}" alt="">
+							</div>
+						</div>
+						<div class="next">
+							<button class="next-btn">
+								<strong>Next</strong>
+							</button>
+						</div>
+					</div>
+				</section>
+
+				<section id="question_9" class="question">
+					<div class="container">
+						<div class="contenu">
+							<div class="top">
+								<div class="quiz">
+									<h2>
+										<strong>Quiz The Witcher</strong>
+									</h2>
+									<div class="timer">
+										<div class="timer_rest">
+											<p>
+												<strong>Temps restant</strong>
+											</p>
+										</div>
+										<div id="number9" class="number">
+											<p>
+												<strong>35</strong>
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="center">
+								<div class="titre">
+									<h2>9. Quel est le nom de la race d'êtres anciens et puissants, souvent considérés comme des divinités, dans l'univers de The Witcher ?</h2>
+									<div class="bouton">
+										<ul style="list-style-type: none;">
+											<li>
+												<button class="answer-btn bad_answer">
+													<strong>Les Nains</strong>
+												</button>
+											</li>
+											<li>
+												<button class="answer-btn bad_answer">
+													<strong>Les Vampires Supérieurs</strong>
+												</button>
+											</li>
+											<li>
+												<button class="answer-btn good_answer">
+													<strong>Les Aen Elle</strong>
+												</button>
+											</li>
+											<li>
+												<button class="answer-btn bad_answer">
+													<strong>Les Aen Seidhe</strong>
+												</button>
+											</li>
+										</ul>
+
+									</div>
+
+								</div>
+
+							</div>
+
+							<div class="bottom">
+								<div class="texte">
+									<p>Question 9 sur 10</p>
+								</div>
+								<div class="progress">
+									<ul style="list-style-type: none;">
+										<li>
+											<span class="réponse_1"></span>
+										</li>
+										<li>
+											<span class="réponse_2"></span>
+										</li>
+										<li>
+											<span class="réponse_3"></span>
+										</li>
+										<li>
+											<span class="réponse_4"></span>
+										</li>
+										<li>
+											<span class="réponse_5"></span>
+										</li>
+										<li>
+											<span class="réponse_6"></span>
+										</li>
+										<li>
+											<span class="réponse_7"></span>
+										</li>
+										<li>
+											<span class="réponse_8"></span>
+										</li>
+										<li>
+											<span class="réponse_9"></span>
+										</li>
+										<li>
+											<span class="réponse_10"></span>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section id="answer_9" class="answer">
+					<div class="container">
+						<div class="contenu">
+							<div class="titre">
+								<h1>
+									La bonne réponse est : Les Aen Elle !
+								</h1>
+							</div>
+
+							<div class="image">
+								<img src="{{ asset('uploads/images/avallach.webp') }}" alt="">
+							</div>
+						</div>
+						<div class="next">
+							<button class="next-btn">
+								<strong>Next</strong>
+							</button>
+						</div>
+					</div>
+				</section>
+
+				<section id="question_10" class="question">
+					<div class="container">
+						<div class="contenu">
+							<div class="top">
+								<div class="quiz">
+									<h2>
+										<strong>Quiz The Witcher</strong>
+									</h2>
+									<div class="timer">
+										<div class="timer_rest">
+											<p>
+												<strong>Temps restant</strong>
+											</p>
+										</div>
+										<div id="number10" class="number">
+											<p>
+												<strong>35</strong>
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="center">
+								<div class="titre">
+									<h2>10. Quel est le nom de la sorcière qui est l'un des principaux intérêts amoureux de Geralt ?
+									</h2>
+									<div class="bouton">
+										<ul style="list-style-type: none;">
+											<li>
+												<button class="answer-btn bad_answer">
+													<strong>Keira Metz</strong>
+												</button>
+											</li>
+											<li>
+												<button class="answer-btn bad_answer">
+													<strong>Philippa Eilhart</strong>
+												</button>
+											</li>
+											<li>
+												<button class="answer-btn good_answer">
+													<strong>Yennefer de Vengerberg</strong>
+												</button>
+											</li>
+											<li>
+												<button class="answer-btn bad_answer">
+													<strong>Fringilla Vigo</strong>
+												</button>
+											</li>
+										</ul>
+
+									</div>
+
+								</div>
+
+							</div>
+
+							<div class="bottom">
+								<div class="texte">
+									<p>Question 10 sur 10</p>
+								</div>
+								<div class="progress">
+									<ul style="list-style-type: none;">
+										<li>
+											<span class="réponse_1"></span>
+										</li>
+										<li>
+											<span class="réponse_2"></span>
+										</li>
+										<li>
+											<span class="réponse_3"></span>
+										</li>
+										<li>
+											<span class="réponse_4"></span>
+										</li>
+										<li>
+											<span class="réponse_5"></span>
+										</li>
+										<li>
+											<span class="réponse_6"></span>
+										</li>
+										<li>
+											<span class="réponse_7"></span>
+										</li>
+										<li>
+											<span class="réponse_8"></span>
+										</li>
+										<li>
+											<span class="réponse_9"></span>
+										</li>
+										<li>
+											<span class="réponse_10"></span>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section id="answer_10" class="answer">
+					<div class="container">
+						<div class="contenu">
+							<div class="titre">
+								<h1>
+									La bonne réponse est : Yennefer de Vengerberg !
+								</h1>
+							</div>
+
+							<div class="image">
+								<img src="{{ asset('uploads/images/yennefer.jpg') }}" alt="">
+							</div>
+						</div>
+						<div class="next">
+							<button class="next-btn">
+								<strong>Next</strong>
+							</button>
+						</div>
+					</div>
+				</section>
+
+				<section id="arrivée" class="arrivée">
+					<div class="container">
+						<div class="contenu">
+							<div class="titre">
+								<h1>
+									Vous avez eu X bonnes réponses
+								</h1>
+							</div>
+
+							<div class="bouton">
+								<button class="begin">
+									Recommencer le quiz
+								</button>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</section>
+{% endblock %}

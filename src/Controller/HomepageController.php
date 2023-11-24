@@ -47,7 +47,7 @@ class HomepageController extends AbstractController
     #[Route('/user/edit', name: 'user_edit')]
     public function editUser(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response
     {
-    $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+    
     $user = $this->getUser();
 
     if (!$user) {
@@ -137,6 +137,8 @@ class HomepageController extends AbstractController
     #[Route('/comment/edit/{id}', name: 'app_comment_edit')]
     public function editComment(Commentaire $commentaire, Request $request, EntityManagerInterface $entityManager): Response
     {
+    $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
     if ($commentaire->getUser() !== $this->getUser()) {
         return $this->redirectToRoute('app_article');
     }
@@ -165,6 +167,7 @@ class HomepageController extends AbstractController
    #[Route('/comment/delete/{id}', name: 'app_comment_delete')]
    public function deleteComment(EntityManagerInterface $entityManager, CommentaireRepository $commentaireRepository, string $id): Response
    {
+    $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
     $commentaire = $commentaireRepository->find($id);
 
     if (!$commentaire) {
@@ -228,6 +231,8 @@ class HomepageController extends AbstractController
     #[Route('/question/edit/{id}', name: 'app_question_edit')]
     public function editQuestion(Question $question, Request $request, EntityManagerInterface $entityManager): Response
     {
+    $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
     if ($question->getUser() !== $this->getUser()) {
         return $this->redirectToRoute('app_forum');
     }
@@ -250,6 +255,8 @@ class HomepageController extends AbstractController
    #[Route('/question/delete/{id}', name: 'app_question_delete')]
    public function deleteQuestion(EntityManagerInterface $entityManager, QuestionRepository $questionRepository, string $id): Response
    {
+    $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
     $question = $questionRepository->find($id);
 
     if (!$question) {
@@ -310,6 +317,8 @@ class HomepageController extends AbstractController
     #[Route('/réponse/edit/{id}', name: 'app_réponse_edit')]
     public function editAnswer(Réponse $answer, Request $request, EntityManagerInterface $entityManager): Response
     {
+    $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
     if ($answer->getUser() !== $this->getUser()) {
         return $this->redirectToRoute('app_forum');
     }
@@ -338,6 +347,8 @@ class HomepageController extends AbstractController
    #[Route('/réponse/delete/{id}', name: 'app_réponse_delete')]
    public function deleteAnswer(EntityManagerInterface $entityManager, RéponseRepository $answerRepository, string $id): Response
    {
+    $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
     $answer = $answerRepository->find($id);
 
     if (!$answer) {
@@ -387,6 +398,14 @@ class HomepageController extends AbstractController
         'questions' => $questions,
         'query' => $query,
     ]);
+    }
+
+    #[Route('/quiz', name: 'app_quiz')]
+    public function quiz(): Response
+    {
+        return $this->render('homepage/quiz.html.twig', [
+            'controller_name' => 'HomepageController',
+        ]);
     }
 
 }

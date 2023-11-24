@@ -16,5 +16,6 @@ import './styles/register.css';
 import './styles/question.css';
 import './styles/réponse.css';
 import './styles/userForm.css';
+import './styles/quiz.css';
 
 import './js/script';

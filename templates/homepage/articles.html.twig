@@ -79,7 +79,7 @@
 				{% for article in articles %}
 					<div class="article">
 						<div class="block">
-							<a href="{{ path('app_article', {'id': article.id}) }}"><img src="{{ asset('uploads/images/' ~ article.image) }}" alt="miniature"></a>
+							<a href="{{ path('app_article', {'slug': article.slug}) }}"><img src="{{ asset('uploads/images/' ~ article.image) }}" alt="miniature"></a>
 							<strong>
 								<p>{{ article.title }}</p>
 							</strong>

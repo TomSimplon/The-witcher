@@ -40,7 +40,7 @@
 		<div class="articles">
 			{% for article in articles %}
 				<div class="article">
-					<a href="{{ path('app_article', {'id': article.id}) }}">
+					<a href="{{ path('app_article', {'slug': article.slug}) }}">
 						<img src="{{ asset('uploads/images/' ~ article.image) }}" alt="">
 					</a>
 					<div class="article-info">

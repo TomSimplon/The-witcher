@@ -3,12 +3,14 @@
 namespace App\Entity;
 
 use App\Repository\ArticleRepository;
+use Cocur\Slugify\Slugify;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Article
 {
     #[ORM\Id]
@@ -31,10 +33,28 @@ class Article
     #[ORM\OneToMany(mappedBy: 'article', targetEntity: Commentaire::class)]
     private Collection $commentaires;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $slug = null;
+
     public function __construct()
     {
         $this->commentaires = new ArrayCollection();
         $this->date = new \DateTime();
+    }
+
+    #[ORM\PrePersist]
+    public function setCreatedAtValue(): void
+    {
+        $slugify = new Slugify();
+        $this->slug = $slugify->slugify($this->title); 
+    }
+
+
+    #[ORM\PreUpdate]
+    public function updateSlug(): void
+    {
+        $slugify = new Slugify();
+        $this->slug = $slugify->slugify($this->title);
     }
 
     public function getId(): ?int
@@ -50,6 +70,7 @@ class Article
     public function setTitle(string $title): static
     {
         $this->title = $title;
+        $this->updateSlug(); 
 
         return $this;
     }
@@ -116,6 +137,18 @@ class Article
                 $commentaire->setArticle(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): static
+    {
+        $this->slug = $slug;
 
         return $this;
     }

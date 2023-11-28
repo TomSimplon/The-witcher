@@ -59,19 +59,15 @@ class HomepageController extends AbstractController
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
-        // Vérifiez si un nouveau mot de passe a été saisi
         $plainPassword = $form->get('plainPassword')->getData();
+
         if ($plainPassword) {
-            // Hachez le nouveau mot de passe
             $hashedPassword = $passwordHasher->hashPassword($user, $plainPassword);
-            // Mettez à jour le mot de passe de l'utilisateur
             $user->setPassword($hashedPassword);
         }
 
-        // Flush les modifications
         $entityManager->flush();
 
-        // Redirection ou autres actions
         return $this->redirectToRoute('app_user');
     }
 
@@ -91,11 +87,11 @@ class HomepageController extends AbstractController
         ]);
     }
 
-    #[Route('/article/{id}', name: 'app_article')]
-    public function article(CommentaireRepository $commentaireRepository, EntityManagerInterface $entityManager, string $id, Request $request): Response
+    #[Route('/article/{slug}', name: 'app_article')]
+    public function article(CommentaireRepository $commentaireRepository, EntityManagerInterface $entityManager, string $slug, Request $request): Response
     {
         $articlesRepository = $entityManager->getRepository(Article::class);
-        $article = $articlesRepository->find($id);
+        $article = $articlesRepository->findOneBy(['slug' => $slug]);
 
         if(!$article) {
             return $this->redirectToRoute('app_articles');
@@ -116,7 +112,7 @@ class HomepageController extends AbstractController
                 $entityManager->persist($commentaire);
                 $entityManager->flush();
     
-                return $this->redirectToRoute('app_article', ['id' => $id, '_fragment' => 'commentaires']);
+                return $this->redirectToRoute('app_article', ['slug' => $slug, '_fragment' => 'commentaires']);
             }
     
             $formView = $form->createView();
@@ -150,9 +146,9 @@ class HomepageController extends AbstractController
     if ($form->isSubmitted() && $form->isValid()) {
         $entityManager->flush();
 
-        $articleId = $commentaire->getArticle()->getId();
+        $articleSlug = $commentaire->getArticle()->getSlug();
 
-        return $this->redirectToRoute('app_article', ['id' => $articleId, '_fragment' => 'commentaires']);
+        return $this->redirectToRoute('app_article', ['slug' => $articleSlug, '_fragment' => 'commentaires']);
     }
 
     $article = $commentaire->getArticle();

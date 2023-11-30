@@ -46,6 +46,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?bool $is_active = true;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $resetToken = null;
+
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $GDPR = null;
 
@@ -191,6 +194,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setGDPR(\DateTimeInterface $GDPR): static
     {
         $this->GDPR = $GDPR;
+
+        return $this;
+    }
+
+    public function getresetToken(): ?string
+    {
+        return $this->resetToken;
+    }
+
+    public function setresetToken(?string $resetToken): self
+    {
+        $this->resetToken = $resetToken;
 
         return $this;
     }

@@ -71,7 +71,7 @@ class SecurityController extends AbstractController
                 $context
                );
                 
-               $this->addFlash('success', 'Email envoyé avec succès');
+               $this->addFlash('success', 'Email envoyé avec succès !');
                return $this->redirectToRoute('app_login');
 
             }
@@ -104,7 +104,7 @@ class SecurityController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            $this->addFlash('success', 'mot de passe changé avec succès');
+            $this->addFlash('success', 'Mot de passe changé avec succès !');
             return $this->redirectToRoute('app_login');
         }
 

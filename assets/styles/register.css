@@ -116,6 +116,12 @@
     transform: scale(1.05);
 }
 
+.formulaire form li {
+    color: red;
+    font-weight: bold;
+    font-size: 15px;
+}
+
 @media screen and (max-width: 640px) {
     #register {
         height: 900px;

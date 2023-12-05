@@ -227,7 +227,6 @@ body {
 }
 
 #quiz .answer .contenu {
-    padding: 300px;
     vertical-align: middle;
 }
 
@@ -249,6 +248,11 @@ body {
     border: 3px white solid;
 }
 
+#quiz .answer .next {
+    text-align: center; 
+    padding-top: 20px; 
+}
+
 #quiz .answer .next button {
     background-color: deepskyblue;
     width: fit-content;
@@ -258,9 +262,6 @@ body {
     color: white;
     padding: 15px 50px;
     font-size: 25px;
-    position: absolute;
-    bottom: 0;
-    right: 0;
 }
 
 .arrivée .contenu {
@@ -369,6 +370,11 @@ body {
         margin: 50px auto;
         width: 90%;
     }
+
+    #quiz .question .quiz {
+        display: flex;
+        flex-direction: column;
+    }
     
     #quiz .answer .contenu {
         padding: 100px;
@@ -387,9 +393,10 @@ body {
         width: 300px;
         margin-top: 50px;
     }
-    
-    #quiz .answer .container .next button {
-        margin-right: 230px;
+
+    #quiz .answer .next button {
+        padding: 10px 20px; 
+        font-size: 16px;
     }
     
     .arrivée .contenu {

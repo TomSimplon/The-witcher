@@ -220,4 +220,13 @@ body {
         padding: 0;
         justify-content: center;
     }
+
+    #articles .container .block img {
+        max-height: 100px;
+        max-width: 200px;
+    }
+
+    #articles .container .block p {
+        font-size: 0.9rem;
+    }
 }

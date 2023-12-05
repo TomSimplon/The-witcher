@@ -98,6 +98,18 @@
     font-size: 18px;
 }
 
+.danger {
+    color: red;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.success {
+    color: rgb(11, 182, 11);
+    font-weight: bold;
+    font-size: 18px;
+}
+
 #login .background .parchemin .formulaire form button {
     margin-top: 10px;
     background-color: #FF9900;

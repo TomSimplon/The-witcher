@@ -33,6 +33,12 @@
 			<div class="container">
 				<div class="contenu">
 					<div class="infos">
+						{% if app.user %}
+							<div class="mb-3">
+								<span style="color: green; font-weight: bold; font-size: 18px;">Vous êtes maintenant connecté
+									{{ app.user.pseudonym|default('') }}</span>
+							</div>
+						{% endif %}
 						<div class="recap">
 							<div class="img">
 								<img src="{{ asset('uploads/images/user.png') }}" alt="miniature">

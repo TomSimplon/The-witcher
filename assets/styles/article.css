@@ -220,8 +220,8 @@ body {
       }
 
       #article_unique .container .contenu .corps img {
-        width: 250px;
-        height: 150px;
+        max-width: 250px;
+        max-height: 150px;
     }
     
     

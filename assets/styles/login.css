@@ -81,6 +81,11 @@
     text-align: center;
 }
 
+#login .background .parchemin .formulaire form div {
+    display: flex;
+    flex-direction: column;
+}
+
 #login .background .parchemin .formulaire form label {
     margin-top: 20px;
 }
@@ -121,12 +126,12 @@
         align-items: center;
     }
 
-    #login nav .onglets {
+    #login  nav .onglets {
         display: none;
-      }
+    }
       
   
-      #login nav .onglets a {
+    #login nav .onglets a {
         display: flex;
         flex-direction: column;
         text-align: center;
@@ -170,12 +175,17 @@
         width: auto; 
         padding: 0 20px; 
         box-sizing: border-box; 
-    }
+        }
 
-    #login .background .parchemin {
+        #login .background img {
+            display: none;
+        }
+
+      #login .background .parchemin {
         margin: 0; 
         height: auto; 
         max-width: 100%; 
         padding: 20px; 
-    }
+        background-image: none;
+        }
 }

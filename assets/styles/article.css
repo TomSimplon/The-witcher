@@ -218,6 +218,11 @@ body {
       #article_unique .commentaires .text .bouton a {
         font-size: 16px;
       }
+
+      #article_unique .container .contenu .corps img {
+        width: 250px;
+        height: 150px;
+    }
     
     
 }

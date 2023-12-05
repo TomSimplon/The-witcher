@@ -11,11 +11,9 @@ use App\Entity\Question;
 use App\Form\CommentaireType;
 use App\Entity\Commentaire;
 use App\Entity\Article;
-use App\Entity\User;
 use App\Form\UserType;
 use App\Form\AnswerType;
 use App\Entity\Réponse;
-use App\Entity\Role;
 use App\Repository\CommentaireRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -97,6 +95,9 @@ class HomepageController extends AbstractController
             return $this->redirectToRoute('app_articles');
         } 
 
+        $contenu = htmlspecialchars($article->getContenu());
+        $decodedContent = html_entity_decode($contenu);
+
         $user = $this->getUser();
         if ($user) {
             $commentaire = new Commentaire();
@@ -124,6 +125,7 @@ class HomepageController extends AbstractController
 
         return $this->render('homepage/article.html.twig', [
             'article' => $article,
+            'decodedContent' => $decodedContent,
             'commentaireForm' => $formView,
             'controller_name' => 'HomepageController',
             'commentaires' => $commentaires,

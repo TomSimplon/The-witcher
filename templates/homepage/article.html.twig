@@ -64,7 +64,7 @@
 				<div class="corps">
 					<img src="{{ asset('uploads/images/' ~ article.image) }}" alt="miniature">
 					<h1>{{ article.title }}</h1>
-					<p>{{ article.contenu|raw }}</p>
+					<p>{{ decodedContent|raw }}</p>
 					<p class="date">{{ article.date|date("d/m/Y") }}</p>
 
 				</div>

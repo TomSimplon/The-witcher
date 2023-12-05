@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Form\ResetPasswordRequestFormType;
+use App\Form\ResetPasswordFormType;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,6 +19,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use App\Service\SendMailService;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class SecurityController extends AbstractController
 {
@@ -83,7 +85,34 @@ class SecurityController extends AbstractController
     }
 
     #[Route(path: '/forgot-pass/{token}', name: 'reset_pass')]
-    public function resetPass(Request $request, UserRepository $userRepository, TokenGeneratorInterface $tokenGenerator, EntityManagerInterface $entityManager): Response {
+    public function resetPass(string $token, Request $request, UserRepository $userRepository, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response {
+      $user = $userRepository->findOneByResetToken($token);
 
+      if($user) {
+        $form = $this->createForm(ResetPasswordFormType::class);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $user->setResetToken('');
+            $user->setPassword(
+                $passwordHasher->hashPassword(
+                    $user, 
+                    $form->get('password')->getData()
+                )
+            );
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'mot de passe changé avec succès');
+            return $this->redirectToRoute('app_login');
+        }
+
+        return $this->render('security/reset_password.html.twig', [
+            'passForm' => $form->createView()
+        ]);
+      }
+      $this->addFlash('danger', 'jeton invalide');
+      return $this->redirectToRoute('app_login');
     }
 }

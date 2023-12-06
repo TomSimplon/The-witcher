@@ -89,8 +89,19 @@ class HomepageController extends AbstractController {
             return $this->redirectToRoute('app_articles');
         }
 
-        $contenu = htmlspecialchars($article->getContenu());
+        function decodeBalisesIframe($contenuEncode) {
+            // Remplace les entités HTML avec les balises correspondantes
+            $contenuDecode = str_replace('&lt;', '<', $contenuEncode);
+            $contenuDecode = str_replace('&gt;', '>', $contenuDecode);
+
+            return $contenuDecode;
+        }
+
+        $test = decodeBalisesIframe($article->getContenu());
+
+        $contenu = htmlspecialchars($test);
         $decodedContent = html_entity_decode($contenu);
+
 
         $user = $this->getUser();
         if($user) {

@@ -29,12 +29,6 @@
 			<div class="parchemin">
 				<div class="formulaire">
 					<form method="post">
-						{% if app.user %}
-							<div class="mb-3">
-								Vous êtes maintenant inscrit
-								{{ app.user.pseudonym|default('') }}
-							</div>
-						{% endif %}
 
 						<h1 class="h3 mb-3 font-weight-normal">S'inscrire</h1>
 						{{ form_errors(registrationForm) }}

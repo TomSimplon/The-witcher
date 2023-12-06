@@ -375,6 +375,10 @@ body {
         display: flex;
         flex-direction: column;
     }
+
+    #quiz .question .timer {
+        justify-content: center;
+    }
     
     #quiz .answer .contenu {
         padding: 100px;

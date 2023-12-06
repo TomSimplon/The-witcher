@@ -219,6 +219,8 @@ body {
       #articles .container .articles_block {
         padding: 0;
         justify-content: center;
+        align-items: center;
+        flex-direction: column;
     }
 
     #articles .container .block img {

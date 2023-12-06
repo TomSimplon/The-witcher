@@ -731,26 +731,26 @@ document.querySelector('#answer_5 .next-btn').addEventListener('click', function
           question4Progress.querySelector('.réponse_3').style.backgroundColor = 'red';
           }
 
-    const question5Progress = document.querySelector('#question_7 .progress');
-    if (question4Reponse4.style.backgroundColor === 'green') {
-      question5Progress.querySelector('.réponse_4').style.backgroundColor = 'green';
-    } else if (question4Reponse4.style.backgroundColor === 'red') {
-      question5Progress.querySelector('.réponse_4').style.backgroundColor = 'red';
-    }
+          const question5Progress = document.querySelector('#question_7 .progress');
+          if (question4Reponse4.style.backgroundColor === 'green') {
+          question5Progress.querySelector('.réponse_4').style.backgroundColor = 'green';
+          } else if (question4Reponse4.style.backgroundColor === 'red') {
+          question5Progress.querySelector('.réponse_4').style.backgroundColor = 'red';
+          }
     
-    const question6Progress = document.querySelector('#question_7 .progress');
-  if (question5Reponse5.style.backgroundColor === 'green') {
-    question6Progress.querySelector('.réponse_5').style.backgroundColor = 'green';
-  } else if (question5Reponse5.style.backgroundColor === 'red') {
-    question6Progress.querySelector('.réponse_5').style.backgroundColor = 'red';
-  }
+          const question6Progress = document.querySelector('#question_7 .progress');
+          if (question5Reponse5.style.backgroundColor === 'green') {
+          question6Progress.querySelector('.réponse_5').style.backgroundColor = 'green';
+          } else if (question5Reponse5.style.backgroundColor === 'red') {
+          question6Progress.querySelector('.réponse_5').style.backgroundColor = 'red';
+          }
 
-  const question7Progress = document.querySelector('#question_7 .progress');
-  if (question6Reponse6.style.backgroundColor === 'green') {
-    question7Progress.querySelector('.réponse_6').style.backgroundColor = 'green';
-  } else if (question6Reponse6.style.backgroundColor === 'red') {
-    question7Progress.querySelector('.réponse_6').style.backgroundColor = 'red';
-  }
+          const question7Progress = document.querySelector('#question_7 .progress');
+          if (question6Reponse6.style.backgroundColor === 'green') {
+          question7Progress.querySelector('.réponse_6').style.backgroundColor = 'green';
+          } else if (question6Reponse6.style.backgroundColor === 'red') {
+          question7Progress.querySelector('.réponse_6').style.backgroundColor = 'red';
+          }
         }
       }
     }, 1000);
@@ -818,6 +818,75 @@ question7Buttons.forEach(button => {
 });
 });
 
+document.querySelector('#answer_6 .next-btn').addEventListener('click', function() {
+  answerSection6.classList.add('hidden');
+  questionSection7.classList.remove('hidden');
+  function startCountdown7() {
+    clearInterval(countdownInterval);
+    countdownInterval = setInterval(function() {
+      if (!questionSection7.classList.contains('hidden')) {
+        countdown7--;
+        numberDiv7.innerHTML = `<p><strong>${countdown7}</strong></p>`;
+        if (countdown7 <= 0) {
+          clearInterval(countdownInterval);
+          hideQuestionShowAnswer7()
+          reponse7.style.backgroundColor = 'red';
+
+          const question2Progress = document.querySelector('#question_8 .progress');
+          if (question1Reponse1.style.backgroundColor === 'green') {
+          question2Progress.querySelector('.réponse_1').style.backgroundColor = 'green';
+          } else if (question1Reponse1.style.backgroundColor === 'red') {
+          question2Progress.querySelector('.réponse_1').style.backgroundColor = 'red';
+          }
+
+          const question3Progress = document.querySelector('#question_8 .progress');
+          if (question2Reponse2.style.backgroundColor === 'green') {
+          question3Progress.querySelector('.réponse_2').style.backgroundColor = 'green';
+          } else if (question2Reponse2.style.backgroundColor === 'red') {
+          question3Progress.querySelector('.réponse_2').style.backgroundColor = 'red';
+          }
+
+          const question4Progress = document.querySelector('#question_8 .progress');
+          if (question3Reponse3.style.backgroundColor === 'green') {
+          question4Progress.querySelector('.réponse_3').style.backgroundColor = 'green';
+          } else if (question3Reponse3.style.backgroundColor === 'red') {
+          question4Progress.querySelector('.réponse_3').style.backgroundColor = 'red';
+          }
+
+          const question5Progress = document.querySelector('#question_8 .progress');
+          if (question4Reponse4.style.backgroundColor === 'green') {
+          question5Progress.querySelector('.réponse_4').style.backgroundColor = 'green';
+          } else if (question4Reponse4.style.backgroundColor === 'red') {
+          question5Progress.querySelector('.réponse_4').style.backgroundColor = 'red';
+          }
+    
+          const question6Progress = document.querySelector('#question_8 .progress');
+          if (question5Reponse5.style.backgroundColor === 'green') {
+          question6Progress.querySelector('.réponse_5').style.backgroundColor = 'green';
+          } else if (question5Reponse5.style.backgroundColor === 'red') {
+          question6Progress.querySelector('.réponse_5').style.backgroundColor = 'red';
+          }
+
+          const question7Progress = document.querySelector('#question_8 .progress');
+          if (question6Reponse6.style.backgroundColor === 'green') {
+          question7Progress.querySelector('.réponse_6').style.backgroundColor = 'green';
+          } else if (question6Reponse6.style.backgroundColor === 'red') {
+          question7Progress.querySelector('.réponse_6').style.backgroundColor = 'red';
+          }
+
+          const question8Progress = document.querySelector('#question_8 .progress');
+          if (question7Reponse7.style.backgroundColor === 'green') {
+          question8Progress.querySelector('.réponse_7').style.backgroundColor = 'green';
+          } else if (question7Reponse7.style.backgroundColor === 'red') {
+          question8Progress.querySelector('.réponse_7').style.backgroundColor = 'red';
+          }
+        }
+      }
+    }, 1000);
+  }
+  startCountdown7();
+});
+
 // Question 8
 question8Buttons.forEach(button => {
   button.addEventListener('click', () => {
@@ -882,6 +951,82 @@ question8Buttons.forEach(button => {
     question9Progress.querySelector('.réponse_8').style.backgroundColor = 'red';
   }
 });
+});
+
+document.querySelector('#answer_7 .next-btn').addEventListener('click', function() {
+  answerSection7.classList.add('hidden');
+  questionSection8.classList.remove('hidden');
+  function startCountdown8() {
+    clearInterval(countdownInterval);
+    countdownInterval = setInterval(function() {
+      if (!questionSection8.classList.contains('hidden')) {
+        countdown8--;
+        numberDiv8.innerHTML = `<p><strong>${countdown8}</strong></p>`;
+        if (countdown8 <= 0) {
+          clearInterval(countdownInterval);
+          hideQuestionShowAnswer8()
+          reponse8.style.backgroundColor = 'red';
+
+          const question2Progress = document.querySelector('#question_9 .progress');
+          if (question1Reponse1.style.backgroundColor === 'green') {
+          question2Progress.querySelector('.réponse_1').style.backgroundColor = 'green';
+          } else if (question1Reponse1.style.backgroundColor === 'red') {
+          question2Progress.querySelector('.réponse_1').style.backgroundColor = 'red';
+          }
+
+          const question3Progress = document.querySelector('#question_9 .progress');
+          if (question2Reponse2.style.backgroundColor === 'green') {
+          question3Progress.querySelector('.réponse_2').style.backgroundColor = 'green';
+          } else if (question2Reponse2.style.backgroundColor === 'red') {
+          question3Progress.querySelector('.réponse_2').style.backgroundColor = 'red';
+          }
+
+          const question4Progress = document.querySelector('#question_9 .progress');
+          if (question3Reponse3.style.backgroundColor === 'green') {
+          question4Progress.querySelector('.réponse_3').style.backgroundColor = 'green';
+          } else if (question3Reponse3.style.backgroundColor === 'red') {
+          question4Progress.querySelector('.réponse_3').style.backgroundColor = 'red';
+          }
+
+          const question5Progress = document.querySelector('#question_9 .progress');
+          if (question4Reponse4.style.backgroundColor === 'green') {
+          question5Progress.querySelector('.réponse_4').style.backgroundColor = 'green';
+          } else if (question4Reponse4.style.backgroundColor === 'red') {
+          question5Progress.querySelector('.réponse_4').style.backgroundColor = 'red';
+          }
+    
+         const question6Progress = document.querySelector('#question_9 .progress');
+         if (question5Reponse5.style.backgroundColor === 'green') {
+         question6Progress.querySelector('.réponse_5').style.backgroundColor = 'green';
+         } else if (question5Reponse5.style.backgroundColor === 'red') {
+         question6Progress.querySelector('.réponse_5').style.backgroundColor = 'red';
+         }
+
+         const question7Progress = document.querySelector('#question_9 .progress');
+         if (question6Reponse6.style.backgroundColor === 'green') {
+         question7Progress.querySelector('.réponse_6').style.backgroundColor = 'green';
+         } else if (question6Reponse6.style.backgroundColor === 'red') {
+         question7Progress.querySelector('.réponse_6').style.backgroundColor = 'red';
+         }
+
+         const question8Progress = document.querySelector('#question_9 .progress');
+         if (question7Reponse7.style.backgroundColor === 'green') {
+         question8Progress.querySelector('.réponse_7').style.backgroundColor = 'green';
+         } else if (question7Reponse7.style.backgroundColor === 'red') {
+         question8Progress.querySelector('.réponse_7').style.backgroundColor = 'red';
+         }
+
+         const question9Progress = document.querySelector('#question_9 .progress');
+         if (question8Reponse8.style.backgroundColor === 'green') {
+         question9Progress.querySelector('.réponse_8').style.backgroundColor = 'green';
+         } else if (question8Reponse8.style.backgroundColor === 'red') {
+         question9Progress.querySelector('.réponse_8').style.backgroundColor = 'red';
+         }
+        }
+      }
+    }, 1000);
+  }
+  startCountdown8();
 });
 
 // Question 9
@@ -958,45 +1103,6 @@ question9Buttons.forEach(button => {
 });
 });
 
-
-document.querySelector('#answer_6 .next-btn').addEventListener('click', function() {
-      answerSection6.classList.add('hidden');
-      questionSection7.classList.remove('hidden');
-      function startCountdown7() {
-        clearInterval(countdownInterval);
-        countdownInterval = setInterval(function() {
-          if (!questionSection7.classList.contains('hidden')) {
-            countdown7--;
-            numberDiv7.innerHTML = `<p><strong>${countdown7}</strong></p>`;
-            if (countdown7 <= 0) {
-              clearInterval(countdownInterval);
-              hideQuestionShowAnswer7()
-            }
-          }
-        }, 1000);
-      }
-      startCountdown7();
-  });
-
-document.querySelector('#answer_7 .next-btn').addEventListener('click', function() {
-    answerSection7.classList.add('hidden');
-    questionSection8.classList.remove('hidden');
-    function startCountdown8() {
-      clearInterval(countdownInterval);
-      countdownInterval = setInterval(function() {
-        if (!questionSection8.classList.contains('hidden')) {
-          countdown8--;
-          numberDiv8.innerHTML = `<p><strong>${countdown8}</strong></p>`;
-          if (countdown8 <= 0) {
-            clearInterval(countdownInterval);
-            hideQuestionShowAnswer8()
-          }
-        }
-      }, 1000);
-    }
-    startCountdown8();
-});
-
 document.querySelector('#answer_8 .next-btn').addEventListener('click', function() {
   answerSection8.classList.add('hidden');
   questionSection9.classList.remove('hidden');
@@ -1009,6 +1115,70 @@ document.querySelector('#answer_8 .next-btn').addEventListener('click', function
         if (countdown9 <= 0) {
           clearInterval(countdownInterval);
           hideQuestionShowAnswer9()
+          reponse9.style.backgroundColor = 'red';
+
+          const question2Progress = document.querySelector('#question_10 .progress');
+          if (question1Reponse1.style.backgroundColor === 'green') {
+          question2Progress.querySelector('.réponse_1').style.backgroundColor = 'green';
+          } else if (question1Reponse1.style.backgroundColor === 'red') {
+          question2Progress.querySelector('.réponse_1').style.backgroundColor = 'red';
+          }
+
+          const question3Progress = document.querySelector('#question_10 .progress');
+          if (question2Reponse2.style.backgroundColor === 'green') {
+          question3Progress.querySelector('.réponse_2').style.backgroundColor = 'green';
+          } else if (question2Reponse2.style.backgroundColor === 'red') {
+          question3Progress.querySelector('.réponse_2').style.backgroundColor = 'red';
+          }
+
+          const question4Progress = document.querySelector('#question_10 .progress');
+          if (question3Reponse3.style.backgroundColor === 'green') {
+          question4Progress.querySelector('.réponse_3').style.backgroundColor = 'green';
+          } else if (question3Reponse3.style.backgroundColor === 'red') {
+          question4Progress.querySelector('.réponse_3').style.backgroundColor = 'red';
+          }
+
+          const question5Progress = document.querySelector('#question_10 .progress');
+          if (question4Reponse4.style.backgroundColor === 'green') {
+          question5Progress.querySelector('.réponse_4').style.backgroundColor = 'green';
+          } else if (question4Reponse4.style.backgroundColor === 'red') {
+          question5Progress.querySelector('.réponse_4').style.backgroundColor = 'red';
+          }
+    
+          const question6Progress = document.querySelector('#question_10 .progress');
+          if (question5Reponse5.style.backgroundColor === 'green') {
+          question6Progress.querySelector('.réponse_5').style.backgroundColor = 'green';
+          } else if (question5Reponse5.style.backgroundColor === 'red') {
+          question6Progress.querySelector('.réponse_5').style.backgroundColor = 'red';
+          }
+
+          const question7Progress = document.querySelector('#question_10 .progress');
+          if (question6Reponse6.style.backgroundColor === 'green') {
+          question7Progress.querySelector('.réponse_6').style.backgroundColor = 'green';
+          } else if (question6Reponse6.style.backgroundColor === 'red') {
+          question7Progress.querySelector('.réponse_6').style.backgroundColor = 'red';
+          }
+
+          const question8Progress = document.querySelector('#question_10 .progress');
+          if (question7Reponse7.style.backgroundColor === 'green') {
+          question8Progress.querySelector('.réponse_7').style.backgroundColor = 'green';
+          } else if (question7Reponse7.style.backgroundColor === 'red') {
+          question8Progress.querySelector('.réponse_7').style.backgroundColor = 'red';
+          }
+
+          const question9Progress = document.querySelector('#question_10 .progress');
+          if (question8Reponse8.style.backgroundColor === 'green') {
+          question9Progress.querySelector('.réponse_8').style.backgroundColor = 'green';
+          } else if (question8Reponse8.style.backgroundColor === 'red') {
+          question9Progress.querySelector('.réponse_8').style.backgroundColor = 'red';
+          }
+
+          const question10Progress = document.querySelector('#question_10 .progress');
+          if (question9Reponse9.style.backgroundColor === 'green') {
+          question10Progress.querySelector('.réponse_9').style.backgroundColor = 'green';
+          } else if (question9Reponse9.style.backgroundColor === 'red') {
+          question10Progress.querySelector('.réponse_9').style.backgroundColor = 'red';
+          }
         }
       }
     }, 1000);
@@ -1048,11 +1218,12 @@ let score = 0;
 goodAnswers.forEach((answer) => {
   answer.addEventListener("click", () => {
     score++;  
-    if(score === 0) {
-      scoreTitle.textContent = `Vous avez eu 0 bonne réponse`;
-    } else {
       scoreTitle.textContent = `Vous avez eu ${score} bonnes réponses`;
-    }
+
+      if (score = 10) {
+        scoreTitle.textContent = `Vous avez eu ${score} bonnes réponses. Vous êtes un vrai sorceleur !`;
+      }
+      
   });
 });
 

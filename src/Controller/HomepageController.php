@@ -21,9 +21,11 @@ use App\Repository\QuestionRepository;
 use App\Repository\RéponseRepository;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
-class HomepageController extends AbstractController {
+class HomepageController extends AbstractController
+{
     #[Route('/', name: 'app_homepage')]
-    public function index(ArticleRepository $articleRepository): Response {
+    public function index(ArticleRepository $articleRepository): Response
+    {
         $articles = $articleRepository->findBy([], ['date' => 'DESC'], 4);
         return $this->render('homepage/index.html.twig', [
             'controller_name' => 'HomepageController',
@@ -32,7 +34,8 @@ class HomepageController extends AbstractController {
     }
 
     #[Route('/user', name: 'app_user')]
-    public function user(): Response {
+    public function user(): Response
+    {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         return $this->render('homepage/user.html.twig', [
             'controller_name' => 'HomepageController',
@@ -40,11 +43,12 @@ class HomepageController extends AbstractController {
     }
 
     #[Route('/user/edit', name: 'user_edit')]
-    public function editUser(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response {
+    public function editUser(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response
+    {
 
         $user = $this->getUser();
 
-        if(!$user) {
+        if (!$user) {
             return $this->redirectToRoute('app_login');
         }
 
@@ -52,10 +56,10 @@ class HomepageController extends AbstractController {
 
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $plainPassword = $form->get('plainPassword')->getData();
 
-            if($plainPassword) {
+            if ($plainPassword) {
                 $hashedPassword = $passwordHasher->hashPassword($user, $plainPassword);
                 $user->setPassword($hashedPassword);
             }
@@ -71,7 +75,8 @@ class HomepageController extends AbstractController {
     }
 
     #[Route('/articles', name: 'app_articles')]
-    public function articles(ArticleRepository $articleRepository): Response {
+    public function articles(ArticleRepository $articleRepository): Response
+    {
         $articles = $articleRepository->findBy([], ['date' => 'DESC']);
 
         return $this->render('homepage/articles.html.twig', [
@@ -81,35 +86,36 @@ class HomepageController extends AbstractController {
     }
 
     #[Route('/article/{slug}', name: 'app_article')]
-    public function article(CommentaireRepository $commentaireRepository, EntityManagerInterface $entityManager, string $slug, Request $request): Response {
+    public function article(CommentaireRepository $commentaireRepository, EntityManagerInterface $entityManager, string $slug, Request $request): Response
+    {
         $articlesRepository = $entityManager->getRepository(Article::class);
         $article = $articlesRepository->findOneBy(['slug' => $slug]);
 
-        if(!$article) {
+        if (!$article) {
             return $this->redirectToRoute('app_articles');
         }
 
-        function decodeBalisesIframe($contenuEncode) {
-            // Remplace les entités HTML avec les balises correspondantes
+        function decodeBalisesIframe($contenuEncode)
+        {
             $contenuDecode = str_replace('&lt;', '<', $contenuEncode);
             $contenuDecode = str_replace('&gt;', '>', $contenuDecode);
 
             return $contenuDecode;
         }
 
-        $test = decodeBalisesIframe($article->getContenu());
+        $decodeBalise = decodeBalisesIframe($article->getContenu());
 
-        $contenu = htmlspecialchars($test);
+        $contenu = htmlspecialchars($decodeBalise);
         $decodedContent = html_entity_decode($contenu);
 
 
         $user = $this->getUser();
-        if($user) {
+        if ($user) {
             $commentaire = new Commentaire();
             $form = $this->createForm(CommentaireType::class, $commentaire);
             $form->handleRequest($request);
 
-            if($form->isSubmitted() && $form->isValid()) {
+            if ($form->isSubmitted() && $form->isValid()) {
                 $commentaire->setArticle($article);
                 $commentaire->setUser($user);
                 $commentaire->setDate(new \DateTime());
@@ -138,10 +144,11 @@ class HomepageController extends AbstractController {
     }
 
     #[Route('/comment/edit/{id}', name: 'app_comment_edit')]
-    public function editComment(Commentaire $commentaire, Request $request, EntityManagerInterface $entityManager): Response {
+    public function editComment(Commentaire $commentaire, Request $request, EntityManagerInterface $entityManager): Response
+    {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        if($commentaire->getUser() !== $this->getUser()) {
+        if ($commentaire->getUser() !== $this->getUser()) {
             return $this->redirectToRoute('app_article');
         }
 
@@ -149,7 +156,7 @@ class HomepageController extends AbstractController {
 
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
             $articleSlug = $commentaire->getArticle()->getSlug();
@@ -167,11 +174,12 @@ class HomepageController extends AbstractController {
     }
 
     #[Route('/comment/delete/{id}', name: 'app_comment_delete')]
-    public function deleteComment(EntityManagerInterface $entityManager, CommentaireRepository $commentaireRepository, string $id): Response {
+    public function deleteComment(EntityManagerInterface $entityManager, CommentaireRepository $commentaireRepository, string $id): Response
+    {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $commentaire = $commentaireRepository->find($id);
 
-        if(!$commentaire) {
+        if (!$commentaire) {
             return $this->redirectToRoute('app_articles');
         }
 
@@ -186,7 +194,8 @@ class HomepageController extends AbstractController {
     }
 
     #[Route('/forum', name: 'app_forum')]
-    public function forum(QuestionRepository $questionRepository): Response {
+    public function forum(QuestionRepository $questionRepository): Response
+    {
         $questions = $questionRepository->findBy([], ['date' => 'DESC']);
         return $this->render('homepage/forum.html.twig', [
             'controller_name' => 'HomepageController',
@@ -195,7 +204,8 @@ class HomepageController extends AbstractController {
     }
 
     #[Route('/question', name: 'app_question')]
-    public function question(QuestionRepository $questionRepository, EntityManagerInterface $entityManager, Request $request): Response {
+    public function question(QuestionRepository $questionRepository, EntityManagerInterface $entityManager, Request $request): Response
+    {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
         $question = new Question();
@@ -207,7 +217,7 @@ class HomepageController extends AbstractController {
 
         $questions = $questionRepository->findAll();
 
-        if($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $question->setUser($user);
             $question->setDate(new \DateTime());
             $clientIp = $request->getClientIp();
@@ -228,10 +238,11 @@ class HomepageController extends AbstractController {
     }
 
     #[Route('/question/edit/{id}', name: 'app_question_edit')]
-    public function editQuestion(Question $question, Request $request, EntityManagerInterface $entityManager): Response {
+    public function editQuestion(Question $question, Request $request, EntityManagerInterface $entityManager): Response
+    {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        if($question->getUser() !== $this->getUser()) {
+        if ($question->getUser() !== $this->getUser()) {
             return $this->redirectToRoute('app_forum');
         }
 
@@ -239,7 +250,7 @@ class HomepageController extends AbstractController {
 
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
             return $this->redirectToRoute('app_réponse', ['id' => $question->getId()]);
@@ -251,12 +262,13 @@ class HomepageController extends AbstractController {
     }
 
     #[Route('/question/delete/{id}', name: 'app_question_delete')]
-    public function deleteQuestion(EntityManagerInterface $entityManager, QuestionRepository $questionRepository, string $id): Response {
+    public function deleteQuestion(EntityManagerInterface $entityManager, QuestionRepository $questionRepository, string $id): Response
+    {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
         $question = $questionRepository->find($id);
 
-        if(!$question) {
+        if (!$question) {
             return $this->redirectToRoute('app_forum');
         }
 
@@ -269,20 +281,21 @@ class HomepageController extends AbstractController {
     }
 
     #[Route('/réponse/{id}', name: 'app_réponse')]
-    public function réponse(EntityManagerInterface $entityManager, QuestionRepository $questionRepository, string $id, Request $request): Response {
+    public function réponse(EntityManagerInterface $entityManager, QuestionRepository $questionRepository, string $id, Request $request): Response
+    {
         $question = $questionRepository->find($id);
 
-        if(!$question) {
+        if (!$question) {
             return $this->redirectToRoute('app_forum');
         }
 
         $user = $this->getUser();
-        if($user) {
+        if ($user) {
             $answer = new Réponse();
             $form = $this->createForm(AnswerType::class, $answer);
             $form->handleRequest($request);
 
-            if($form->isSubmitted() && $form->isValid()) {
+            if ($form->isSubmitted() && $form->isValid()) {
                 $answer->setQuestion($question);
                 $answer->setUser($user);
                 $answer->setDate(new \DateTime());
@@ -311,10 +324,11 @@ class HomepageController extends AbstractController {
     }
 
     #[Route('/réponse/edit/{id}', name: 'app_réponse_edit')]
-    public function editAnswer(Réponse $answer, Request $request, EntityManagerInterface $entityManager): Response {
+    public function editAnswer(Réponse $answer, Request $request, EntityManagerInterface $entityManager): Response
+    {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        if($answer->getUser() !== $this->getUser()) {
+        if ($answer->getUser() !== $this->getUser()) {
             return $this->redirectToRoute('app_forum');
         }
 
@@ -322,7 +336,7 @@ class HomepageController extends AbstractController {
 
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
             $questionId = $answer->getQuestion()->getId();
@@ -340,12 +354,13 @@ class HomepageController extends AbstractController {
     }
 
     #[Route('/réponse/delete/{id}', name: 'app_réponse_delete')]
-    public function deleteAnswer(EntityManagerInterface $entityManager, RéponseRepository $answerRepository, string $id): Response {
+    public function deleteAnswer(EntityManagerInterface $entityManager, RéponseRepository $answerRepository, string $id): Response
+    {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
         $answer = $answerRepository->find($id);
 
-        if(!$answer) {
+        if (!$answer) {
             return $this->redirectToRoute('app_forum');
         }
 
@@ -360,13 +375,14 @@ class HomepageController extends AbstractController {
     }
 
     #[Route('/search', name: 'search')]
-    public function search(EntityManagerInterface $entityManager, Request $request): Response {
+    public function search(EntityManagerInterface $entityManager, Request $request): Response
+    {
         $query = $request->query->get('query');
 
         $articlesRepository = $entityManager->getRepository(Article::class);
         $articles = $articlesRepository->createQueryBuilder('a')
             ->where('a.title LIKE :query')
-            ->setParameter('query', '%'.$query.'%')
+            ->setParameter('query', '%' . $query . '%')
             ->getQuery()
             ->getResult();
 
@@ -378,11 +394,12 @@ class HomepageController extends AbstractController {
     }
 
     #[Route('/search-questions', name: 'search_questions')]
-    public function searchQuestions(QuestionRepository $questionRepository, Request $request): Response {
+    public function searchQuestions(QuestionRepository $questionRepository, Request $request): Response
+    {
         $query = $request->query->get('query');
         $questions = $questionRepository->createQueryBuilder('q')
             ->where('q.title LIKE :query')
-            ->setParameter('query', '%'.$query.'%')
+            ->setParameter('query', '%' . $query . '%')
             ->getQuery()
             ->getResult();
 
@@ -393,7 +410,8 @@ class HomepageController extends AbstractController {
     }
 
     #[Route('/quiz', name: 'app_quiz')]
-    public function quiz(): Response {
+    public function quiz(): Response
+    {
         return $this->render('homepage/quiz.html.twig', [
             'controller_name' => 'HomepageController',
         ]);

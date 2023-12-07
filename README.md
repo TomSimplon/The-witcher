@@ -38,16 +38,6 @@ composer require --dev orm-fixtures
 composer require fakerphp/faker
 ```
 
-- Démarrer le projet :
-
-```shell
-symfony server:start
-```
-
-```shell
-npm run watch
-```
-
 - Configurer la base de données :
 
 ```shell
@@ -59,7 +49,17 @@ importer le fichier witcher.sql dans votre phpMyAdmin
 ```
 
 ```shell
-php bin/console doctrine:fixtures:load
+php bin/console doctrine:fixtures:load --append # ne supprimez pas les données enregistrées !
+```
+
+- Démarrer le projet :
+
+```shell
+symfony server:start
+```
+
+```shell
+npm run watch
 ```
 
 - Se connecter à l'espace administrateur :

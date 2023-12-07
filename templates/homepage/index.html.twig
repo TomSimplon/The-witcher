@@ -6,7 +6,7 @@
 {% block body %}
 	<script src="{{ asset('js/script.js') }}"></script>
 	<div class="page__background">
-		<img src="{{ asset('images/carte.jpg') }}" alt="">
+		<img src="{{ asset('uploads/images/carte.jpg') }}" alt="">
 	</div>
 
 	<section class="page_content">
@@ -19,51 +19,36 @@
 				</div>
 				<div class="onglets">
 					<a href="{{ path('app_homepage') }}">Accueil</a>
-					<a href="">liste des articles</a>
-					<a href="">Testez vos connaissances</a>
-					<a href="">Communauté</a>
-					<a href="">S'inscrire</a>
-					<a href="">Se connecter</a>
-					<a href="{{ path('app_user') }}"><img src="{{ asset('images/user.png') }}" alt="Symfony"></a>
+					<a href="{{ path('app_articles') }}">liste des articles</a>
+					<a href="{{ path('app_quiz') }}">Testez vos connaissances</a>
+					<a href="{{ path('app_forum') }}">Communauté</a>
+					<a href="{{ path('app_register') }}">S'inscrire</a>
+					<a href="{{ path('app_login') }}">Se connecter</a>
+					{% if app.user %}
+						<a href="{{ path('app_user') }}"><img src="{{ asset('uploads/images/user.png') }}" alt="Profil utilisateur"></a>
+					{% endif %}
 				</div>
 			</nav>
 			<div class="img">
-				<img src="{{ asset('images/manuscrit.png') }}" alt="">
-				<p>
-					La saga du sorceleur est tout d’abord une série littéraire polonaise de fantasy écrite par Andrzej Sapkowski. Il s’inspire des univers classiques de la fantasy et du médiévale avec des ajouts issus de la mythologie et du folklore européen (plus particulièrement slave) et de l'histoire polonaise afin de mieux les détourner par l’ironie et en y abordant des problématiques contemporaines. Elle se compose de quinze nouvelles et de six romans qui retracent essentiellement la vie et les aventures du sorceleur Geralt de Riv. Les sorceleurs sont des tueurs de monstres, entraînés physiquement dès leur plus jeune âge et ayant subi des mutations génétiques leur conférant des capacités surnaturelles. Son adaptation en jeu vidéo par le studio polonais CD Projekt, intitulée The Witcher (2007) et ses deux suites (par leur succès critiques) ont contribué à promouvoir internationalement les livres.
-				</p>
+				<img src="{{ asset('uploads/images/manuscrit.png') }}" alt="">
+				<div class="text-container">
+					<p>La saga du sorceleur est tout d’abord une série littéraire polonaise de fantasy écrite par Andrzej Sapkowski. Il s’inspire des univers classiques de la fantasy et du médiévale avec des ajouts issus de la mythologie et du folklore européen (plus particulièrement slave) et de l'histoire polonaise afin de mieux les détourner par l’ironie et en y abordant des problématiques contemporaines. Elle se compose de quinze nouvelles et de six romans qui retracent essentiellement la vie et les aventures du sorceleur Geralt de Riv. Les sorceleurs sont des tueurs de monstres, entraînés physiquement dès leur plus jeune âge et ayant subi des mutations génétiques leur conférant des capacités surnaturelles. Son adaptation en jeu vidéo par le studio polonais CD Projekt, intitulée The Witcher (2007) et ses deux suites (par leur succès critiques) ont contribué à promouvoir internationalement les livres.</p>
+				</div>
 			</div>
 		</div>
 
 		<div class="articles">
-			<div class="article">
-				<a href=""><img src="{{ asset('images/article.png') }}" alt=""></a>
-				<div class="article-info">
-					<h2>Titre de l'article</h2>
-					<p class="article-date">Date de l'article</p>
+			{% for article in articles %}
+				<div class="article">
+					<a href="{{ path('app_article', {'slug': article.slug}) }}">
+						<img src="{{ asset('uploads/images/' ~ article.image) }}" alt="">
+					</a>
+					<div class="article-info">
+						<h2>{{ article.title }}</h2>
+						<p class="article-date">{{ article.date|date("d/m/Y") }}</p>
+					</div>
 				</div>
-			</div>
-			<div class="article">
-				<a href=""><img src="{{ asset('images/article.png') }}" alt=""></a>
-				<div class="article-info">
-					<h2>Titre de l'article</h2>
-					<p class="article-date">Date de l'article</p>
-				</div>
-			</div>
-			<div class="article">
-				<a href=""><img src="{{ asset('images/article.png') }}" alt=""></a>
-				<div class="article-info">
-					<h2>Titre de l'article</h2>
-					<p class="article-date">Date de l'article</p>
-				</div>
-			</div>
-			<div class="article">
-				<a href=""><img src="{{ asset('images/article.png') }}" alt=""></a>
-				<div class="article-info">
-					<h2>Titre de l'article</h2>
-					<p class="article-date">Date de l'article</p>
-				</div>
-			</div>
+			{% endfor %}
 		</div>
 
 		<div class="présentation">

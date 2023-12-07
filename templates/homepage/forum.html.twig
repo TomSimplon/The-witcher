@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Forum
+{% endblock %}
+
+{% block body %}
+
+	<div class="page_background_forum">
+		<img src="{{ asset('uploads/images/forum_background.jpg') }}" alt="">
+	</div>
+	<section class="forum">
+		<div class="header">
+			<nav>
+				<div class="menu-btn">
+					<span class="bar"></span>
+					<span class="bar"></span>
+					<span class="bar"></span>
+				</div>
+				<div class="onglets">
+					<a href="{{ path('app_homepage') }}">Accueil</a>
+					<a href="{{ path('app_articles') }}">liste des articles</a>
+					<a href="{{ path('app_quiz') }}">Testez vos connaissances</a>
+					<a href="{{ path('app_forum') }}">Communauté</a>
+					<a href="{{ path('app_register') }}">S'inscrire</a>
+					<a href="{{ path('app_login') }}">Se connecter</a>
+					{% if app.user %}
+						<a href="{{ path('app_user') }}"><img src="{{ asset('uploads/images/user.png') }}" alt="Profil utilisateur"></a>
+					{% endif %}
+				</div>
+			</nav>
+		</div>
+
+		<div class="body">
+			<div class="container">
+				<div class="contenu">
+					<div class="search-bar">
+						<form action="{{ path('search_questions') }}" method="get">
+							<input maxlength="255" type="text" name="query" placeholder="rechercher..." required>
+							<button type="submit">OK</button>
+						</form>
+					</div>
+					{% if query is defined %}
+						<h2>Résultats de la recherche pour "{{ query }}"</h2>
+						{% if questions|length == 0 %}
+							<p>Aucune question trouvée.</p>
+						{% endif %}
+					{% endif %}
+
+					<div class="liste_questions">
+						{% for question in questions %}
+							<div class="question">
+								<div class="titre">
+									<a href="{{ path('app_réponse', {'id': question.id}) }}">
+										<h2>{{ question.title }}</h2>
+									</a>
+								</div>
+
+								<div class="auteur">
+									<p>Publié par
+										<strong>{{ question.user.pseudonym }}</strong>
+										le
+										{{ question.date|date("d/m/Y") }}</p>
+								</div>
+							</div>
+						{% endfor %}
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}

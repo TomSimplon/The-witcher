@@ -1,0 +1,226 @@
+@import url("https://fonts.googleapis.com/css2?family=Milonga&display=swap");
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.page_background_article {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.page_background_article img {
+  width: 100%;
+  height: 100%;
+}
+
+#article_unique {
+  width: 1080px;
+  margin: 0 auto;
+  background-color: #000000;
+}
+
+#article_unique .head {
+  width: 100%;
+}
+
+#articles .head nav {
+  display: flex;
+  justify-content: center;
+}
+
+#article_unique .head nav .onglets {
+  background-image: url("../../public/uploads/images/the_witcher_background_header.jpg");
+  background-size: cover;
+  background-position: center;
+  margin: 20px;
+  padding: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  border: white 1px solid;
+  opacity: 1;
+}
+
+#article_unique .head nav .onglets a {
+  display: block;
+  text-decoration: none;
+  line-height: 35px;
+  font-size: 24px;
+  padding: 20px;
+  margin: 10px;
+  font-family: "Milonga", serif;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  border: white 1px solid;
+}
+
+#article_unique .head nav .onglets a:hover {
+  color: rgb(255, 123, 0);
+  background-color: rgb(12, 197, 12);
+}
+
+#article_unique .container {
+  margin-top: 80px;
+  margin-left: 80px;
+  margin-right: 80px;
+  font-family: "Lato", sans-serif;
+}
+
+#article_unique .container .contenu .corps {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+}
+
+#article_unique .container .contenu .corps img {
+  width: 500px;
+  height: 300px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+#article_unique .container .contenu .corps h1 {
+  padding-top: 20px;
+}
+
+#article_unique .container .contenu .corps p {
+  font-size: 16px;
+}
+
+#article_unique .container .contenu .corps .date {
+  padding-top: 10px;
+}
+
+#article_unique hr {
+  color: #dddd;
+  width: 60%;
+}
+
+#article_unique .formulaire {
+  margin-bottom: 30px;
+}
+
+#article_unique .formulaire form div label {
+  display: none;
+}
+
+#article_unique .formulaire textarea {
+  border: 1px solid grey;
+  padding: 10px 20px;
+}
+
+#article_unique .formulaire button {
+  border-color: rgb(6, 121, 141);
+  background: rgb(6, 121, 141);
+  color: #fff;
+  padding: 5px;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+#article_unique .formulaire h2 {
+  color: white;
+}
+
+#article_unique .commentaires {
+  padding: 25px 40px 40px 25px;
+  color: white;
+  font-size: 18px;
+}
+
+#article_unique .commentaires .text {
+  margin-bottom: 50px;
+}
+
+#article_unique .commentaires .text .bouton {
+  display: flex;
+  padding-top: 5px;
+}
+
+#article_unique .commentaires .text .bouton a {
+  text-decoration: none;
+  font-size: 18px;
+  cursor: pointer;
+  padding-right: 20px;
+  font-weight: bold;
+}
+
+#article_unique .commentaires p {
+  margin: 0;
+}
+
+@media screen and (max-width: 640px) {
+  #article_unique {
+    width: 100%;
+  }
+
+  #article_unique .head nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #article_unique .head nav .onglets {
+    display: none;
+  }
+
+  #article_unique .head nav .onglets a {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border: 2px;
+  }
+
+  .menu-btn {
+    display: block;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    margin: 30px;
+    z-index: 10;
+    background-color: orange;
+    transition: all 0.9s;
+  }
+
+  .bar {
+    display: block;
+    width: 35px;
+    height: 5px;
+    background-color: white;
+    margin: 7px auto;
+    transition: all 0.9s;
+  }
+
+  .menu-btn.open .bar:nth-child(1) {
+    transform: translateY(12px) rotate(45deg);
+  }
+
+  .menu-btn.open .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-btn.open .bar:nth-child(3) {
+    transform: translateY(-12px) rotate(-45deg);
+  }
+
+  #article_unique .commentaires .text .bouton {
+    flex-wrap: wrap;
+  }
+
+  #article_unique .commentaires .text .bouton a {
+    font-size: 16px;
+  }
+
+  #article_unique .container .contenu .corps img {
+    max-width: 250px;
+    max-height: 150px;
+  }
+}

@@ -1,0 +1,118 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article unique
+{% endblock %}
+
+{% block body %}
+	<script src="{{ asset('js/script.js') }}"></script>
+	<div class="page_background_article">
+		<img src="{{ asset('/uploads/images/the_witcher_article.jpg') }}" alt="">
+	</div>
+
+	<section id="article_unique">
+		<div class="head">
+			<nav>
+				<div class="menu-btn">
+					<span class="bar"></span>
+					<span class="bar"></span>
+					<span class="bar"></span>
+				</div>
+				<div class="onglets">
+					<strong>
+						<a href="{{ path('app_homepage') }}">
+							<p>Accueil</p>
+						</a>
+					</strong>
+					<strong>
+						<a href="{{ path('app_articles') }}">
+							<p>liste des articles</p>
+						</a>
+					</strong>
+					<strong>
+						<a href="{{ path('app_quiz') }}">
+							<p>Testez vos connaissances</p>
+						</a>
+					</strong>
+					<strong>
+						<a href="{{ path('app_forum') }}">
+							<p>Communauté</p>
+						</a>
+					</strong>
+					<strong>
+						<a href="{{ path('app_register') }}">
+							<p>S'inscrire</p>
+						</a>
+					</strong>
+					<strong>
+						<a href="{{ path('app_login') }}">
+							<p>Se connecter</p>
+						</a>
+					</strong>
+					<strong>
+						{% if app.user %}
+							<a href="{{ path('app_user') }}">
+								<p>Mon compte</p>
+							</a>
+						{% endif %}
+					</strong>
+				</div>
+			</nav>
+		</div>
+
+		<div class="container">
+			<div class="contenu">
+				<div class="corps">
+					<img src="{{ asset('uploads/images/' ~ article.image) }}" alt="miniature">
+					<h1>{{ article.title }}</h1>
+					<p>{{ decodedContent|raw }}</p>
+					<p class="date">{{ article.date|date("d/m/Y") }}</p>
+
+				</div>
+
+				<hr>
+
+				{% if commentaireForm is not null %}
+					<div class="formulaire">
+						{{ form_start(commentaireForm) }}
+						{{ form_row(commentaireForm.contenu) }}
+						<button type="submit" class="btn">Publier votre commentaire</button>
+						{{ form_end(commentaireForm) }}
+					</div>
+				{% else %}
+					<span style="color: white;">
+						<p class="connect">Vous devez être connecté pour poster un commentaire.
+							<a href="{{ path('app_login') }}">Se connecter</a>
+						</p>
+					</span>
+				{% endif %}
+
+				<hr>
+
+				<div id="commentaires" class="commentaires">
+					{% for commentaire in commentaires %}
+						<div class="text">
+							<p>
+								<strong>@{{ commentaire.user.pseudonym }}</strong>
+								-
+								{{ commentaire.date|date("d/m/Y") }}</p>
+							<p>{{ commentaire.contenu|nl2br }}</p>
+							{% if app.user and app.user == commentaire.user %}
+								<div class="bouton">
+									<a class="edit" href="{{ path('app_comment_edit', {'id': commentaire.id, '_fragment': 'commentaires'}) }}">
+										<span style="color: #0368FF;">Modifier mon commentaire</span>
+									</a>
+
+									<a class="delete" href="{{ path('app_comment_delete', {'id': commentaire.id}) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce commentaire ?');">
+										<span style="color: red;">Supprimer mon commentaire</span>
+									</a>
+								</div>
+							{% endif %}
+						</div>
+					{% else %}
+						<p>Aucun commentaire pour cet article.</p>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+</section>{% endblock %}

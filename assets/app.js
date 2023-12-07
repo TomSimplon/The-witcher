@@ -8,5 +8,14 @@
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
 import './styles/user.css';
+import './styles/articles.css';
+import './styles/article.css';
+import './styles/forum.css';
+import './styles/login.css';
+import './styles/register.css';
+import './styles/question.css';
+import './styles/réponse.css';
+import './styles/userForm.css';
+import './styles/quiz.css';
 
 import './js/script';

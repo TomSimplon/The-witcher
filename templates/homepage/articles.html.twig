@@ -1,0 +1,105 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Articles
+{% endblock %}
+
+{% block body %}
+	<script src="{{ asset('js/script.js') }}"></script>
+	<div class="page_background_articles">
+		<img src="{{ asset('uploads/images/the_witcher_article.jpg') }}" alt="">
+	</div>
+
+	<section id="articles">
+		<div class="header">
+			<nav>
+				<div class="menu-btn">
+					<span class="bar"></span>
+					<span class="bar"></span>
+					<span class="bar"></span>
+				</div>
+				<div class="onglets">
+					<strong>
+						<a href="{{ path('app_homepage') }}">
+							<p>Accueil</p>
+						</a>
+					</strong>
+					<strong>
+						<a href="{{ path('app_articles') }}">
+							<p>liste des articles</p>
+						</a>
+					</strong>
+					<strong>
+						<a href="{{ path('app_quiz') }}">
+							<p>Testez vos connaissances</p>
+						</a>
+					</strong>
+					<strong>
+						<a href="{{ path('app_forum') }}">
+							<p>Communauté</p>
+						</a>
+					</strong>
+					<strong>
+						<a href="{{ path('app_register') }}">
+							<p>S'inscrire</p>
+						</a>
+					</strong>
+					<strong>
+						<a href="{{ path('app_login') }}">
+							<p>Se connecter</p>
+						</a>
+					</strong>
+					<strong>
+						{% if app.user %}
+							<a href="{{ path('app_user') }}">
+								<p>Mon compte</p>
+							</a>
+						{% endif %}
+					</strong>
+				</div>
+			</nav>
+		</div>
+
+		<div class="search-bar">
+			<form action="{{ path('search') }}" method="get">
+				<input maxlength="255" type="text" name="query" placeholder="rechercher..." required>
+				<button type="submit">OK</button>
+			</form>
+		</div>
+		<div class="container">
+			{% if query is defined %}
+				<h2 style="color: {{ articles|length > 0 ? 'white' : 'white' }}">
+					{% if articles|length > 0 %}
+						Résultat pour "{{ query }}"
+					{% else %}
+						Aucun résultat ne correspond à votre recherche.
+					{% endif %}
+				</h2>
+			{% endif %}
+			<div class="articles_block">
+				{% for article in articles %}
+					<div class="article">
+						<div class="block">
+							<a href="{{ path('app_article', {'slug': article.slug}) }}"><img src="{{ asset('uploads/images/' ~ article.image) }}" alt="miniature"></a>
+							<strong>
+								<p>{{ article.title }}</p>
+							</strong>
+							<p>{{ article.date|date("d/m/Y") }}</p>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+
+			<div class="pagination">
+				<button class="previous_page">
+					<strong>Précédent</strong>
+				</button>
+				<span class="page_number">Page 1</span>
+				<button class="next_page">
+					<strong>Suivant</strong>
+				</button>
+			</div>
+
+		</div>
+
+	</section>
+{% endblock %}

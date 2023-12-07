@@ -1,0 +1,202 @@
+#login {
+  padding: 0;
+  margin: 0;
+  background-image: url("../../public/uploads/images/fondbois.png");
+  background-size: cover;
+  background-position: center;
+  min-height: 100%;
+  width: 100%;
+}
+
+#login nav .onglets {
+  display: flex;
+  justify-content: center;
+}
+
+#login nav .onglets a {
+  font-family: "Milonga", serif;
+  font-size: 18px;
+  color: #ff8a00;
+  border: #ff8a00 1px solid;
+  padding: 50px;
+  text-decoration: none;
+}
+
+#login nav .onglets a:hover {
+  color: rgb(12, 197, 12);
+  border: rgb(12, 197, 12) 1px solid;
+}
+
+#login .background {
+  position: relative;
+  background-image: url("../../public/uploads/images/parcho.png");
+  background-size: cover;
+  background-position: center;
+  width: 1080px;
+  margin: 0 auto;
+  min-height: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  box-sizing: border-box;
+}
+
+#login .background img {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+}
+
+#login .background img:first-of-type {
+  left: 0;
+}
+
+#login .background img:last-of-type {
+  right: 0;
+}
+
+#login .background .parchemin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../../public/uploads/images/manuscrit.png");
+  background-size: cover;
+  background-position: center;
+  margin: 50px;
+  height: 600px;
+}
+
+#login .background .parchemin .formulaire form {
+  padding: 30px;
+  border-radius: 10px;
+  border: black 1px solid;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+
+#login .background .parchemin .formulaire form h1 {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+#login .background .parchemin .formulaire form div {
+  display: flex;
+  flex-direction: column;
+}
+
+#login .background .parchemin .formulaire form label {
+  margin-top: 20px;
+}
+
+#login .background .parchemin .formulaire form input {
+  margin-top: 5px;
+  padding: 10px 5px 10px 30px;
+  border: 1px solid #c9c9c9;
+  border-radius: 5px;
+  font-size: 18px;
+}
+
+.danger {
+  color: red;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.success {
+  color: rgb(11, 182, 11);
+  font-weight: bold;
+  font-size: 18px;
+}
+
+#login .background .parchemin .formulaire form button {
+  margin-top: 10px;
+  background-color: #ff9900;
+  color: black;
+  font-size: 18px;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  outline: none;
+  cursor: pointer;
+  transition: transform 0.5s;
+  font-weight: bold;
+}
+
+#login .background .parchemin .formulaire form button:hover {
+  transform: scale(1.05);
+}
+
+@media screen and (max-width: 640px) {
+  #login {
+    height: 900px;
+  }
+
+  #login nav .onglets {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #login nav .onglets {
+    display: none;
+  }
+
+  #login nav .onglets a {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border: 2px;
+    border-color: none;
+  }
+
+  .menu-btn {
+    display: block;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    margin: 30px;
+    z-index: 10;
+    background-color: orange;
+    transition: all 0.9s;
+  }
+
+  .bar {
+    display: block;
+    width: 35px;
+    height: 5px;
+    background-color: white;
+    margin: 7px auto;
+    transition: all 0.9s;
+  }
+
+  .menu-btn.open .bar:nth-child(1) {
+    transform: translateY(12px) rotate(45deg);
+  }
+
+  .menu-btn.open .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-btn.open .bar:nth-child(3) {
+    transform: translateY(-12px) rotate(-45deg);
+  }
+
+  #login .background {
+    width: auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+
+  #login .background img {
+    display: none;
+  }
+
+  #login .background .parchemin {
+    margin: 0;
+    height: auto;
+    max-width: 100%;
+    padding: 20px;
+    background-image: none;
+  }
+}

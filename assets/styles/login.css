@@ -216,3 +216,17 @@
     display: none;
   }
 }
+
+@media screen and (max-width: 400px) {
+  #login .background .parchemin .formulaire form {
+    width: 50%;
+  }
+
+  #login .background .parchemin .formulaire form input {
+    padding: 0;
+  }
+
+  #login .background .parchemin .formulaire form button {
+    font-size: 0.8rem;
+  }
+}

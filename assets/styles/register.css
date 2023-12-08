@@ -210,3 +210,22 @@
     display: none;
   }
 }
+
+@media screen and (max-width: 400px) {
+  #register .background .parchemin .formulaire form {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #register .background .parchemin .formulaire form div input {
+    margin-top: 5px;
+    padding: 0;
+  }
+
+  #register .background .parchemin .formulaire form button {
+    font-size: 0.8rem;
+  }
+}

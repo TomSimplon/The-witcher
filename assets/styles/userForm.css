@@ -204,3 +204,17 @@
     display: none;
   }
 }
+
+@media screen and (max-width: 400px) {
+  #userForm .background .parchemin .formulaire form {
+    width: 50%;
+  }
+
+  #userForm .background .parchemin .formulaire form div input {
+    padding: 0;
+  }
+
+  #userForm .background .parchemin .formulaire form button {
+    font-size: 0.8rem;
+  }
+}

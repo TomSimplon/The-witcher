@@ -227,3 +227,25 @@ body {
     max-height: 150px;
   }
 }
+
+@media screen and (max-width: 400px) {
+  #article_unique .formulaire {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #article_unique .formulaire button {
+    padding: 5px;
+    font-size: 10px;
+  }
+
+  #article_unique .formulaire textarea {
+    padding: 0;
+  }
+
+  #article_unique .container .contenu .corps img {
+    max-width: 200px;
+    max-height: 100px;
+  }
+}

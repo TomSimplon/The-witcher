@@ -35,8 +35,8 @@
 					<div class="infos">
 						{% if app.user %}
 							<div class="mb-3">
-								<span style="color: green; font-weight: bold; font-size: 18px;">Vous êtes maintenant connecté
-									{{ app.user.pseudonym|default('') }}</span>
+								<span style="color: green; font-weight: bold; font-size: 18px;">Vous êtes connecté
+									{{ app.user.pseudonym|default('') }}, bien le bonjour !</span>
 							</div>
 						{% endif %}
 						<div class="recap">

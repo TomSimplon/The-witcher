@@ -45,37 +45,38 @@ class SecurityController extends AbstractController
     }
 
     #[Route(path: '/forgot-pass', name: 'forgotten_password')]
-    public function forgottenPassword(Request $request, UserRepository $userRepository, TokenGeneratorInterface $tokenGenerator, EntityManagerInterface $entityManager, SendMailService $mail): Response {
+    public function forgottenPassword(Request $request, UserRepository $userRepository, TokenGeneratorInterface $tokenGenerator, EntityManagerInterface $entityManager, SendMailService $mail): Response
+    {
         $form = $this->createForm(ResetPasswordRequestFormType::class);
 
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $user = $userRepository->findOneByEmail($form->get('email')->getData());
-            
-            if($user) {
-               $token = $tokenGenerator->generateToken();
-               $user->setResetToken($token);
-               $entityManager->persist($user);
-               $entityManager->flush();
 
-               $url = $this->generateUrl('reset_pass', ['token' => $token], UrlGeneratorInterface::ABSOLUTE_URL);
+            if ($user) {
+                $token = $tokenGenerator->generateToken();
+                $user->setResetToken($token);
+                $entityManager->persist($user);
+                $entityManager->flush();
 
-               $context = compact('url', 'user');
+                $url = $this->generateUrl('reset_pass', ['token' => $token], UrlGeneratorInterface::ABSOLUTE_URL);
 
-               $mail->send(
-                'no-reply@witcher.fr',
-                $user->getEmail(),
-                'Réinitialisation de votre mot de passe',
-                'password_reset',
-                $context
-               );
-                
-               $this->addFlash('success', 'Email envoyé avec succès !');
-               return $this->redirectToRoute('app_login');
+                $context = compact('url', 'user');
+
+                $mail->send(
+                    'no-reply@witcher.fr',
+                    $user->getEmail(),
+                    'Réinitialisation de votre mot de passe',
+                    'password_reset',
+                    $context
+                );
+
+                $this->addFlash('success', 'Email envoyé avec succès !');
+                return $this->redirectToRoute('app_login');
 
             }
-            $this->addFlash('alert alert-danger', 'un problème est survenu');
+            $this->addFlash('danger', 'un problème est survenu');
             return $this->redirectToRoute('app_login');
         }
 
@@ -85,34 +86,35 @@ class SecurityController extends AbstractController
     }
 
     #[Route(path: '/forgot-pass/{token}', name: 'reset_pass')]
-    public function resetPass(string $token, Request $request, UserRepository $userRepository, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response {
-      $user = $userRepository->findOneByResetToken($token);
+    public function resetPass(string $token, Request $request, UserRepository $userRepository, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response
+    {
+        $user = $userRepository->findOneByResetToken($token);
 
-      if($user) {
-        $form = $this->createForm(ResetPasswordFormType::class);
+        if ($user) {
+            $form = $this->createForm(ResetPasswordFormType::class);
 
-        $form->handleRequest($request);
+            $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()) {
-            $user->setResetToken('');
-            $user->setPassword(
-                $passwordHasher->hashPassword(
-                    $user, 
-                    $form->get('password')->getData()
-                )
-            );
-            $entityManager->persist($user);
-            $entityManager->flush();
+            if ($form->isSubmitted() && $form->isValid()) {
+                $user->setResetToken('');
+                $user->setPassword(
+                    $passwordHasher->hashPassword(
+                        $user,
+                        $form->get('password')->getData()
+                    )
+                );
+                $entityManager->persist($user);
+                $entityManager->flush();
 
-            $this->addFlash('success', 'Mot de passe changé avec succès !');
-            return $this->redirectToRoute('app_login');
+                $this->addFlash('success', 'Mot de passe changé avec succès !');
+                return $this->redirectToRoute('app_login');
+            }
+
+            return $this->render('security/reset_password.html.twig', [
+                'passForm' => $form->createView()
+            ]);
         }
-
-        return $this->render('security/reset_password.html.twig', [
-            'passForm' => $form->createView()
-        ]);
-      }
-      $this->addFlash('danger', 'jeton invalide');
-      return $this->redirectToRoute('app_login');
+        $this->addFlash('danger', 'jeton invalide');
+        return $this->redirectToRoute('app_login');
     }
 }

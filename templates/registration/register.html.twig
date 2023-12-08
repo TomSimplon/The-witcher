@@ -30,6 +30,15 @@
 				<div class="formulaire">
 					<form method="post">
 
+						{% if app.user %}
+							<div class="mb-3">
+								<span style="color: red; font-weight: bold; font-size: 18px;">
+									Vous êtes déjà inscrit
+									{{ app.user.pseudonym|default('') }}
+								</span>
+							</div>
+						{% endif %}
+
 						<h1 class="h3 mb-3 font-weight-normal">S'inscrire</h1>
 						{{ form_errors(registrationForm) }}
 

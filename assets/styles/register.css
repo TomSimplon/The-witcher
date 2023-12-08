@@ -1,197 +1,212 @@
 #register {
-    padding: 0;
-    margin: 0;
-    background-image: url('../../public/uploads/images/fondbois.png');
-    background-size: cover;
-    background-position: center;
-    min-height: 100%;
-    width: 100%;
+  padding: 0;
+  margin: 0;
+  background-image: url("../../public/uploads/images/fondbois.png");
+  background-size: cover;
+  background-position: center;
+  min-height: 100%;
+  width: 100%;
 }
 
 #register nav .onglets {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 #register nav .onglets a {
-    font-family: 'Milonga', serif;
-    font-size: 18px;
-    color: #FF8A00;
-    border: #FF8A00 1px solid;
-    padding: 50px;
-    text-decoration: none;
+  font-family: "Milonga", serif;
+  font-size: 18px;
+  color: #ff8a00;
+  border: #ff8a00 1px solid;
+  padding: 50px;
+  text-decoration: none;
 }
 
 #register nav .onglets a:hover {
-    color: rgb(12, 197, 12);
-    border: rgb(12, 197, 12) 1px solid;
+  color: rgb(12, 197, 12);
+  border: rgb(12, 197, 12) 1px solid;
 }
 
 #register .background {
-    position: relative; 
-    background-image: url('../../public/uploads/images/parcho.png');
-    background-size: cover;
-    background-position: center;
-    width: 1080px;
-    margin: 0 auto;
-    min-height: 100%;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    box-sizing: border-box;
+  position: relative;
+  background-image: url("../../public/uploads/images/parcho.png");
+  background-size: cover;
+  background-position: center;
+  width: 1080px;
+  margin: 0 auto;
+  min-height: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  box-sizing: border-box;
 }
 
 #register .background img {
-    position: absolute; 
-    top: 0;
-    bottom: 0;
-    height: 100%; 
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  height: 100%;
 }
 
 #register .background img:first-of-type {
-    left: 0;
+  left: 0;
 }
 
-#register .background img:last-of-type { 
-    right: 0;
+#register .background img:last-of-type {
+  right: 0;
 }
 
 #register .background .parchemin {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url('../../public/uploads/images/manuscrit.png');
-    background-size: cover;
-    background-position: center;
-    margin: 50px;
-    height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../../public/uploads/images/manuscrit.png");
+  background-size: cover;
+  background-position: center;
+  margin: 50px;
+  height: 600px;
 }
 
 #register .background .parchemin .formulaire form {
-    padding: 30px;
-    border-radius: 10px;
-    border: black 1px solid;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    margin-bottom: 30px;
+  padding: 30px;
+  border-radius: 10px;
+  border: black 1px solid;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin-bottom: 30px;
 }
 
 #register .background .parchemin .formulaire form h1 {
-    font-size: 1.5rem;
-    text-align: center;
+  font-size: 1.5rem;
+  text-align: center;
 }
 
 #register .background .parchemin .formulaire form div {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 #register .background .parchemin .formulaire form div label {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 #register .background .parchemin .formulaire form div input {
-    margin-top: 5px;
-    padding: 10px 5px 10px 30px;
-    border: 1px solid #c9c9c9;
-    border-radius: 5px;
-    font-size: 18px;
+  margin-top: 5px;
+  padding: 10px 5px 10px 30px;
+  border: 1px solid #c9c9c9;
+  border-radius: 5px;
+  font-size: 18px;
 }
 
 #register .background .parchemin .formulaire form button {
-    margin-top: 10px;
-    background-color: #FF9900;
-    color: black;
-    font-size: 18px;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 20px;
-    outline: none;
-    cursor: pointer;
-    transition: transform 0.5s;
-    font-weight: bold;
+  margin-top: 10px;
+  background-color: #ff9900;
+  color: black;
+  font-size: 18px;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  outline: none;
+  cursor: pointer;
+  transition: transform 0.5s;
+  font-weight: bold;
 }
 
 #register .background .parchemin .formulaire form button:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 .formulaire form li {
-    color: red;
-    font-weight: bold;
-    font-size: 15px;
+  color: red;
+  font-weight: bold;
+  font-size: 15px;
 }
 
 @media screen and (max-width: 640px) {
-    #register {
-        height: 900px;
-    }
-    
-    #register nav .onglets {
-        flex-direction: column;
-        align-items: center;
-    }
+  #register nav .onglets {
+    flex-direction: column;
+    align-items: center;
+  }
 
-    #register  nav .onglets {
-        display: none;
-    }
-      
-  
-      #register nav .onglets a {
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-        border: 2px;
-        border-color: none;
-      }
-      
-      .menu-btn {
-        display: block;
-        cursor: pointer;
-        width: 40px;
-        height: 40px;
-        margin: 30px;
-        z-index: 10;
-        background-color: orange;
-        transition: all 0.9s;
-      }
-    
-      .bar {
-        display: block;
-        width: 35px;
-        height: 5px;
-        background-color: white;
-        margin: 7px auto;
-        transition: all 0.9s;
-      }
-    
-      .menu-btn.open .bar:nth-child(1) {
-        transform: translateY(12px) rotate(45deg);
-      }
-    
-      .menu-btn.open .bar:nth-child(2) {
-        opacity: 0;
-      }
-    
-      .menu-btn.open .bar:nth-child(3) {
-        transform: translateY(-12px) rotate(-45deg);
-      }
+  #register nav .onglets {
+    display: none;
+  }
 
-      #register .background {
-        width: auto; 
-        padding: 0 20px; 
-        box-sizing: border-box; 
-        }
+  #register nav .onglets a {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border: 2px;
+    border-color: none;
+  }
 
-        #register .background img {
-            display: none;
-        }
+  #register .menu-btn {
+    display: block;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+    background-color: orange;
+    transition: all 0.9s;
+  }
 
-      #register .background .parchemin {
-        margin: 0; 
-        height: auto; 
-        max-width: 100%; 
-        padding: 20px; 
-        background-image: none;
-        }
+  .bar {
+    display: block;
+    width: 35px;
+    height: 5px;
+    background-color: white;
+    margin: 7px auto;
+    transition: all 0.9s;
+  }
+
+  .menu-btn.open .bar:nth-child(1) {
+    transform: translateY(12px) rotate(45deg);
+  }
+
+  .menu-btn.open .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-btn.open .bar:nth-child(3) {
+    transform: translateY(-12px) rotate(-45deg);
+  }
+
+  #register .background {
+    width: auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+
+  #register .container,
+  .background {
+    width: 100%;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+  }
+
+  #register .background .parchemin {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    background-image: none;
+  }
+
+  #register .background .parchemin .formulaire form {
+    width: 100%;
+    height: auto;
+    padding: 20px;
+    box-sizing: border-box;
+    border: none;
+  }
+
+  #register .background img {
+    display: none;
+  }
 }

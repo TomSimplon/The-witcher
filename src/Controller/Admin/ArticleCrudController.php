@@ -7,6 +7,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Doctrine\ORM\EntityManagerInterface;
 
 class ArticleCrudController extends AbstractCrudController
 {
@@ -15,7 +16,7 @@ class ArticleCrudController extends AbstractCrudController
         return Article::class;
     }
 
-    
+
     public function configureFields(string $pageName): iterable
     {
         return [
@@ -26,8 +27,22 @@ class ArticleCrudController extends AbstractCrudController
                 ->setUploadDir('public/uploads/images')
                 ->setUploadedFileNamePattern('[name].[extension]')
                 ->setRequired(false)
-           
+
         ];
     }
-    
+
+    public function deleteEntity(EntityManagerInterface $entityManager, $entityInstance): void
+    {
+        if (!$entityInstance instanceof Article) {
+            parent::deleteEntity($entityManager, $entityInstance);
+            return;
+        }
+
+        // Ici, vous pouvez ajouter toute logique supplémentaire avant la suppression de l'article
+        // Par exemple, supprimer manuellement les commentaires associés, si nécessaire.
+
+        $entityManager->remove($entityInstance);
+        $entityManager->flush();
+    }
+
 }

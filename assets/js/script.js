@@ -1219,10 +1219,6 @@ goodAnswers.forEach((answer) => {
   answer.addEventListener("click", () => {
     score++;  
       scoreTitle.textContent = `Vous avez eu ${score} bonnes réponses`;
-
-      if (score = 10) {
-        scoreTitle.textContent = `Vous avez eu ${score} bonnes réponses. Vous êtes un vrai sorceleur !`;
-      }
       
   });
 });

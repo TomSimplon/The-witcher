@@ -21,11 +21,17 @@
 					<a href="{{ path('app_articles') }}">liste des articles</a>
 					<a href="{{ path('app_quiz') }}">Testez vos connaissances</a>
 					<a href="{{ path('app_forum') }}">Communauté</a>
-					<a href="{{ path('app_register') }}">S'inscrire</a>
-					<a href="{{ path('app_login') }}">Se connecter</a>
-					{% if app.user %}
-						<a href="{{ path('app_user') }}"><img src="{{ asset('uploads/images/user.png') }}" alt="Profil utilisateur"></a>
+					{% if not app.user %}
+						<a href="{{ path('app_register') }}">S'inscrire</a>
+						<a href="{{ path('app_login') }}">Se connecter</a>
 					{% endif %}
+
+					<div class="user">
+						{% if app.user %}
+							<a href="{{ path('app_user') }}"><img src="{{ asset('uploads/images/user.png') }}" alt="Profil utilisateur"></a>
+							<p>{{ app.user.pseudonym|default('') }}</p>
+						{% endif %}
+					</div>
 				</div>
 			</nav>
 		</div>

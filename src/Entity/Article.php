@@ -30,11 +30,12 @@ class Article
     #[ORM\Column(length: 100, nullable: false)]
     private ?string $image = null;
 
-    #[ORM\OneToMany(mappedBy: 'article', targetEntity: Commentaire::class)]
+    #[ORM\OneToMany(mappedBy: 'article', targetEntity: Commentaire::class, cascade: ['remove'])]
     private Collection $commentaires;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $slug = null;
+
 
     public function __construct()
     {
@@ -46,7 +47,7 @@ class Article
     public function setCreatedAtValue(): void
     {
         $slugify = new Slugify();
-        $this->slug = $slugify->slugify($this->title); 
+        $this->slug = $slugify->slugify($this->title);
     }
 
 
@@ -70,7 +71,7 @@ class Article
     public function setTitle(string $title): static
     {
         $this->title = $title;
-        $this->updateSlug(); 
+        $this->updateSlug();
 
         return $this;
     }
@@ -152,5 +153,5 @@ class Article
 
         return $this;
     }
-    
+
 }

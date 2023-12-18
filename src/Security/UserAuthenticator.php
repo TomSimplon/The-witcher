@@ -34,10 +34,10 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
     public function __construct(
         private UrlGeneratorInterface $urlGenerator,
         ValidatorInterface $validator,
-        UserRepository $userRepository 
+        UserRepository $userRepository
     ) {
         $this->validator = $validator;
-        $this->userRepository = $userRepository; 
+        $this->userRepository = $userRepository;
     }
 
     public function authenticate(Request $request): Passport
@@ -66,6 +66,9 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
+
+        session_regenerate_id();
+
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
         }

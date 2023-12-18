@@ -22,72 +22,77 @@
 					<a href="{{ path('app_articles') }}">liste des articles</a>
 					<a href="{{ path('app_quiz') }}">Testez vos connaissances</a>
 					<a href="{{ path('app_forum') }}">Communauté</a>
-					<a href="{{ path('app_register') }}">S'inscrire</a>
-					<a href="{{ path('app_login') }}">Se connecter</a>
-					{% if app.user %}
-						<a href="{{ path('app_user') }}"><img src="{{ asset('uploads/images/user.png') }}" alt="Profil utilisateur"></a>
+					{% if not app.user %}
+						<a href="{{ path('app_register') }}">S'inscrire</a>
+						<a href="{{ path('app_login') }}">Se connecter</a>
 					{% endif %}
-				</div>
-			</nav>
-			<div class="img">
-				<img src="{{ asset('uploads/images/manuscrit.png') }}" alt="manuscrit">
-				<div class="text-container">
-					<p>La saga du sorceleur est tout d’abord une série littéraire polonaise de fantasy écrite par Andrzej Sapkowski. Il s’inspire des univers classiques de la fantasy et du médiévale avec des ajouts issus de la mythologie et du folklore européen (plus particulièrement slave) et de l'histoire polonaise afin de mieux les détourner par l’ironie et en y abordant des problématiques contemporaines. Elle se compose de quinze nouvelles et de six romans qui retracent essentiellement la vie et les aventures du sorceleur Geralt de Riv. Les sorceleurs sont des tueurs de monstres, entraînés physiquement dès leur plus jeune âge et ayant subi des mutations génétiques leur conférant des capacités surnaturelles. Son adaptation en jeu vidéo par le studio polonais CD Projekt, intitulée The Witcher (2007) et ses deux suites (par leur succès critiques) ont contribué à promouvoir internationalement les livres.</p>
-				</div>
-			</div>
-		</div>
 
-		<div class="articles">
-			{% for article in articles %}
-				<div class="article">
-					<a href="{{ path('app_article', {'slug': article.slug}) }}">
-						<img src="{{ asset('uploads/images/' ~ article.image) }}" alt="">
-					</a>
-					<div class="article-info">
-						<h2>{{ article.title }}</h2>
-						<p class="article-date">{{ article.date|date("d/m/Y") }}</p>
+					<div class="user">
+						{% if app.user %}
+							<a href="{{ path('app_user') }}"><img src="{{ asset('uploads/images/user.png') }}" alt="Profil utilisateur"></a>
+							<p>{{ app.user.pseudonym|default('') }}</p>
+						{% endif %}
+					</div>
+				</nav>
+				<div class="img">
+					<img src="{{ asset('uploads/images/manuscrit.png') }}" alt="manuscrit">
+					<div class="text-container">
+						<p>La saga du sorceleur est tout d’abord une série littéraire polonaise de fantasy écrite par Andrzej Sapkowski. Il s’inspire des univers classiques de la fantasy et du médiévale avec des ajouts issus de la mythologie et du folklore européen (plus particulièrement slave) et de l'histoire polonaise afin de mieux les détourner par l’ironie et en y abordant des problématiques contemporaines. Elle se compose de quinze nouvelles et de six romans qui retracent essentiellement la vie et les aventures du sorceleur Geralt de Riv. Les sorceleurs sont des tueurs de monstres, entraînés physiquement dès leur plus jeune âge et ayant subi des mutations génétiques leur conférant des capacités surnaturelles. Son adaptation en jeu vidéo par le studio polonais CD Projekt, intitulée The Witcher (2007) et ses deux suites (par leur succès critiques) ont contribué à promouvoir internationalement les livres.</p>
 					</div>
 				</div>
-			{% endfor %}
-		</div>
+			</div>
 
-		<div class="présentation">
-			<h2>Préambule<h2>
-					<ul>
-						<li>
-							<p>Andrzej Sapkowski était un auteur connu en Pologne pour sa saga "Le Sorceleur" avant que CD Projekt RED ne développe le jeu vidéo "The Witcher" en 2007, étendant l'univers avec de nouvelles histoires originales après les événements des livres.</p>
-						</li>
-						<li>
-							<p>Le premier jeu "The Witcher" est sorti sur PC en 2007, suivi par une version améliorée en 2008, qui incluait une nouvelle éclaircissant les préquels des jeux et améliorait le scénario et les graphismes.</p>
-						</li>
-						<li>
-							<p>Malgré sa renommée en Pologne, c'est grâce aux jeux que les livres de Sapkowski ont gagné en notoriété à l'international, bien que cela ait créé un risque de confusion sur l'ordre d'adaptation entre les jeux et les livres.</p>
-						</li>
-						<li>
-							<p>Sapkowski, initialement sceptique sur le succès des jeux vidéo, a choisi un paiement forfaitaire plutôt qu'une part des bénéfices, une décision qu'il a regrettée par la suite.</p>
-						</li>
-						<li>
-							<p>"The Witcher 2: Assassins of Kings" et "The Witcher 3: Wild Hunt" ont suivi, avec le troisième jeu offrant une exploration plus profonde du passé de Geralt et de l'univers du Sorceleur.</p>
-						</li>
-						<li>
-							<p>"The Witcher 3" a connu un grand succès, avec des sorties sur plusieurs plateformes et l'introduction de deux extensions majeures et de contenus gratuits. "Blood and Wine", la dernière extension, conclut l'histoire de Geralt.</p>
-						</li>
-						<li>
-							<p>L'univers s'est étendu avec le jeu de cartes "Gwent" et le RPG narratif "Thronebreaker: The Witcher Tales", ainsi que plusieurs jeux de plateau et un jeu mobile en réalité augmentée.</p>
-						</li>
-						<li>
-							<p>Les jeux ont été très bien vendus, avec "The Witcher 3" atteignant 6 millions de copies vendues peu après sa sortie et 20 millions d'ici l'été 2019.</p>
-						</li>
-						<li>
-							<p>Bien que la trilogie des jeux "The Witcher" ait conclu l'histoire de Geralt, CD Projekt RED continue de développer dans cet univers, laissant présager de futurs projets.</p>
-						</li>
-						<li>
-							<p>Après avoir réclamé une compensation supplémentaire en raison d'une faille juridique, Sapkowski et CD Projekt RED ont renforcé leur partenariat en trouvant un accord à la fin de 2018.</p>
-						</li>
-						<li>
-							<p>À côté des jeux, une école de Sorceleurs inspirée par les livres et les jeux a été créée en Pologne.</p>
-						</li>
-					</ul>
-				</div>
-			</section>
-		{% endblock %}
+			<div class="articles">
+				{% for article in articles %}
+					<div class="article">
+						<a href="{{ path('app_article', {'slug': article.slug}) }}">
+							<img src="{{ asset('uploads/images/' ~ article.image) }}" alt="">
+						</a>
+						<div class="article-info">
+							<h2>{{ article.title }}</h2>
+							<p class="article-date">{{ article.date|date("d/m/Y") }}</p>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+
+			<div class="présentation">
+				<h2>Préambule<h2>
+						<ul>
+							<li>
+								<p>Andrzej Sapkowski était un auteur connu en Pologne pour sa saga "Le Sorceleur" avant que CD Projekt RED ne développe le jeu vidéo "The Witcher" en 2007, étendant l'univers avec de nouvelles histoires originales après les événements des livres.</p>
+							</li>
+							<li>
+								<p>Le premier jeu "The Witcher" est sorti sur PC en 2007, suivi par une version améliorée en 2008, qui incluait une nouvelle éclaircissant les préquels des jeux et améliorait le scénario et les graphismes.</p>
+							</li>
+							<li>
+								<p>Malgré sa renommée en Pologne, c'est grâce aux jeux que les livres de Sapkowski ont gagné en notoriété à l'international, bien que cela ait créé un risque de confusion sur l'ordre d'adaptation entre les jeux et les livres.</p>
+							</li>
+							<li>
+								<p>Sapkowski, initialement sceptique sur le succès des jeux vidéo, a choisi un paiement forfaitaire plutôt qu'une part des bénéfices, une décision qu'il a regrettée par la suite.</p>
+							</li>
+							<li>
+								<p>"The Witcher 2: Assassins of Kings" et "The Witcher 3: Wild Hunt" ont suivi, avec le troisième jeu offrant une exploration plus profonde du passé de Geralt et de l'univers du Sorceleur.</p>
+							</li>
+							<li>
+								<p>"The Witcher 3" a connu un grand succès, avec des sorties sur plusieurs plateformes et l'introduction de deux extensions majeures et de contenus gratuits. "Blood and Wine", la dernière extension, conclut l'histoire de Geralt.</p>
+							</li>
+							<li>
+								<p>L'univers s'est étendu avec le jeu de cartes "Gwent" et le RPG narratif "Thronebreaker: The Witcher Tales", ainsi que plusieurs jeux de plateau et un jeu mobile en réalité augmentée.</p>
+							</li>
+							<li>
+								<p>Les jeux ont été très bien vendus, avec "The Witcher 3" atteignant 6 millions de copies vendues peu après sa sortie et 20 millions d'ici l'été 2019.</p>
+							</li>
+							<li>
+								<p>Bien que la trilogie des jeux "The Witcher" ait conclu l'histoire de Geralt, CD Projekt RED continue de développer dans cet univers, laissant présager de futurs projets.</p>
+							</li>
+							<li>
+								<p>Après avoir réclamé une compensation supplémentaire en raison d'une faille juridique, Sapkowski et CD Projekt RED ont renforcé leur partenariat en trouvant un accord à la fin de 2018.</p>
+							</li>
+							<li>
+								<p>À côté des jeux, une école de Sorceleurs inspirée par les livres et les jeux a été créée en Pologne.</p>
+							</li>
+						</ul>
+					</div>
+				</section>
+			{% endblock %}

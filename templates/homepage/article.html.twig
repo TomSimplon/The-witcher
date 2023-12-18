@@ -39,16 +39,18 @@
 							<p>Communauté</p>
 						</a>
 					</strong>
-					<strong>
-						<a href="{{ path('app_register') }}">
-							<p>S'inscrire</p>
-						</a>
-					</strong>
-					<strong>
-						<a href="{{ path('app_login') }}">
-							<p>Se connecter</p>
-						</a>
-					</strong>
+					{% if not app.user %}
+						<strong>
+							<a href="{{ path('app_register') }}">
+								<p>S'inscrire</p>
+							</a>
+						</strong>
+						<strong>
+							<a href="{{ path('app_login') }}">
+								<p>Se connecter</p>
+							</a>
+						</strong>
+					{% endif %}
 					<strong>
 						{% if app.user %}
 							<a href="{{ path('app_user') }}">

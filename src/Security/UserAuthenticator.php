@@ -19,7 +19,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Component\Validator\Constraints\Email as EmailConstraint;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 use App\Repository\UserRepository;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 
 class UserAuthenticator extends AbstractLoginFormAuthenticator
@@ -32,17 +32,17 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
 
     private UserRepository $userRepository;
 
-    private SessionInterface $session;
+    private RequestStack $requestStack;
 
     public function __construct(
         private UrlGeneratorInterface $urlGenerator,
         ValidatorInterface $validator,
         UserRepository $userRepository,
-        SessionInterface $session
+        RequestStack $requestStack
     ) {
         $this->validator = $validator;
         $this->userRepository = $userRepository;
-        $this->session = $session;
+        $this->requestStack = $requestStack;
     }
 
     public function authenticate(Request $request): Passport
@@ -71,20 +71,27 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
-
+        // Regénération de l'ID de session pour la sécurité
         session_regenerate_id();
 
-        $user = $token->getUser();
-        $this->session->set('userId', $user->getId());
-        $this->session->set('userEmail', $user->getEmail());
+        // Obtention de l'objet Session
+        $session = $this->requestStack->getSession();
 
+        // Récupération des informations de l'utilisateur
+        $user = $token->getUser();
+
+        // Stockage des informations de l'utilisateur dans la session
+        $session->set('userId', $user->getId());
+        $session->set('userEmail', $user->getEmail());
+
+        // Redirection vers la page cible ou une page par défaut
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
         }
 
-        // For example:
         return new RedirectResponse($this->urlGenerator->generate('app_user'));
     }
+
 
     protected function getLoginUrl(Request $request): string
     {

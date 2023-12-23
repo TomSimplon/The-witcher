@@ -160,12 +160,12 @@ body {
 }
 
 .article-info h2 {
-  font-size: 25px;
+  font-size: 20px;
   font-weight: bold;
 }
 
 .article-info .article-date {
-  font-size: 1em;
+  font-size: 0.8em;
 }
 
 .présentation {
@@ -183,7 +183,7 @@ body {
   padding: 10px;
   text-align: left;
   color: white;
-  font-size: 18px;
+  font-size: 15px;
 }
 
 @media screen and (max-width: 640px) {
@@ -266,9 +266,5 @@ body {
 
   .présentation h2 {
     font: 0.8rem;
-  }
-
-  .présentation p {
-    font-size: 15px;
   }
 }

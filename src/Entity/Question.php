@@ -32,7 +32,7 @@ class Question
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-    #[ORM\OneToMany(mappedBy: 'question', targetEntity: Réponse::class)]
+    #[ORM\OneToMany(mappedBy: 'question', targetEntity: Réponse::class, cascade: ['remove'])]
     private Collection $rPonses;
 
     public function __construct()

@@ -128,6 +128,10 @@ body {
   padding: 0 20px;
 }
 
+#answer .container .contenu .question .right .title h2 {
+  font-size: 1em;
+}
+
 #answer .container .contenu .question .right .corps {
   padding: 0 20px;
 }

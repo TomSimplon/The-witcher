@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1deb5ubuntu1
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Hôte : localhost:3306
--- Généré le : mer. 06 déc. 2023 à 09:06
--- Version du serveur : 8.0.35-0ubuntu0.22.04.1
--- Version de PHP : 8.1.2-1ubuntu2.14
+-- Hôte : 127.0.0.1:3306
+-- Généré le : sam. 23 déc. 2023 à 18:32
+-- Version du serveur : 5.7.36
+-- Version de PHP : 7.4.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,14 +27,16 @@ SET time_zone = "+00:00";
 -- Structure de la table `article`
 --
 
-CREATE TABLE `article` (
-  `id` int NOT NULL,
+DROP TABLE IF EXISTS `article`;
+CREATE TABLE IF NOT EXISTS `article` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `contenu` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `date` datetime NOT NULL,
   `image` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `article`
@@ -56,14 +58,18 @@ INSERT INTO `article` (`id`, `title`, `contenu`, `date`, `image`, `slug`) VALUES
 -- Structure de la table `commentaire`
 --
 
-CREATE TABLE `commentaire` (
-  `id` int NOT NULL,
-  `user_id` int NOT NULL,
-  `article_id` int NOT NULL,
+DROP TABLE IF EXISTS `commentaire`;
+CREATE TABLE IF NOT EXISTS `commentaire` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `article_id` int(11) NOT NULL,
   `contenu` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `date` datetime NOT NULL,
-  `ip` longtext COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `ip` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_67F068BCA76ED395` (`user_id`),
+  KEY `IDX_67F068BC7294869C` (`article_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=122 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -71,11 +77,13 @@ CREATE TABLE `commentaire` (
 -- Structure de la table `doctrine_migration_versions`
 --
 
-CREATE TABLE `doctrine_migration_versions` (
-  `version` varchar(191) COLLATE utf8mb3_unicode_ci NOT NULL,
+DROP TABLE IF EXISTS `doctrine_migration_versions`;
+CREATE TABLE IF NOT EXISTS `doctrine_migration_versions` (
+  `version` varchar(191) COLLATE utf8_unicode_ci NOT NULL,
   `executed_at` datetime DEFAULT NULL,
-  `execution_time` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+  `execution_time` int(11) DEFAULT NULL,
+  PRIMARY KEY (`version`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Déchargement des données de la table `doctrine_migration_versions`
@@ -86,7 +94,8 @@ INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_
 ('DoctrineMigrations\\Version20231128105645', '2023-11-28 11:57:01', 1138),
 ('DoctrineMigrations\\Version20231128112530', '2023-11-28 12:25:35', 489),
 ('DoctrineMigrations\\Version20231128151111', '2023-11-28 16:11:18', 4874),
-('DoctrineMigrations\\Version20231130102732', '2023-11-30 11:27:46', 2042);
+('DoctrineMigrations\\Version20231130102732', '2023-11-30 11:27:46', 2042),
+('DoctrineMigrations\\Version20231223182906', '2023-12-23 18:29:21', 18);
 
 -- --------------------------------------------------------
 
@@ -94,15 +103,20 @@ INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_
 -- Structure de la table `messenger_messages`
 --
 
-CREATE TABLE `messenger_messages` (
-  `id` bigint NOT NULL,
+DROP TABLE IF EXISTS `messenger_messages`;
+CREATE TABLE IF NOT EXISTS `messenger_messages` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `body` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `headers` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `queue_name` varchar(190) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` datetime NOT NULL,
   `available_at` datetime NOT NULL,
-  `delivered_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `delivered_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_75EA56E0FB7336F0` (`queue_name`),
+  KEY `IDX_75EA56E0E3BD61CE` (`available_at`),
+  KEY `IDX_75EA56E016BA31DB` (`delivered_at`)
+) ENGINE=InnoDB AUTO_INCREMENT=153 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -110,14 +124,17 @@ CREATE TABLE `messenger_messages` (
 -- Structure de la table `question`
 --
 
-CREATE TABLE `question` (
-  `id` int NOT NULL,
-  `user_id` int NOT NULL,
+DROP TABLE IF EXISTS `question`;
+CREATE TABLE IF NOT EXISTS `question` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `contenu` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `date` datetime NOT NULL,
-  `ip` longtext COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `ip` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_B6F7494EA76ED395` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -125,10 +142,12 @@ CREATE TABLE `question` (
 -- Structure de la table `role`
 --
 
-CREATE TABLE `role` (
-  `id` int NOT NULL,
-  `name` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+DROP TABLE IF EXISTS `role`;
+CREATE TABLE IF NOT EXISTS `role` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `role`
@@ -144,14 +163,18 @@ INSERT INTO `role` (`id`, `name`) VALUES
 -- Structure de la table `réponse`
 --
 
-CREATE TABLE `réponse` (
-  `id` int NOT NULL,
-  `question_id` int NOT NULL,
-  `user_id` int NOT NULL,
+DROP TABLE IF EXISTS `réponse`;
+CREATE TABLE IF NOT EXISTS `réponse` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `question_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `contenu` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `date` datetime NOT NULL,
-  `ip` longtext COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `ip` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_A9A5D2E61E27F6BF` (`question_id`),
+  KEY `IDX_A9A5D2E6A76ED395` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -159,18 +182,21 @@ CREATE TABLE `réponse` (
 -- Structure de la table `user`
 --
 
-CREATE TABLE `user` (
-  `id` int NOT NULL,
-  `role_id` int NOT NULL,
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `role_id` int(11) NOT NULL,
   `roles` json NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `pseudonym` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `ip` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `is_active` tinyint(1) NOT NULL,
   `gdpr` datetime NOT NULL,
-  `reset_token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `reset_token` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_8D93D649D60322AC` (`role_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=117 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `user`
@@ -178,113 +204,6 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `role_id`, `roles`, `password`, `pseudonym`, `email`, `ip`, `is_active`, `gdpr`, `reset_token`) VALUES
 (24, 2, '[\"ROLE_ADMIN\"]', '$2y$13$KOpouGE3xUy6HO2PptuWNu2WRYPpUWLL.XTkbm0vG34K7ubOlLqjG', 'Admin', 'admin@admin.fr', '127.0.0.1', 1, '2023-11-23 11:19:40', '');
-
---
--- Index pour les tables déchargées
---
-
---
--- Index pour la table `article`
---
-ALTER TABLE `article`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `commentaire`
---
-ALTER TABLE `commentaire`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `IDX_67F068BCA76ED395` (`user_id`),
-  ADD KEY `IDX_67F068BC7294869C` (`article_id`);
-
---
--- Index pour la table `doctrine_migration_versions`
---
-ALTER TABLE `doctrine_migration_versions`
-  ADD PRIMARY KEY (`version`);
-
---
--- Index pour la table `messenger_messages`
---
-ALTER TABLE `messenger_messages`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `IDX_75EA56E0FB7336F0` (`queue_name`),
-  ADD KEY `IDX_75EA56E0E3BD61CE` (`available_at`),
-  ADD KEY `IDX_75EA56E016BA31DB` (`delivered_at`);
-
---
--- Index pour la table `question`
---
-ALTER TABLE `question`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `IDX_B6F7494EA76ED395` (`user_id`);
-
---
--- Index pour la table `role`
---
-ALTER TABLE `role`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `réponse`
---
-ALTER TABLE `réponse`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `IDX_A9A5D2E61E27F6BF` (`question_id`),
-  ADD KEY `IDX_A9A5D2E6A76ED395` (`user_id`);
-
---
--- Index pour la table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `IDX_8D93D649D60322AC` (`role_id`);
-
---
--- AUTO_INCREMENT pour les tables déchargées
---
-
---
--- AUTO_INCREMENT pour la table `article`
---
-ALTER TABLE `article`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
-
---
--- AUTO_INCREMENT pour la table `commentaire`
---
-ALTER TABLE `commentaire`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
-
---
--- AUTO_INCREMENT pour la table `messenger_messages`
---
-ALTER TABLE `messenger_messages`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=153;
-
---
--- AUTO_INCREMENT pour la table `question`
---
-ALTER TABLE `question`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
-
---
--- AUTO_INCREMENT pour la table `role`
---
-ALTER TABLE `role`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT pour la table `réponse`
---
-ALTER TABLE `réponse`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
-
---
--- AUTO_INCREMENT pour la table `user`
---
-ALTER TABLE `user`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
 
 --
 -- Contraintes pour les tables déchargées

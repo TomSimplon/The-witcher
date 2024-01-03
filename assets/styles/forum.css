@@ -8,7 +8,7 @@ body {
 }
 
 .forum .header nav {
-  background-image: url("../../public/uploads/images/the_witcher_universe.jpg");
+  background-image: url("../../public/uploads/images/the_witcher_universe.webp");
   display: flex;
   justify-content: center;
 }

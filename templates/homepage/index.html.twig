@@ -6,7 +6,7 @@
 {% block body %}
 	<script src="{{ asset('js/script.js') }}"></script>
 	<div class="page__background">
-		<img src="{{ asset('uploads/images/carte.jpg') }}" alt="background-image">
+		<img src="{{ asset('uploads/images/carte.webp') }}" alt="background_image">
 	</div>
 
 	<section class="page_content">
@@ -29,13 +29,13 @@
 
 					<div class="user">
 						{% if app.user %}
-							<a href="{{ path('app_user') }}"><img src="{{ asset('uploads/images/user.png') }}" alt="Profil utilisateur"></a>
+							<a href="{{ path('app_user') }}"><img src="{{ asset('uploads/images/user.webp') }}" alt="Profil utilisateur"></a>
 							<p>{{ app.user.pseudonym|default('') }}</p>
 						{% endif %}
 					</div>
 				</nav>
 				<div class="img">
-					<img src="{{ asset('uploads/images/manuscrit.png') }}" alt="manuscrit">
+					<img src="{{ asset('uploads/images/manuscrit.webp') }}" alt="manuscrit">
 					<div class="text-container">
 						<p>La saga du sorceleur est tout d’abord une série littéraire polonaise de fantasy écrite par Andrzej Sapkowski. Il s’inspire des univers classiques de la fantasy et du médiévale avec des ajouts issus de la mythologie et du folklore européen (plus particulièrement slave) et de l'histoire polonaise afin de mieux les détourner par l’ironie et en y abordant des problématiques contemporaines. Elle se compose de quinze nouvelles et de six romans qui retracent essentiellement la vie et les aventures du sorceleur Geralt de Riv. Les sorceleurs sont des tueurs de monstres, entraînés physiquement dès leur plus jeune âge et ayant subi des mutations génétiques leur conférant des capacités surnaturelles. Son adaptation en jeu vidéo par le studio polonais CD Projekt, intitulée The Witcher (2007) et ses deux suites (par leur succès critiques) ont contribué à promouvoir internationalement les livres.</p>
 					</div>
@@ -46,7 +46,7 @@
 				{% for article in articles %}
 					<div class="article">
 						<a href="{{ path('app_article', {'slug': article.slug}) }}">
-							<img src="{{ asset('uploads/images/' ~ article.image) }}" alt="">
+							<img src="{{ asset('uploads/images/' ~ article.image) }}" alt="miniature_article">
 						</a>
 						<div class="article-info">
 							<h2>{{ article.title }}</h2>

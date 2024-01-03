@@ -35,7 +35,7 @@ body {
 }
 
 #articles .header nav .onglets {
-  background-image: url("../../public/uploads/images/the_witcher_background_header.jpg");
+  background-image: url("../../public/uploads/images/the_witcher_background_header.webp");
   background-size: cover;
   background-position: center;
   margin: 20px;

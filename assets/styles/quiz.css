@@ -8,7 +8,7 @@ body {
 }
 
 #quiz .header nav {
-  background-image: url("../../public/uploads/images/quiz_header.png");
+  background-image: url("../../public/uploads/images/quiz_header.webp");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

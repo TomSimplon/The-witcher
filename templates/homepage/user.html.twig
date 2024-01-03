@@ -5,7 +5,7 @@
 
 {% block body %}
 	<div class="page_background_user">
-		<img src="{{ asset('uploads/images/forum_background.jpg') }}" alt="">
+		<img src="{{ asset('uploads/images/forum_background.webp') }}" alt="background_image">
 	</div>
 	<section id="user" class="user">
 		<div class="head">
@@ -27,7 +27,7 @@
 
 					<div class="user">
 						{% if app.user %}
-							<a href="{{ path('app_user') }}"><img src="{{ asset('uploads/images/user.png') }}" alt="Profil utilisateur"></a>
+							<a href="{{ path('app_user') }}"><img src="{{ asset('uploads/images/user.webp') }}" alt="Profil utilisateur"></a>
 							<p>{{ app.user.pseudonym|default('') }}</p>
 						{% endif %}
 					</div>
@@ -47,7 +47,7 @@
 						{% endif %}
 						<div class="recap">
 							<div class="img">
-								<img src="{{ asset('uploads/images/user.png') }}" alt="miniature">
+								<img src="{{ asset('uploads/images/user.webp') }}" alt="icone-utilisateur">
 							</div>
 							<div class="text">
 								{% if app.user %}

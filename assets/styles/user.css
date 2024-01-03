@@ -10,7 +10,7 @@ body {
 #user .head nav {
   display: flex;
   justify-content: center;
-  background-image: url("../../public/uploads/images/the_witcher_universe.jpg");
+  background-image: url("../../public/uploads/images/the_witcher_universe.webp");
 }
 
 #user .head nav .onglets {

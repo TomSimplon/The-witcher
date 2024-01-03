@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const prevButton = document.querySelector('.previous_page');
   const nextButton = document.querySelector('.next_page');
+  const pageNumberElement = document.querySelector('.page_number'); // Ajout de cette ligne
 
   function updateButtonVisibility() {
       prevButton.style.display = (currentPage > 1) ? '' : 'none';
@@ -31,7 +32,12 @@ document.addEventListener('DOMContentLoaded', function () {
       articles.forEach((article, index) => {
           article.style.display = (index >= start && index < end) ? '' : 'none';
       });
-      document.querySelector('.page_number').textContent = 'Page ' + page;
+      
+      if (totalPages > 1) {
+          pageNumberElement.textContent = 'Page ' + page + ' sur ' + totalPages;
+      } else {
+          pageNumberElement.textContent = ''; 
+      }
 
       updateButtonVisibility();
   }
@@ -52,6 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   showPage(1);
 });
+
 
 window.addEventListener('load', function() { // On récupère toutes les sections
   const sections = document.querySelectorAll('section:not(#accueil, #quiz)');

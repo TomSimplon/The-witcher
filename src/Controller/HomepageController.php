@@ -313,7 +313,7 @@ class HomepageController extends AbstractController
         }
 
         $answers = $entityManager->getRepository(Réponse::class)
-            ->findBy(['question' => $question], ['date' => 'DESC']);
+            ->findBy(['question' => $question]);
 
         return $this->render('homepage/réponse.html.twig', [
             'question' => $question,

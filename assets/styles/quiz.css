@@ -123,8 +123,10 @@ body {
 }
 
 .accueil .contenu {
-  padding: 300px;
-  vertical-align: middle;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .accueil h1 {
@@ -142,9 +144,9 @@ body {
   border: none;
   width: fit-content;
   margin: 0 auto;
-  padding: 15px 60px;
+  padding: 15px 30px;
   border-radius: 30px;
-  font-size: 30px;
+  font-size: 25px;
   cursor: pointer;
   color: white;
   font-weight: bold;
@@ -265,25 +267,20 @@ body {
   position: relative;
 }
 
-#quiz .answer .contenu {
-  vertical-align: middle;
-}
-
 #quiz .answer h1 {
   text-align: center;
-  font-size: 45px;
   color: red;
   font-style: italic;
+  font-size: 30px;
 }
 
 #quiz .answer img {
   display: flex;
-  height: 300px;
-  width: 500px;
+  height: 200px;
+  width: 400px;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  margin-top: 100px;
   border: 3px white solid;
 }
 
@@ -299,8 +296,7 @@ body {
   font-size: 20px;
   cursor: pointer;
   color: white;
-  padding: 15px 50px;
-  font-size: 25px;
+  padding: 15px 25px;
 }
 
 .arrivée .contenu {
@@ -389,18 +385,14 @@ body {
 
   #quiz .container {
     width: 100%;
-    padding: 10px;
+    height: 50vh;
+    padding: 0;
   }
 
   .accueil .contenu {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 150px 20px;
-  }
-
-  .accueil button {
-    margin-top: 50px;
   }
 
   #quiz .question .container {
@@ -408,7 +400,8 @@ body {
   }
 
   #quiz .question .contenu {
-    margin: 50px auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
     width: 90%;
   }
 
@@ -417,12 +410,36 @@ body {
     flex-direction: column;
   }
 
+  #quiz .question .quiz h2 {
+    font-size: 20px;
+    padding-left: 0;
+    padding-top: 0;
+  }
+
   #quiz .question .timer {
     justify-content: center;
+    padding: 0;
+  }
+
+  #quiz .question .timer p {
+    font-size: 0.9rem;
+  }
+
+  #quiz .question .center .titre h2 {
+    font-size: 0.8rem;
+  }
+
+  #quiz .question .center .bouton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #quiz .question .center .bouton ul {
+    padding-left: 0;
   }
 
   #quiz .answer .contenu {
-    padding: 100px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -430,18 +447,23 @@ body {
   }
 
   #quiz .answer h1 {
-    font-size: 35px;
+    font-size: 20px;
   }
 
   #quiz .answer img {
-    height: 200px;
-    width: 300px;
-    margin-top: 50px;
+    height: 100px;
+    width: 150px;
+    margin-top: 0;
+  }
+
+  #quiz .answer .next {
+    padding-top: 10px;
   }
 
   #quiz .answer .next button {
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: 5px 10px;
+    font-size: 15px;
+    border: none;
   }
 
   .arrivée .contenu {
@@ -461,15 +483,7 @@ body {
 
   .accueil button {
     margin-top: 0;
-  }
-
-  .accueil button {
-    padding: 7px 30px;
-    font-size: 20px;
-  }
-
-  #quiz .container {
-    padding: 0;
-    height: 100vh;
+    padding: 7px 25px;
+    font-size: 16px;
   }
 }

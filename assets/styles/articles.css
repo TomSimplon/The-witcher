@@ -243,3 +243,17 @@ body {
     font-size: 0x;
   }
 }
+
+@media screen and (max-width: 400px) {
+  #articles .container .pagination {
+    margin-top: 0;
+  }
+
+  #articles .container .pagination button {
+    font-size: 0.7rem;
+  }
+
+  #articles .container .pagination span {
+    font-size: 10px;
+  }
+}

@@ -120,6 +120,11 @@ body {
   text-align: center;
 }
 
+.last_articles {
+  color: white;
+  text-align: center;
+}
+
 .articles {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

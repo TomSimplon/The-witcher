@@ -226,6 +226,11 @@ body {
     padding: 0;
   }
 
+  .forum .container .contenu .search-bar input[type="text"] {
+    padding: 5px;
+    width: 80%;
+  }
+
   .forum .container .contenu .search-bar button {
     display: none;
   }

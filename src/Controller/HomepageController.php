@@ -24,9 +24,30 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 class HomepageController extends AbstractController
 {
     #[Route('/', name: 'app_homepage')]
-    public function index(ArticleRepository $articleRepository): Response
+    public function index(ArticleRepository $articleRepository, Request $request): Response
     {
-        $articles = $articleRepository->findBy([], ['date' => 'DESC'], 4);
+        $articles = [];
+
+        // Vérifiez si l'utilisateur est connecté
+        if ($this->getUser()) {
+
+            // Récupérez les ID des derniers articles consultés depuis la session ou les cookies
+            $lastViewedArticleIds = $request->getSession()->get('lastViewedArticles', []);
+
+            // Récupérez les articles à partir des ID
+            foreach ($lastViewedArticleIds as $articleId) {
+                $article = $articleRepository->find($articleId);
+                if ($article) {
+                    $articles[] = $article;
+                }
+            }
+        }
+
+        // Si l'utilisateur n'est pas connecté ou n'a pas d'articles consultés, affichez les 4 articles les plus récents
+        if (count($articles) < 4) {
+            $articles = array_merge($articles, $articleRepository->findBy([], ['date' => 'DESC'], 4 - count($articles)));
+        }
+
         return $this->render('homepage/index.html.twig', [
             'controller_name' => 'HomepageController',
             'articles' => $articles,
@@ -34,11 +55,27 @@ class HomepageController extends AbstractController
     }
 
     #[Route('/user', name: 'app_user')]
-    public function user(): Response
+    public function user(ArticleRepository $articleRepository, Request $request): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+        // Récupérer les ID des 4 derniers articles consultés depuis la session
+        $lastViewedArticleIds = $request->getSession()->get('lastViewedArticles', []);
+        $lastViewedArticleIds = array_slice($lastViewedArticleIds, -4);
+
+        // Récupérez les articles à partir des ID
+        $articles = [];
+
+        foreach ($lastViewedArticleIds as $articleId) {
+            $article = $articleRepository->find($articleId);
+            if ($article) {
+                $articles[] = $article;
+            }
+        }
+
         return $this->render('homepage/user.html.twig', [
             'controller_name' => 'HomepageController',
+            'viewedArticles' => $articles,
         ]);
     }
 
@@ -86,7 +123,7 @@ class HomepageController extends AbstractController
     }
 
     #[Route('/article/{slug}', name: 'app_article')]
-    public function article(CommentaireRepository $commentaireRepository, EntityManagerInterface $entityManager, string $slug, Request $request): Response
+    public function article(CommentaireRepository $commentaireRepository, EntityManagerInterface $entityManager, string $slug, Request $request, Article $article): Response
     {
         $articlesRepository = $entityManager->getRepository(Article::class);
         $article = $articlesRepository->findOneBy(['slug' => $slug]);
@@ -108,8 +145,8 @@ class HomepageController extends AbstractController
         $contenu = htmlspecialchars($decodeBalise);
         $decodedContent = html_entity_decode($contenu);
 
-
         $user = $this->getUser();
+
         if ($user) {
             $commentaire = new Commentaire();
             $form = $this->createForm(CommentaireType::class, $commentaire);
@@ -133,6 +170,17 @@ class HomepageController extends AbstractController
         }
 
         $commentaires = $commentaireRepository->findBy(['article' => $article], ['date' => 'DESC']);
+
+        // Ajout de l'article consulté à la session
+        $lastViewedArticles = $request->getSession()->get('lastViewedArticles', []);
+        if (!in_array($article->getId(), $lastViewedArticles)) {
+            $lastViewedArticles[] = $article->getId();
+            // Limiter à 4 articles
+            if (count($lastViewedArticles) > 4) {
+                array_shift($lastViewedArticles);
+            }
+            $request->getSession()->set('lastViewedArticles', $lastViewedArticles);
+        }
 
         return $this->render('homepage/article.html.twig', [
             'article' => $article,

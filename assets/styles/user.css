@@ -82,7 +82,6 @@ body {
 
 #user .container {
   width: 800px;
-
   background-color: #000000;
 }
 
@@ -130,6 +129,22 @@ body {
   padding: 20px;
   font-size: 18px;
   font-weight: bold;
+}
+
+#user .container .contenu .infos .view_articles {
+  display: flex;
+  flex-direction: column;
+}
+
+#user .container .contenu .infos .view_articles a {
+  text-decoration: none;
+  cursor: pointer;
+  color: black;
+  padding-bottom: 5px;
+}
+
+#user .container .contenu .infos .view_articles a:hover {
+  color: rgb(255, 123, 0);
 }
 
 @media screen and (max-width: 640px) {
@@ -197,14 +212,31 @@ body {
     padding-left: 0;
   }
 
+  #user .container .contenu .infos .recap .text p {
+    font-size: 16px;
+  }
+
   #user .container .contenu .infos .request {
     display: flex;
     flex-direction: column;
+  }
+
+  #user .container .contenu .infos .request p {
+    font-size: 16px;
+    margin: 0;
+  }
+
+  #user .container .contenu .infos .view_articles {
+    padding: 10px;
   }
 }
 
 @media screen and (max-width: 400px) {
   #user .container {
+    height: 100%;
+  }
+
+  #user .body {
     height: 100%;
   }
 }

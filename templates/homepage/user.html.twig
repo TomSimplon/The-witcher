@@ -41,7 +41,7 @@
 					<div class="infos">
 						{% if app.user %}
 							<div class="mb-3">
-								<span style="color: green; font-weight: bold; font-size: 18px;">Vous êtes connecté
+								<span style="color: green; font-weight: bold; font-size: 16px;">Vous êtes connecté
 									{{ app.user.pseudonym|default('') }}, bien le bonjour !</span>
 							</div>
 						{% endif %}
@@ -73,6 +73,17 @@
 									<p>Se déconnecter</p>
 								</span>
 							</a>
+						</div>
+
+						<div class="view_articles">
+							<h3>Vos derniers articles consultés :</h3>
+							{% if viewedArticles|length > 0 %}
+								{% for article in viewedArticles %}
+									<a href="{{ path('app_article', {'slug': article.slug}) }}">{{ article.title }}</a>
+								{% endfor %}
+							{% else %}
+								<p>Vous n'avez consulté aucun article récemment.</p>
+							{% endif %}
 						</div>
 					</div>
 				</div>

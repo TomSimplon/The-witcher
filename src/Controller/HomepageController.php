@@ -26,31 +26,37 @@ class HomepageController extends AbstractController
     #[Route('/', name: 'app_homepage')]
     public function index(ArticleRepository $articleRepository, Request $request): Response
     {
-        $articles = [];
+        $articleSet = new \Doctrine\Common\Collections\ArrayCollection();
 
-        // Vérifiez si l'utilisateur est connecté
+        // Si l'utilisateur est connecté, récupérez les derniers articles consultés
         if ($this->getUser()) {
-
-            // Récupérez les ID des derniers articles consultés depuis la session ou les cookies
             $lastViewedArticleIds = $request->getSession()->get('lastViewedArticles', []);
 
-            // Récupérez les articles à partir des ID
             foreach ($lastViewedArticleIds as $articleId) {
                 $article = $articleRepository->find($articleId);
-                if ($article) {
-                    $articles[] = $article;
+                if ($article && !$articleSet->contains($article)) {
+                    $articleSet->add($article);
                 }
             }
         }
 
-        // Si l'utilisateur n'est pas connecté ou n'a pas d'articles consultés, affichez les 4 articles les plus récents
-        if (count($articles) < 4) {
-            $articles = array_merge($articles, $articleRepository->findBy([], ['date' => 'DESC'], 4 - count($articles)));
+        // Récupérez les articles récents si nécessaire
+        if ($articleSet->count() < 4) {
+            $recentArticles = $articleRepository->findBy([], ['date' => 'DESC'], 4);
+
+            foreach ($recentArticles as $article) {
+                if (!$articleSet->contains($article)) {
+                    $articleSet->add($article);
+                    if ($articleSet->count() >= 4) {
+                        break;
+                    }
+                }
+            }
         }
 
         return $this->render('homepage/index.html.twig', [
             'controller_name' => 'HomepageController',
-            'articles' => $articles,
+            'articles' => $articleSet->toArray(),
         ]);
     }
 

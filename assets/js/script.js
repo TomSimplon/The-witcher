@@ -1230,4 +1230,10 @@ goodAnswers.forEach((answer) => {
   });
 });
 
+// Recommencer le quiz
+const refreshButton = document.querySelector('#refresh');
+refreshButton.addEventListener('click', () => {
+  window.location.reload(); 
+});
+
 });

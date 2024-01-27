@@ -18,7 +18,7 @@
 				</div>
 				<div class="onglets">
 					<a href="{{ path('app_homepage') }}">Accueil</a>
-					<a href="{{ path('app_articles') }}">liste des articles</a>
+					<a href="{{ path('app_articles') }}">Liste des articles</a>
 					<a href="{{ path('app_quiz') }}">Testez vos connaissances</a>
 					<a href="{{ path('app_forum') }}">Communauté</a>
 					{% if not app.user %}
@@ -1264,6 +1264,10 @@
 								<h1>
 									Vous avez eu 0 bonnes réponses. Ressortez vos grimoires, et reprenez tout à 0...
 								</h1>
+							</div>
+
+							<div class="bouton">
+								<button id="refresh">Recommencez le quiz</button>
 							</div>
 						</div>
 					</div>
